@@ -494,10 +494,39 @@ class Menu {
     const escapeHTML = window.HRz.Utils ? window.HRz.Utils.escapeHTML : (s) => s;
     const { shopByBike, accessories, ridingGears, luggageTouring, helmetsAccessories, brands } = this.menuData;
 
+    // Harmonized accessory groups for mobile sub-accordions matching desktop layout
+    const accessoryGroups = {
+      "BIKE PROTECTION": accessories["BIKE PROTECTION"] || [],
+      "HANDLEBAR & ACCESSORIES": accessories["HANDLEBAR & ACCESSORIES"] || [],
+      "GUARDS & MOUNTS": [
+        ...(accessories["HEAD LIGHT GRILL"] || []),
+        ...(accessories["MASTER CYLINDER GUARD"] || []),
+        ...(accessories["FOG LIGHT MOUNT"] || []),
+        ...(accessories["CRASH GUARD"] || []),
+        ...(accessories["RADIATOR GRILL"] || [])
+      ],
+      "FOOT RESTS & CONTROLS": [
+        ...(accessories["FOOT RESTS"] || []),
+        ...(accessories["FOOT REST"] || [])
+      ],
+      "OIL CAPS & STANDS": [
+        ...(accessories["FRONT OIL CAP SILVER"] || []),
+        ...(accessories["REAR OIL CAP"] || []),
+        ...(accessories["SIDE STAND BASE"] || []),
+        ...(accessories["LUGGAGE CARRIER"] || []),
+        ...(accessories["SADDLE STAY"] || [])
+      ],
+      "BIKE ESSENTIALS & FAIRINGS": [
+        ...(accessories["BIKE ESSENTIALS"] || []),
+        ...(accessories["BODY FAIRING AND FENDERS"] || [])
+      ],
+      "CLEANING & CARE": accessories["CLEANING ACCESSORIES"] || []
+    };
+
     drawer.innerHTML = `
       <div class="menu-drawer-header">
         <div class="menu-drawer-brand"><span>HRz</span> <i>MENU</i></div>
-        <button class="close-menu-drawer" id="closeMenuDrawerBtn" aria-label="Close menu">×</button>
+        <button class="close-menu-drawer" id="closeMenuDrawerBtn" aria-label="Close menu">&times;</button>
       </div>
       
       <div class="menu-drawer-search">
@@ -522,16 +551,16 @@ class Menu {
                       <span>${escapeHTML(brand)}</span>
                       <i class="chevron">+</i>
                     </button>
-                    <div class="sub-accordion-body" style="display: none;">
+                    <div class="sub-accordion-body">
                       <div class="mobile-list-vertical">
-                        <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(brand)}" onclick="window.HRz.Menu.closeAll()">
+                        <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(brand)}">
                           <span>All ${escapeHTML(brand)} Bikes</span>
-                          <i>→</i>
+                          <i>&rarr;</i>
                         </a>
                         ${(shopByBike[brand] || []).map(model => `
-                          <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(model)}" onclick="window.HRz.Menu.closeAll()">
+                          <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(model)}">
                             <span>${escapeHTML(model)}</span>
-                            <i>→</i>
+                            <i>&rarr;</i>
                           </a>
                         `).join("")}
                       </div>
@@ -539,8 +568,8 @@ class Menu {
                   </div>
                 `).join("")}
               </div>
-              <div class="mobile-view-all-wrap" style="margin-top: 12px;">
-                <a class="mobile-view-all-btn" href="#catalog" onclick="window.HRz.Menu.closeAll()">VIEW ALL MOTORCYCLES →</a>
+              <div class="mobile-view-all-wrap">
+                <a class="mobile-view-all-btn" href="#catalog">VIEW ALL MOTORCYCLES &rarr;</a>
               </div>
             </div>
           </div>
@@ -552,13 +581,36 @@ class Menu {
               <i class="chevron">+</i>
             </button>
             <div class="accordion-body">
-              <div class="mobile-list-vertical">
-                ${Object.keys(accessories).map(cat => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(cat)}" onclick="window.HRz.Menu.closeAll()">
-                    <span>${escapeHTML(cat)}</span>
-                    <i>→</i>
-                  </a>
-                `).join("")}
+              <div class="sub-accordion-group">
+                ${Object.keys(accessoryGroups).map(groupName => {
+                  const items = accessoryGroups[groupName];
+                  const uniqueItems = [...new Set(items)];
+                  return `
+                    <div class="sub-accordion-item">
+                      <button class="sub-accordion-toggle" type="button">
+                        <span>${escapeHTML(groupName)}</span>
+                        <i class="chevron">+</i>
+                      </button>
+                      <div class="sub-accordion-body">
+                        <div class="mobile-list-vertical">
+                          <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(groupName)}">
+                            <span>All ${escapeHTML(groupName)}</span>
+                            <i>&rarr;</i>
+                          </a>
+                          ${uniqueItems.map(item => `
+                            <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(item)}">
+                              <span>${escapeHTML(item)}</span>
+                              <i>&rarr;</i>
+                            </a>
+                          `).join("")}
+                        </div>
+                      </div>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+              <div class="mobile-view-all-wrap">
+                <a class="mobile-view-all-btn" href="#catalog?category=Protection">VIEW ALL ACCESSORIES &rarr;</a>
               </div>
             </div>
           </div>
@@ -571,10 +623,14 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
+                <a class="mobile-list-btn" href="#catalog?search=Performance">
+                  <span>All Performance Accessories</span>
+                  <i>&rarr;</i>
+                </a>
                 ${this.menuData.performanceAccessories.map(a => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(a)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(a)}">
                     <span>${escapeHTML(a)}</span>
-                    <i>→</i>
+                    <i>&rarr;</i>
                   </a>
                 `).join("")}
               </div>
@@ -589,10 +645,14 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
+                <a class="mobile-list-btn" href="#catalog?category=Lights">
+                  <span>All Lighting</span>
+                  <i>&rarr;</i>
+                </a>
                 ${this.menuData.lighting.map(a => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(a)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(a)}">
                     <span>${escapeHTML(a)}</span>
-                    <i>→</i>
+                    <i>&rarr;</i>
                   </a>
                 `).join("")}
               </div>
@@ -607,10 +667,14 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
+                <a class="mobile-list-btn" href="#catalog?category=Riding%20Gears">
+                  <span>All Riding Gears</span>
+                  <i>&rarr;</i>
+                </a>
                 ${ridingGears.cards.map(c => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(c.search || c.name)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(c.search || c.name)}">
                     <span>${escapeHTML(c.name)}</span>
-                    <i>→</i>
+                    <i>&rarr;</i>
                   </a>
                 `).join("")}
               </div>
@@ -625,10 +689,14 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
+                <a class="mobile-list-btn" href="#catalog?category=Luggage">
+                  <span>All Luggage & Touring</span>
+                  <i>&rarr;</i>
+                </a>
                 ${luggageTouring.cards.map(l => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(l.search)}" onclick="window.HRz.Menu.closeAll(false, true)">
+                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(l.search || l.name)}">
                     <span>${escapeHTML(l.name)}</span>
-                    <i>→</i>
+                    <i>&rarr;</i>
                   </a>
                 `).join("")}
               </div>
@@ -643,10 +711,14 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
+                <a class="mobile-list-btn" href="#catalog?category=Helmets">
+                  <span>All Helmets & Accessories</span>
+                  <i>&rarr;</i>
+                </a>
                 ${helmetsAccessories.cards.map(h => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(h.search)}" onclick="window.HRz.Menu.closeAll(false, true)">
+                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(h.search || h.name)}">
                     <span>${escapeHTML(h.name)}</span>
-                    <i>→</i>
+                    <i>&rarr;</i>
                   </a>
                 `).join("")}
               </div>
@@ -662,66 +734,66 @@ class Menu {
             <div class="accordion-body">
               <div class="mobile-brands-grid">
                 ${brands.map(b => `
-                  <a class="mobile-brand-chip" href="#catalog?search=${encodeURIComponent(b)}" onclick="window.HRz.Menu.closeAll(false, true)">${escapeHTML(b)}</a>
+                  <a class="mobile-brand-chip" href="#catalog?search=${encodeURIComponent(b)}">${escapeHTML(b)}</a>
                 `).join("")}
               </div>
             </div>
           </div>
 
           <!-- EVENTS & RIDES -->
-          <div class="accordion-item direct">
-            <a class="accordion-direct-link" href="#events" onclick="window.HRz.Menu.closeAll(false, true)">
-              <span>EVENTS & RIDES</span>
-              <i>→</i>
-            </a>
-          </div>
-
-          <!-- HELP & SUPPORT -->
-          <div class="accordion-item direct">
-            <a class="accordion-direct-link" href="#help" onclick="window.HRz.Menu.closeAll(false, true)">
-              <span>HELP & SUPPORT</span>
-              <i>→</i>
-            </a>
-          </div>
-
-          <!-- ABOUT US -->
-          <div class="accordion-item direct">
-            <a class="accordion-direct-link" href="#about" onclick="window.HRz.Menu.closeAll(false, true)">
-              <span>ABOUT US</span>
-              <i>→</i>
-          <!-- EVENTS -->
           <div class="accordion-item">
             <button class="accordion-toggle" type="button">
-              <span>EVENTS</span>
+              <span>EVENTS & RIDES</span>
               <i class="chevron">+</i>
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
-                <a class="mobile-list-btn" href="#events?tab=upcoming" onclick="window.HRz.Menu.closeAll(false, true)">
-                  <span>UPCOMING EVENTS</span>
-                  <i>→</i>
+                <a class="mobile-list-btn" href="#events">
+                  <span>All Events & Rides</span>
+                  <i>&rarr;</i>
                 </a>
-                <a class="mobile-list-btn" href="#events?tab=past" onclick="window.HRz.Menu.closeAll(false, true)">
-                  <span>PAST EVENTS</span>
-                  <i>→</i>
+                <a class="mobile-list-btn" href="#events?tab=upcoming">
+                  <span>Upcoming Rides</span>
+                  <i>&rarr;</i>
+                </a>
+                <a class="mobile-list-btn" href="#events?tab=past">
+                  <span>Past Events</span>
+                  <i>&rarr;</i>
                 </a>
               </div>
             </div>
           </div>
 
+          <!-- ABOUT US -->
+          <div class="accordion-item direct">
+            <a class="accordion-direct-link" href="#about">
+              <span>ABOUT US</span>
+              <i>&rarr;</i>
+            </a>
+          </div>
+
+          <!-- HELP & SUPPORT -->
+          <div class="accordion-item direct">
+            <a class="accordion-direct-link" href="#help">
+              <span>HELP & SUPPORT</span>
+              <i>&rarr;</i>
+            </a>
+          </div>
+
         </div>
 
         <div class="drawer-footer-nav">
-          <a href="#garage" onclick="window.HRz.Menu.closeAll(false, true)">My Garage</a>
-          <a href="#tracking" onclick="window.HRz.Menu.closeAll(false, true)">Orders</a>
-          <a href="#reviews" onclick="window.HRz.Menu.closeAll(false, true)">Reviews</a>
-          <a href="#help" onclick="window.HRz.Menu.closeAll(false, true)">FAQ</a>
+          <a href="#garage">My Garage</a>
+          <a href="#tracking">Orders</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#help">FAQ</a>
         </div>
       </div>
     `;
   }
 
   static bindMenuEvents() {
+    const drawer = document.getElementById("mainMenuDrawer");
     const mainMenuBtn = document.getElementById("mainMenuBtn");
     const closeBtn = document.getElementById("closeMenuDrawerBtn");
 
@@ -736,7 +808,7 @@ class Menu {
       closeBtn.onclick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        this.closeAll();
+        this.closeAll(false, false);
       };
     }
 
@@ -746,14 +818,14 @@ class Menu {
       const handleSearch = () => {
         const val = drawerSearchInput.value.trim();
         if (val) {
-          window.location.hash = `catalog?search=${encodeURIComponent(val)}`;
-          this.closeAll(false, true);
+          this.navigateTo(`catalog?search=${encodeURIComponent(val)}`);
         }
       };
       drawerSearchGo.onclick = handleSearch;
       drawerSearchInput.onkeydown = (e) => { if (e.key === "Enter") handleSearch(); };
     }
 
+    // Top-level Accordion items
     document.querySelectorAll("#mainMenuDrawer .accordion-toggle").forEach(toggle => {
       toggle.onclick = (e) => {
         e.preventDefault();
@@ -761,7 +833,7 @@ class Menu {
         const item = toggle.parentElement;
         const isOpen = item.classList.contains("active");
         
-        // Optionally close other active items in mobile view for cleaner viewing
+        // Close other sibling top-level items
         item.parentElement.querySelectorAll(".accordion-item").forEach(i => {
           if (i !== item) {
             i.classList.remove("active");
@@ -776,6 +848,7 @@ class Menu {
       };
     });
 
+    // Sub-accordion items (brand models and accessory subcategories)
     document.querySelectorAll("#mainMenuDrawer .sub-accordion-toggle").forEach(toggle => {
       toggle.onclick = (e) => {
         e.preventDefault();
@@ -784,7 +857,7 @@ class Menu {
         const body = item.querySelector('.sub-accordion-body');
         const isOpen = item.classList.contains("active");
         
-        // Optionally close other sub items
+        // Close other sub items within this specific sub-group
         item.parentElement.querySelectorAll(".sub-accordion-item").forEach(i => {
           if (i !== item) {
             i.classList.remove("active");
@@ -801,6 +874,46 @@ class Menu {
         if (chevron) chevron.textContent = !isOpen ? "–" : "+";
       };
     });
+
+    // Delegated click handler on drawer: captures ALL hash links (bikes, accessories, footer, etc.)
+    if (drawer) {
+      drawer.addEventListener("click", (e) => {
+        const link = e.target.closest("a[href^='#']");
+        if (!link) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const href = link.getAttribute("href");
+        this.navigateTo(href);
+      });
+    }
+  }
+
+  static navigateTo(targetHash) {
+    if (!targetHash) return;
+    const cleanHash = targetHash.startsWith("#") ? targetHash.slice(1) : targetHash;
+
+    // 1. Close drawer without calling history.back()
+    this.closeAll(false, true);
+
+    // 2. Clear panelOpen history state cleanly with replaceState
+    if (window.history.state && window.history.state.panelOpen) {
+      window.history.replaceState({}, "");
+    }
+
+    // 3. Clear overlay & body scroll lock
+    const overlay = document.getElementById("overlay");
+    if (overlay) overlay.classList.remove("open");
+    document.body.style.overflow = "";
+
+    // 4. Update route
+    const currentHash = window.location.hash.replace(/^#/, "");
+    if (currentHash === cleanHash) {
+      if (window.HRz.App && window.HRz.App.handleRoute) {
+        window.HRz.App.handleRoute();
+      }
+    } else {
+      window.location.hash = cleanHash;
+    }
   }
 
   static openDrawer() {
@@ -815,7 +928,7 @@ class Menu {
     }
   }
 
-  static closeAll(isPopState = false, skipHistory = false) {
+  static closeAll(isPopState = false, skipHistory = true) {
     const drawer = document.getElementById("mainMenuDrawer");
     const overlay = document.getElementById("overlay");
     const wasOpen = drawer && drawer.classList.contains("open");
@@ -837,8 +950,7 @@ class Menu {
   }
 
   static navigateToSearch(query) {
-    window.location.hash = `catalog?search=${encodeURIComponent(query)}`;
-    this.closeAll();
+    this.navigateTo(`catalog?search=${encodeURIComponent(query)}`);
   }
 
   /* =============================================

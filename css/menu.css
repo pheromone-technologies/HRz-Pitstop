@@ -573,11 +573,16 @@
   background: #07080a;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
-.accordion-item.active .accordion-body {
+.accordion-item.active > .accordion-body {
   display: block; /* No jittery keyframe animation for instant touch response */
 }
 
 /* Touch-Optimized Brand Grid & Category Lists */
+.sub-accordion-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .sub-accordion-item {
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
@@ -613,17 +618,21 @@
   align-items: center;
   justify-content: center;
 }
-.sub-accordion-item.active .sub-accordion-toggle {
+.sub-accordion-item.active > .sub-accordion-toggle {
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
   border-color: var(--red);
 }
-.sub-accordion-item.active .chevron {
+.sub-accordion-item.active > .sub-accordion-toggle .chevron {
   background: var(--red);
   color: #fff;
 }
 .sub-accordion-body {
+  display: none;
   padding: 8px 0 8px 12px;
+}
+.sub-accordion-item.active > .sub-accordion-body {
+  display: block;
 }
 
 .mobile-grid-2col {
