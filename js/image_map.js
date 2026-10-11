@@ -91,5 +91,21 @@ window.HRzImageMap = {
   "Apache RTR 160": "images/bikes/TVS_Apache_RTR_160.jpg",
   "Apache RTR 310": "images/bikes/TVS_Apache_RTR_310.jpg",
   "HARLEY DAVIDSON": "images/bikes/HARLEY_DAVIDSON_logo.jpg",
-  "Harley 440X": "images/bikes/HARLEY_DAVIDSON_Harley_440X.jpg"
+  "HARLEY-DAVIDSON": "images/bikes/HARLEY_DAVIDSON_logo.jpg",
+  "Harley 440X": "images/bikes/HARLEY_DAVIDSON_Harley_440X.jpg",
+  "X440": "images/bikes/HARLEY_DAVIDSON_Harley_440X.jpg",
+  "Scrambler 400 X": "images/bikes/TRIUMPH_Scrambler_400_x.jpg",
+  "Adventure 390 (2025)": "images/bikes/KTM_ADVENTURE_390_2025_Model.jpg",
+  "Duke 390 Gen-3": "images/bikes/KTM_Duke_390.jpg",
+  "MT-15 V2": "images/bikes/YAMAHA_MT_15.jpg",
+  "Apache RR 310": "images/bikes/TVS_Apache_RTR_310.jpg",
+  "Apache RTX 300": "images/bikes/TVS_Apache_RTX_300_new.jpg",
+  "Ronin 225": "images/bikes/TVS_tvs_ronin.jpg",
+  "BMW": "images/bike_t_1.webp",
+  "G 310 GS": "images/bike_t_1.webp",
+  "F 450 GS": "images/bike_t_1.webp",
+  "KAWASAKI": "images/bike_t_2.webp",
+  "KLX 230": "images/bike_t_2.webp",
+  "YEZDI": "images/bike_t_3.webp",
+  "Adventure": "images/bike_t_3.webp"
 };

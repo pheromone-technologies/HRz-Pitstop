@@ -12,43 +12,47 @@ class Menu {
   static menuData = {
     shopByBike: {
       "ROYAL ENFIELD": [
-        "Scram 440 new", "Classic 650", "Bear 650", "Guerrilla 450", 
-        "Himalayan 450", "SUPER METEOR 650", "Hunter 350", "Himalayan", 
-        "Classic 350 Reborn", "Standard 350 Reborn", "Meteor 350", "Classic", 
-        "Standard", "Electra", "Interceptor", "Thunderbird", "Thunderbird X", 
-        "Continental GT", "Scram"
-      ],
-      "YAMAHA": [
-        "XSR 155", "RX 100", "Aerox 155", "MT 15", "R3", "R15 V1", 
-        "R15 V2", "R15 V3", "R15 V4", "R1"
+        "Himalayan 450", "Himalayan 411", "Classic 350 Reborn", "Hunter 350", 
+        "Meteor 350", "Guerrilla 450", "Interceptor 650", "Continental GT 650", 
+        "Super Meteor 650", "Bear 650", "Scram 411", "Scram 440"
       ],
       "KTM": [
-        "KTM 390 Enduro R", "Adventure 890", "ADVENTURE 390 2025 Model", 
-        "Adventure 390", "Duke 125", "Duke 200", "Duke 250 BS6", "Duke 250", 
-        "Duke 390", "RC 390"
+        "Duke 390 Gen-3", "Duke 250", "Duke 200", "Adventure 390", 
+        "Adventure 390 (2025)", "390 Enduro R", "RC 390"
       ],
       "BAJAJ": [
-        "NS400Z", "Pulsar 220", "Pulsar NS 200", "Pulsar RS 200", 
-        "Dominar 400", "Pulsar 150", "Pulsar 180"
+        "Dominar 400", "Pulsar NS400Z", "Pulsar NS 200", "Pulsar N250", "Pulsar RS 200"
+      ],
+      "TRIUMPH": [
+        "Speed 400", "Scrambler 400 X", "Tracker 400", "Tiger Sport 660", "Trident 660"
+      ],
+      "YAMAHA": [
+        "MT-15 V2", "R15 V4", "XSR 155", "FZS V3 / V4", "Aerox 155", "NMAX 155"
       ],
       "HONDA": [
-        "XL750 Transalp", "NX500", "CB 200X", "Hness CB 350", "Hornet 160R", 
-        "CBR 250 R", "CB 300", "CB 350 RS", "CB 500X", "NX400", "CB650R", 
-        "CBR 650R", "CBR 1000RR"
+        "H'ness CB 350", "CB 350 RS", "CB 200X", "XL750 Transalp", "NX500"
       ],
-      "SUZUKI": [
-        "Gixxer", "Gixxer SF", "V Strom 250", "Hayabusa", "GSX-S750", 
-        "V Strom 800DE", "V Strom DL650"
-      ],
-      "HERO": ["Xpulse 210", "Mavrick 440", "Xpulse 200", "Impulse"],
-      "TRIUMPH": [
-        "Tiger 900", "Tracker 400", "Scrambler 400 x", "Speed 400", 
-        "Tiger Sport 660", "Tiger", "Trident 660"
+      "HERO": [
+        "XPulse 200 4V", "XPulse 210", "Mavrick 440"
       ],
       "TVS": [
-        "Apache RTX 300 new", "tvs ronin", "Apache 200", "Apache RTR 160", "Apache RTR 310"
+        "Apache RR 310", "Apache RTR 310", "Apache RTX 300", "Ronin 225"
       ],
-      "HARLEY DAVIDSON": ["Harley 440X"]
+      "HARLEY-DAVIDSON": [
+        "X440"
+      ],
+      "SUZUKI": [
+        "V-Strom SX 250", "V-Strom 800DE", "Gixxer 250"
+      ],
+      "BMW": [
+        "G 310 GS", "F 450 GS"
+      ],
+      "KAWASAKI": [
+        "KLX 230", "Ninja 300"
+      ],
+      "YEZDI": [
+        "Adventure"
+      ]
     },
     accessories: {
       "BIKE PROTECTION": [

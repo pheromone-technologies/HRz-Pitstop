@@ -2,7 +2,7 @@
     {
         "id": "bike-re-him-450-adv",
         "brand": "Royal Enfield",
-        "model": "Himalayan",
+        "model": "Himalayan 450",
         "year": 2024,
         "variant": "450 Adventure",
         "engineCc": 452,
@@ -12,7 +12,7 @@
     {
         "id": "bike-re-him-450-sum",
         "brand": "Royal Enfield",
-        "model": "Himalayan",
+        "model": "Himalayan 450",
         "year": 2024,
         "variant": "450 Summit",
         "engineCc": 452,
@@ -20,19 +20,39 @@
         "region": "Global"
     },
     {
-        "id": "bike-re-him-411-scram",
+        "id": "bike-re-him-411",
         "brand": "Royal Enfield",
-        "model": "Himalayan",
+        "model": "Himalayan 411",
         "year": 2023,
-        "variant": "411 Scram",
+        "variant": "411 Base",
         "engineCc": 411,
         "category": "Adventure",
         "region": "Global"
     },
     {
+        "id": "bike-re-him-411-scram",
+        "brand": "Royal Enfield",
+        "model": "Scram 411",
+        "year": 2023,
+        "variant": "411 Base",
+        "engineCc": 411,
+        "category": "Scrambler",
+        "region": "Global"
+    },
+    {
+        "id": "bike-re-scram-440",
+        "brand": "Royal Enfield",
+        "model": "Scram 440",
+        "year": 2024,
+        "variant": "440 Base",
+        "engineCc": 443,
+        "category": "Scrambler",
+        "region": "Global"
+    },
+    {
         "id": "bike-re-hun-350-met",
         "brand": "Royal Enfield",
-        "model": "Hunter",
+        "model": "Hunter 350",
         "year": 2024,
         "variant": "350 Metro",
         "engineCc": 349,
@@ -42,7 +62,7 @@
     {
         "id": "bike-re-cla-350-reb",
         "brand": "Royal Enfield",
-        "model": "Classic",
+        "model": "Classic 350 Reborn",
         "year": 2024,
         "variant": "350 Reborn",
         "engineCc": 349,
@@ -52,7 +72,7 @@
     {
         "id": "bike-re-met-350-ste",
         "brand": "Royal Enfield",
-        "model": "Meteor",
+        "model": "Meteor 350",
         "year": 2024,
         "variant": "350 Stellar",
         "engineCc": 349,
@@ -62,7 +82,7 @@
     {
         "id": "bike-re-int-650-twi",
         "brand": "Royal Enfield",
-        "model": "Interceptor",
+        "model": "Interceptor 650",
         "year": 2024,
         "variant": "650 Twin",
         "engineCc": 648,
@@ -72,7 +92,7 @@
     {
         "id": "bike-re-gt-650-ape",
         "brand": "Royal Enfield",
-        "model": "Continental GT",
+        "model": "Continental GT 650",
         "year": 2024,
         "variant": "650 Apex Grey",
         "engineCc": 648,
@@ -82,7 +102,7 @@
     {
         "id": "bike-re-sm-650-ast",
         "brand": "Royal Enfield",
-        "model": "Super Meteor",
+        "model": "Super Meteor 650",
         "year": 2024,
         "variant": "650 Astral",
         "engineCc": 648,
@@ -92,7 +112,7 @@
     {
         "id": "bike-re-gue-450-ana",
         "brand": "Royal Enfield",
-        "model": "Guerrilla",
+        "model": "Guerrilla 450",
         "year": 2024,
         "variant": "450 Analogue",
         "engineCc": 452,
@@ -100,11 +120,31 @@
         "region": "Global"
     },
     {
+        "id": "bike-re-bear-650",
+        "brand": "Royal Enfield",
+        "model": "Bear 650",
+        "year": 2024,
+        "variant": "650 Scrambler",
+        "engineCc": 648,
+        "category": "Scrambler",
+        "region": "Global"
+    },
+    {
+        "id": "bike-re-shotgun-650",
+        "brand": "Royal Enfield",
+        "model": "Shotgun 650",
+        "year": 2024,
+        "variant": "650 Custom",
+        "engineCc": 648,
+        "category": "Cruiser",
+        "region": "Global"
+    },
+    {
         "id": "bike-ktm-duke-390-g3",
         "brand": "KTM",
-        "model": "Duke",
+        "model": "Duke 390 Gen-3",
         "year": 2024,
-        "variant": "390 Gen-3",
+        "variant": "Gen-3 Standard",
         "engineCc": 399,
         "category": "Naked",
         "region": "India"
@@ -112,37 +152,177 @@
     {
         "id": "bike-ktm-duke-250",
         "brand": "KTM",
-        "model": "Duke",
+        "model": "Duke 250",
         "year": 2024,
-        "variant": "250 Duke",
+        "variant": "Standard",
         "engineCc": 249,
         "category": "Naked",
         "region": "India"
     },
     {
-        "id": "bike-ktm-adv-390-ral",
+        "id": "bike-ktm-duke-200",
         "brand": "KTM",
-        "model": "Adventure",
+        "model": "Duke 200",
         "year": 2024,
-        "variant": "390 Rally",
+        "variant": "Standard",
+        "engineCc": 199,
+        "category": "Naked",
+        "region": "India"
+    },
+    {
+        "id": "bike-ktm-duke-125",
+        "brand": "KTM",
+        "model": "Duke 125",
+        "year": 2024,
+        "variant": "Standard",
+        "engineCc": 124,
+        "category": "Naked",
+        "region": "India"
+    },
+    {
+        "id": "bike-ktm-adv-390",
+        "brand": "KTM",
+        "model": "Adventure 390",
+        "year": 2024,
+        "variant": "Standard",
         "engineCc": 373,
         "category": "Adventure",
         "region": "Global"
     },
     {
+        "id": "bike-ktm-adv-390-2025",
+        "brand": "KTM",
+        "model": "Adventure 390 (2025)",
+        "year": 2025,
+        "variant": "Next Gen",
+        "engineCc": 399,
+        "category": "Adventure",
+        "region": "Global"
+    },
+    {
+        "id": "bike-ktm-adv-390-ral",
+        "brand": "KTM",
+        "model": "Adventure 390 Rally",
+        "year": 2024,
+        "variant": "Rally Spoke Wheels",
+        "engineCc": 373,
+        "category": "Adventure",
+        "region": "Global"
+    },
+    {
+        "id": "bike-ktm-250-adventure",
+        "brand": "KTM",
+        "model": "Adventure 250",
+        "year": 2024,
+        "variant": "Standard",
+        "engineCc": 249,
+        "category": "Adventure",
+        "region": "Global"
+    },
+    {
+        "id": "bike-ktm-390-enduro-r",
+        "brand": "KTM",
+        "model": "390 Enduro R",
+        "year": 2025,
+        "variant": "Dual-Sport",
+        "engineCc": 399,
+        "category": "Dual-Sport",
+        "region": "Global"
+    },
+    {
         "id": "bike-ktm-rc-390-gp",
         "brand": "KTM",
-        "model": "RC",
+        "model": "RC 390",
         "year": 2024,
-        "variant": "390 GP Edition",
+        "variant": "GP Edition",
         "engineCc": 373,
         "category": "Supersport",
         "region": "Global"
     },
     {
+        "id": "bike-baj-dom-400",
+        "brand": "Bajaj",
+        "model": "Dominar 400",
+        "year": 2024,
+        "variant": "Touring Edition",
+        "engineCc": 373,
+        "category": "Tourer",
+        "region": "India"
+    },
+    {
+        "id": "bike-baj-pul-ns400z",
+        "brand": "Bajaj",
+        "model": "Pulsar NS400Z",
+        "year": 2024,
+        "variant": "Flagship",
+        "engineCc": 373,
+        "category": "Naked",
+        "region": "India"
+    },
+    {
+        "id": "bike-baj-pul-ns200",
+        "brand": "Bajaj",
+        "model": "Pulsar NS200",
+        "year": 2024,
+        "variant": "Dual ABS",
+        "engineCc": 199,
+        "category": "Naked",
+        "region": "India"
+    },
+    {
+        "id": "bike-baj-pul-n250",
+        "brand": "Bajaj",
+        "model": "Pulsar N250",
+        "year": 2024,
+        "variant": "Dual ABS USD",
+        "engineCc": 249,
+        "category": "Naked",
+        "region": "India"
+    },
+    {
+        "id": "bike-tri-spd-400",
+        "brand": "Triumph",
+        "model": "Speed 400",
+        "year": 2024,
+        "variant": "Roadster",
+        "engineCc": 398,
+        "category": "Roadster",
+        "region": "Global"
+    },
+    {
+        "id": "bike-tri-scr-400x",
+        "brand": "Triumph",
+        "model": "Scrambler 400 X",
+        "year": 2024,
+        "variant": "Dual Purpose",
+        "engineCc": 398,
+        "category": "Scrambler",
+        "region": "Global"
+    },
+    {
+        "id": "bike-tri-tracker-400",
+        "brand": "Triumph",
+        "model": "Tracker 400",
+        "year": 2024,
+        "variant": "Flat Track Edition",
+        "engineCc": 398,
+        "category": "Scrambler",
+        "region": "Global"
+    },
+    {
+        "id": "bike-tri-tiger-660",
+        "brand": "Triumph",
+        "model": "Tiger Sport 660",
+        "year": 2024,
+        "variant": "Sport Tourer",
+        "engineCc": 660,
+        "category": "Adventure Sport",
+        "region": "Global"
+    },
+    {
         "id": "bike-yam-mt15-v2",
         "brand": "Yamaha",
-        "model": "MT-15",
+        "model": "MT-15 V2",
         "year": 2024,
         "variant": "V2 Deluxe",
         "engineCc": 155,
@@ -152,7 +332,7 @@
     {
         "id": "bike-yam-r15-v4",
         "brand": "Yamaha",
-        "model": "R15",
+        "model": "R15 V4",
         "year": 2024,
         "variant": "V4 Metallic",
         "engineCc": 155,
@@ -160,29 +340,39 @@
         "region": "India"
     },
     {
-        "id": "bike-tvs-apc-rr310",
-        "brand": "TVS",
-        "model": "Apache",
+        "id": "bike-yam-xsr-155",
+        "brand": "Yamaha",
+        "model": "XSR 155",
         "year": 2024,
-        "variant": "RR310 BTO",
-        "engineCc": 312,
-        "category": "Supersport",
+        "variant": "Heritage",
+        "engineCc": 155,
+        "category": "Neo-Retro",
+        "region": "Global"
+    },
+    {
+        "id": "bike-yam-fzs-v3-v4",
+        "brand": "Yamaha",
+        "model": "FZS V3 / V4",
+        "year": 2024,
+        "variant": "Fi Hybrid",
+        "engineCc": 149,
+        "category": "Commuter",
         "region": "India"
     },
     {
-        "id": "bike-tvs-ronin-225",
-        "brand": "TVS",
-        "model": "Ronin",
+        "id": "bike-yam-nmax-155",
+        "brand": "Yamaha",
+        "model": "NMAX 155",
         "year": 2024,
-        "variant": "225 Triple Tone",
-        "engineCc": 225,
-        "category": "Scrambler",
-        "region": "India"
+        "variant": "Maxi",
+        "engineCc": 155,
+        "category": "Scooter",
+        "region": "Global"
     },
     {
         "id": "bike-hnd-cb350-pro",
         "brand": "Honda",
-        "model": "CB350",
+        "model": "H'ness CB 350",
         "year": 2024,
         "variant": "DLX Pro",
         "engineCc": 348,
@@ -192,7 +382,7 @@
     {
         "id": "bike-hnd-cb350rs",
         "brand": "Honda",
-        "model": "CB350RS",
+        "model": "CB 350 RS",
         "year": 2024,
         "variant": "Hue Edition",
         "engineCc": 348,
@@ -200,213 +390,143 @@
         "region": "India"
     },
     {
-        "id": "bike-baj-dom-400",
-        "brand": "Bajaj",
-        "model": "Dominar",
+        "id": "bike-hnd-cb200x",
+        "brand": "Honda",
+        "model": "CB 200X",
         "year": 2024,
-        "variant": "400 Touring Factory",
-        "engineCc": 373,
-        "category": "Tourer",
+        "variant": "Adventure Crossover",
+        "engineCc": 184,
+        "category": "Adventure",
         "region": "India"
     },
     {
-        "id": "bike-baj-pul-n250",
-        "brand": "Bajaj",
-        "model": "Pulsar",
+        "id": "bike-hnd-transalp-750",
+        "brand": "Honda",
+        "model": "XL750 Transalp",
         "year": 2024,
-        "variant": "N250 Dual ABS",
-        "engineCc": 249,
+        "variant": "Rally Edition",
+        "engineCc": 755,
+        "category": "Adventure",
+        "region": "Global"
+    },
+    {
+        "id": "bike-hero-xpulse-200-4v",
+        "brand": "Hero",
+        "model": "XPulse 200 4V",
+        "year": 2024,
+        "variant": "Pro Edition",
+        "engineCc": 199,
+        "category": "Dual-Sport",
+        "region": "India"
+    },
+    {
+        "id": "bike-hero-xpulse-210",
+        "brand": "Hero",
+        "model": "XPulse 210",
+        "year": 2025,
+        "variant": "Next Gen Liquid Cooled",
+        "engineCc": 210,
+        "category": "Dual-Sport",
+        "region": "India"
+    },
+    {
+        "id": "bike-tvs-apc-rr310",
+        "brand": "TVS",
+        "model": "Apache RR 310",
+        "year": 2024,
+        "variant": "BTO Race Replica",
+        "engineCc": 312,
+        "category": "Supersport",
+        "region": "India"
+    },
+    {
+        "id": "bike-tvs-apc-rtr310",
+        "brand": "TVS",
+        "model": "Apache RTR 310",
+        "year": 2024,
+        "variant": "BTO Dynamic",
+        "engineCc": 312,
         "category": "Naked",
         "region": "India"
     },
     {
+        "id": "bike-tvs-apc-rtx300",
+        "brand": "TVS",
+        "model": "Apache RTX 300",
+        "year": 2025,
+        "variant": "Adventure Prototype",
+        "engineCc": 300,
+        "category": "Adventure",
+        "region": "India"
+    },
+    {
+        "id": "bike-hd-x440",
+        "brand": "Harley-Davidson",
+        "model": "X440",
+        "year": 2024,
+        "variant": "S Top Variant",
+        "engineCc": 440,
+        "category": "Roadster",
+        "region": "India"
+    },
+    {
+        "id": "bike-suzuki-v-strom-sx",
+        "brand": "Suzuki",
+        "model": "V-Strom SX 250",
+        "year": 2024,
+        "variant": "Standard",
+        "engineCc": 249,
+        "category": "Adventure",
+        "region": "India"
+    },
+    {
+        "id": "bike-suzuki-v-strom-800de",
+        "brand": "Suzuki",
+        "model": "V-Strom 800DE",
+        "year": 2024,
+        "variant": "Dual Explorer",
+        "engineCc": 776,
+        "category": "Adventure",
+        "region": "Global"
+    },
+    {
         "id": "bike-bmw-g310-gs",
         "brand": "BMW",
-        "model": "G310",
+        "model": "G 310 GS",
         "year": 2024,
-        "variant": "GS Adventure",
+        "variant": "Rallye Style",
         "engineCc": 313,
         "category": "Adventure",
         "region": "Global"
     },
     {
-        "id": "bike-bmw-r1250-gs",
+        "id": "bike-bmw-f450-gs",
         "brand": "BMW",
-        "model": "R1250",
-        "year": 2024,
-        "variant": "GS Trophy",
-        "engineCc": 1254,
+        "model": "F 450 GS",
+        "year": 2025,
+        "variant": "Concept / Pre-Production",
+        "engineCc": 450,
         "category": "Adventure",
         "region": "Global"
     },
     {
-        "id": "bike-tri-spd-400",
-        "brand": "Triumph",
-        "model": "Speed",
-        "year": 2024,
-        "variant": "400 Roadster",
-        "engineCc": 398,
-        "category": "Roadster",
-        "region": "Global"
-    },
-    {
-        "id": "bike-tri-scr-400x",
-        "brand": "Triumph",
-        "model": "Speed",
-        "year": 2024,
-        "variant": "Scrambler 400X",
-        "engineCc": 398,
-        "category": "Scrambler",
-        "region": "Global"
-    },
-    {
-        "id": "bike-honda-h-ness-cb350",
-        "brand": "Honda",
-        "model": "H'ness CB350",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-royal-enfield-scram-411",
-        "brand": "Royal",
-        "model": "Enfield Scram 411",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-triumph-scrambler-400-x",
-        "brand": "Triumph",
-        "model": "Scrambler 400 X",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-hero-xpulse-200",
-        "brand": "Hero",
-        "model": "Xpulse 200",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-suzuki-v-strom-sx",
-        "brand": "Suzuki",
-        "model": "V-Strom SX",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-ktm-250-adventure",
-        "brand": "KTM",
-        "model": "250 Adventure",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-ktm-390-adventure",
-        "brand": "KTM",
-        "model": "390 Adventure",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-kawasaki-versys-650",
+        "id": "bike-kawasaki-klx-230",
         "brand": "Kawasaki",
-        "model": "Versys 650",
+        "model": "KLX 230",
         "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
+        "variant": "S Dual-Sport",
+        "engineCc": 233,
+        "category": "Dual-Sport",
+        "region": "India"
     },
     {
-        "id": "bike-bmw-g-310-gs",
-        "brand": "BMW",
-        "model": "G 310 GS",
+        "id": "bike-yezdi-adventure",
+        "brand": "Yezdi",
+        "model": "Adventure",
         "year": 2024,
         "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-ktm-250-duke",
-        "brand": "KTM",
-        "model": "250 Duke",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-honda-cbr250r",
-        "brand": "Honda",
-        "model": "CBR250R",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-bmw-g-310-r",
-        "brand": "BMW",
-        "model": "G 310 R",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-suzuki-gixxer",
-        "brand": "Suzuki",
-        "model": "Gixxer",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-kawasaki-z900",
-        "brand": "Kawasaki",
-        "model": "Z900",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
-    },
-    {
-        "id": "bike-hero-karizma-xmr",
-        "brand": "Hero",
-        "model": "Karizma XMR",
-        "year": 2024,
-        "variant": "Standard",
-        "engineCc": 0,
-        "category": "Standard",
-        "region": "Global"
+        "engineCc": 334,
+        "category": "Adventure",
+        "region": "India"
     }
 ]

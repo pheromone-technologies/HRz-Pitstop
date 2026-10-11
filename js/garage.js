@@ -100,20 +100,20 @@ class GarageManager {
           <div class="quick-presets-section">
             <p class="section-label">Or Pick Popular Presets:</p>
             <div class="presets-grid">
-              <button type="button" class="preset-chip" data-brand="Royal Enfield" data-model="Himalayan" data-variant="450 Adventure" data-year="2024">
+              <button type="button" class="preset-chip" data-brand="Royal Enfield" data-model="Himalayan 450" data-variant="450 Adventure" data-year="2024">
                 <strong>Royal Enfield</strong> Himalayan 450
               </button>
-              <button type="button" class="preset-chip" data-brand="KTM" data-model="Duke" data-variant="390 Gen-3" data-year="2024">
+              <button type="button" class="preset-chip" data-brand="KTM" data-model="Duke 390 Gen-3" data-variant="Gen-3 Standard" data-year="2024">
                 <strong>KTM</strong> Duke 390
               </button>
-              <button type="button" class="preset-chip" data-brand="Triumph" data-model="Speed" data-variant="400 Roadster" data-year="2024">
+              <button type="button" class="preset-chip" data-brand="Triumph" data-model="Speed 400" data-variant="Roadster" data-year="2024">
                 <strong>Triumph</strong> Speed 400
               </button>
-              <button type="button" class="preset-chip" data-brand="Yamaha" data-model="MT-15" data-variant="V2 Deluxe" data-year="2024">
+              <button type="button" class="preset-chip" data-brand="Yamaha" data-model="MT-15 V2" data-variant="V2 Deluxe" data-year="2024">
                 <strong>Yamaha</strong> MT-15
               </button>
-              <button type="button" class="preset-chip" data-brand="BMW" data-model="G310" data-variant="GS Adventure" data-year="2024">
-                <strong>BMW</strong> G310 GS
+              <button type="button" class="preset-chip" data-brand="BMW" data-model="G 310 GS" data-variant="Rallye Style" data-year="2024">
+                <strong>BMW</strong> G 310 GS
               </button>
             </div>
           </div>

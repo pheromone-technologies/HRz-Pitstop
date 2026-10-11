@@ -1,6 +1,7 @@
 import openpyxl
 import json
 import uuid
+import os
 
 file_path = 'HRZ_Pitstop_Client_Inventory_All_Bike_Models.xlsx'
 wb = openpyxl.load_workbook(file_path, data_only=True)
@@ -23,6 +24,17 @@ fallback_images = {
     'General Accessories': 'images/phone_mount_product.webp'
 }
 
+# Load existing products to preserve stable IDs
+existing_by_name = {}
+if os.path.exists('data/products.json'):
+    try:
+        with open('data/products.json', 'r', encoding='utf-8') as f:
+            old_prods = json.load(f)
+            for p in old_prods:
+                existing_by_name[p.get('name', '').strip()] = p
+    except Exception as e:
+        print("Warning loading existing products.json:", e)
+
 products = []
 
 for sheet_name in wb.sheetnames[:14]:
@@ -30,6 +42,7 @@ for sheet_name in wb.sheetnames[:14]:
     for row in range(2, sheet.max_row + 1):
         name = sheet.cell(row=row, column=1).value
         if not name: continue
+        name_str = str(name).strip()
         
         sub_cat = sheet.cell(row=row, column=2).value
         brand = sheet.cell(row=row, column=3).value
@@ -54,17 +67,32 @@ for sheet_name in wb.sheetnames[:14]:
             sell_price = 0
             mrp = 0
             
-        unique_id = str(uuid.uuid4())[:8].upper()
-        prod_id = "prod-" + unique_id
-        sku = "HRZ-" + unique_id
+        # Check if product exists to keep ID stable
+        existing_p = existing_by_name.get(name_str)
+        if existing_p:
+            prod_id = existing_p.get('id')
+            sku = existing_p.get('sku')
+            rating = existing_p.get('rating', 4.8)
+            reviewCount = existing_p.get('reviewCount', 12)
+            ridersInstalled = existing_p.get('ridersInstalled', 10)
+        else:
+            unique_id = str(uuid.uuid4())[:8].upper()
+            prod_id = "prod-" + unique_id
+            sku = "HRZ-" + unique_id
+            rating = 4.8
+            reviewCount = 12
+            ridersInstalled = 10
             
         # Determine Bike Compatibility
         bike_compat = []
-        if bike_make and bike_make != "Universal":
-            if bike_model and bike_model != "Universal":
-                bike_compat.append(f"{bike_make} {bike_model}")
+        make_clean = str(bike_make or '').strip()
+        model_clean = str(bike_model or '').strip()
+        
+        if make_clean and make_clean != "Universal":
+            if model_clean and model_clean != "Universal":
+                bike_compat.append(f"{make_clean} {model_clean}")
             else:
-                bike_compat.append(bike_make)
+                bike_compat.append(make_clean)
         else:
             bike_compat.append("Universal")
             
@@ -72,7 +100,7 @@ for sheet_name in wb.sheetnames[:14]:
         image = fallback_images.get(sheet_name, 'images/bash_plate_product.webp')
         
         # Override image based on subcategory or name if possible
-        n = str(name).lower()
+        n = name_str.lower()
         if 'helmet' in n: image = 'images/helmet_product.webp'
         elif 'saddle' in n or 'bag' in n: image = 'images/saddlebags_product.webp'
         elif 'light' in n or 'fog' in n: image = 'images/fog_lights_product.webp'
@@ -86,21 +114,21 @@ for sheet_name in wb.sheetnames[:14]:
             
         prod = {
             "id": prod_id,
-            "name": name,
+            "name": name_str,
             "category": sheet_name,
-            "subcategory": sub_cat,
-            "brand": brand,
+            "subcategory": str(sub_cat).strip() if sub_cat else "",
+            "brand": str(brand).strip() if brand else "HRz Performance",
             "price": sell_price,
             "originalPrice": mrp,
             "image": image,
             "gallery": [image],
-            "rating": 4.8,
-            "reviewCount": 10,
-            "ridersInstalled": 10,
+            "rating": rating,
+            "reviewCount": reviewCount,
+            "ridersInstalled": ridersInstalled,
             "inStock": True,
             "sku": sku,
             "bike_compatibility": bike_compat,
-            "highlights": [description] if description else []
+            "highlights": [str(description).strip()] if description else []
         }
         
         products.append(prod)

@@ -17,7 +17,7 @@
     "inStock": true,
     "sku": "HRZ-51D86E22",
     "bike_compatibility": [
-      "Royal Enfield Himalayan"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Bazooka Big Crash Guard With Big Slider\u2013Complete protection for your Royal Enfield Himalayan..."
@@ -113,7 +113,7 @@
     "inStock": true,
     "sku": "HRZ-9C46D498",
     "bike_compatibility": [
-      "Yamaha FZS V3"
+      "Yamaha FZS V3 / V4"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Material</strong><br></p>\n<p data-mce-fragment=\"1\">Made with rigid Mild Steel 22.2 mm thickn..."
@@ -185,7 +185,7 @@
     "inStock": true,
     "sku": "HRZ-AE9DCC93",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "KTM Adventure 390"
     ],
     "highlights": [
       "<p>Protect your TVS Apache RTX 300 with this premium crash guard set. Engineered for maximum impact resistance, the upper and lower guards shield y..."
@@ -281,7 +281,7 @@
     "inStock": true,
     "sku": "HRZ-1F0D41D7",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>The Legundary Dominar Pegasus Crashguard With Slider, available at Bandidos Pitstop, is a premium protection accessory engineered specifically f..."
@@ -305,7 +305,7 @@
     "inStock": true,
     "sku": "HRZ-7D16B391",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Give your Dominar the protection it deserves with the Legundary Radiator Grill, now available at Bandidos Pitstop. Precision-cut for a perfect f..."
@@ -329,7 +329,7 @@
     "inStock": true,
     "sku": "HRZ-8261B092",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p><span>The Legundary Harley Davidson X440 Thanos Crash Guard With Slider available at Bandidos Pitstop is a robust and essential accessory design..."
@@ -353,14 +353,14 @@
     "inStock": true,
     "sku": "HRZ-FF0DC3AF",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p><span>The Legundary Harley Davidson 440X Vector Radiator Grill Aluminium available at Bandidos Pitstop is a premium accessory designed to protec..."
     ]
   },
   {
-    "id": "prod-7F8F5BEF",
+    "id": "prod-0A5CCA1B",
     "name": "LCB HERO X PULSE 210 XPLORER CRASH GUARD",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -375,9 +375,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7F8F5BEF",
+    "sku": "HRZ-0A5CCA1B",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<h1>Crash Guard with Slider for Hero X-Pulse 210</h1>\n<p data-start=\"155\" data-end=\"728\">Safeguard your <strong data-start=\"197\" data-end=\"217\">Her..."
@@ -401,7 +401,7 @@
     "inStock": true,
     "sku": "HRZ-0A5CCA1B",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<h1>Crash Guard with Slider for Hero X-Pulse 210</h1>\n<p data-start=\"155\" data-end=\"728\">Safeguard your <strong data-start=\"197\" data-end=\"217\">Her..."
@@ -425,7 +425,7 @@
     "inStock": true,
     "sku": "HRZ-D1300D79",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p><span>Revolutionize your Royal Enfield Himalayan experience with the latest addition to our inventory: the Legundary Himalayan 450 Bazooka Crash..."
@@ -449,7 +449,7 @@
     "inStock": true,
     "sku": "HRZ-C37782D9",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<span>Introducing the Legundary Royal Enfield Himalayan 450 Sherpa Radiator Grill in Mild Steel, a rugged yet stylish accessory brought to you by B..."
@@ -473,7 +473,7 @@
     "inStock": true,
     "sku": "HRZ-E31034D1",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Introducing the Legundary Hness Thanos Crashguard With Slider, exclusively available at Bandidos Pitstop\u2014a perfect blend of aggressive styling a..."
@@ -497,7 +497,7 @@
     "inStock": true,
     "sku": "HRZ-AD369B51",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Protect your Honda Hness with unmatched style and durability using the Legundary Hness Vambrace Bashplate, now available at Bandidos Pitstop. Cr..."
@@ -521,7 +521,7 @@
     "inStock": true,
     "sku": "HRZ-5EB48AA5",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p><span>The Legundary Harley Davidson X440 Thanos Crash Guard With Slider available at Bandidos Pitstop is a robust and essential accessory design..."
@@ -545,7 +545,7 @@
     "inStock": true,
     "sku": "HRZ-80F2808D",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<span>The Legundary Custom Hunter Midget Crash Guard with Slider from Bandidos Pitstop is the perfect accessory for motorcycle enthusiasts who want..."
@@ -569,7 +569,7 @@
     "inStock": true,
     "sku": "HRZ-2D8C3BD0",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p><span>Upgrade your Royal Enfield Interceptor 650 with the Legundary Thanos Crash guard with Slider, now available at Bandidos Pitstop. Engineere..."
@@ -593,14 +593,14 @@
     "inStock": true,
     "sku": "HRZ-2D7DAAAD",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p data-start=\"148\" data-end=\"754\">Upgrade the safety and durability of your motorcycle with the Moto Torque Crash Guard V2.0 for Royal Enfield Int..."
     ]
   },
   {
-    "id": "prod-6AE11E8C",
+    "id": "prod-E941C6CE",
     "name": "LCB Interceptor Radiator Grill",
     "category": "Bike Protection",
     "subcategory": "Radiator Guard",
@@ -615,9 +615,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-6AE11E8C",
+    "sku": "HRZ-E941C6CE",
     "bike_compatibility": [
-      "Royal Enfield Continental GT 650 Apex Grey"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>Presenting radiator grill for Interceptor <span>&amp; Continental GT</span>. <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Ca..."
@@ -641,14 +641,14 @@
     "inStock": true,
     "sku": "HRZ-DDA4394C",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Mild Steel Bash Plate Black for bike, available at\u00a0<span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-..."
     ]
   },
   {
-    "id": "prod-68649002",
+    "id": "prod-0F993234",
     "name": "LCB KTM ADV 390 2025 VECTOR RADIATOR GRILL",
     "category": "Bike Protection",
     "subcategory": "Radiator Guard",
@@ -663,9 +663,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-68649002",
+    "sku": "HRZ-0F993234",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Aluminium Radiator Grill Silver, available at\u00a0<span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif..."
@@ -689,7 +689,7 @@
     "inStock": true,
     "sku": "HRZ-0F993234",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Aluminium Radiator Grill Silver, available at\u00a0<span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif..."
@@ -713,7 +713,7 @@
     "inStock": true,
     "sku": "HRZ-8E691130",
     "bike_compatibility": [
-      "KTM Duke 390 Gen-3"
+      "KTM Duke 250"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full\" dir=\"auto\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"true\">\n<div class=\"text-base my-au..."
@@ -737,7 +737,7 @@
     "inStock": true,
     "sku": "HRZ-724118F8",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Guerrilla 450"
     ],
     "highlights": [
       "<p>The Guerrilla 450 Crash Guard from Legundary Custom Built, available at Bandidos Pitstop is crafted from durable mild steel, and is designed to ..."
@@ -761,7 +761,7 @@
     "inStock": true,
     "sku": "HRZ-566B1A33",
     "bike_compatibility": [
-      "Royal Enfield Scram 440 new"
+      "Royal Enfield Scram 440"
     ],
     "highlights": [
       "<p>The Royal Enfield Scram 440 Thanos Crash Guard with Slider is a premium motorcycle protection accessory designed to safeguard your bike during f..."
@@ -785,7 +785,7 @@
     "inStock": true,
     "sku": "HRZ-31E466D2",
     "bike_compatibility": [
-      "Royal Enfield Super Meteor 650 Astral"
+      "Royal Enfield Super Meteor 650"
     ],
     "highlights": [
       "<p>If you're a bike enthusiast who values both style and substance, the Legundary Super Meteor 650 Vector Radiator Grill available at Bandidos Pits..."
@@ -809,7 +809,7 @@
     "inStock": true,
     "sku": "HRZ-46D631E2",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Scrambler 400 X"
     ],
     "highlights": [
       "<p data-end=\"558\" data-start=\"190\">The Legundary Vector Radiator Grill in Silver, available at Legundary.com, is a premium protective upgrade desig..."
@@ -833,7 +833,7 @@
     "inStock": true,
     "sku": "HRZ-E5338AE9",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Elevate the protection and style of your JB Racing Triumph Speed 400 Crash Guard With Slider motorcycle with the Crash ..."
@@ -857,7 +857,7 @@
     "inStock": true,
     "sku": "HRZ-53B55F65",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<div><strong style=\"font-size: 0.875rem;\">Hyperrider Radiator Grill Honey Comb for Triumph Speed 400 and Scrambler 400X</strong></div>\n<div>\n<br><s..."
@@ -881,7 +881,7 @@
     "inStock": true,
     "sku": "HRZ-23AD59CD",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 Voyager Bash plate, an exemplary offering from the Legundary custom brand found at Bandidos Pitstop, is the embodime..."
@@ -905,7 +905,7 @@
     "inStock": true,
     "sku": "HRZ-4B70CC99",
     "bike_compatibility": [
-      "Triumph Tiger"
+      "Triumph Tiger Sport 660"
     ],
     "highlights": [
       "<p>The Legundary Triumph Tiger 660 Vambrace Bash Plate available at Bandidos Pitstop is a premium accessory designed to provide superior protection..."
@@ -929,7 +929,7 @@
     "inStock": true,
     "sku": "HRZ-94EC7961",
     "bike_compatibility": [
-      "Triumph Tiger"
+      "Triumph Tiger Sport 660"
     ],
     "highlights": [
       "<p>The Legundary Triumph Tiger 660 Vector Radiator Grill available at Bandidos Pitstop is an essential accessory designed to protect your Triumph T..."
@@ -960,7 +960,7 @@
     ]
   },
   {
-    "id": "prod-54802FCC",
+    "id": "prod-4F0FD334",
     "name": "TVS APACHE RTX 300 RAPTOR CRASH GUARD UPPER & LOWER SET",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -975,33 +975,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-54802FCC",
+    "sku": "HRZ-4F0FD334",
     "bike_compatibility": [
-      "TVS Apache RTX 300 new"
-    ],
-    "highlights": [
-      "<p>Upgrade your adventure machine with the TVS Apache RTX 300 Raptor Crash Guard Upper &amp; Lower Set (Red) engineered for maximum protection, bol..."
-    ]
-  },
-  {
-    "id": "prod-9F813CF0",
-    "name": "TVS APACHE RTX 300 RAPTOR CRASH GUARD UPPER & LOWER SET",
-    "category": "Bike Protection",
-    "subcategory": "Crash Guard",
-    "brand": "Legundary Customs",
-    "price": 6990.0,
-    "originalPrice": 8038.0,
-    "image": "images/legundary_customs/2_a7989ce6-e82c-4020-b1c0-2080eb59ca93.webp",
-    "gallery": [
-      "images/legundary_customs/2_a7989ce6-e82c-4020-b1c0-2080eb59ca93.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-9F813CF0",
-    "bike_compatibility": [
-      "TVS Apache RTX 300 new"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p>Upgrade your adventure machine with the TVS Apache RTX 300 Raptor Crash Guard Upper &amp; Lower Set (Red) engineered for maximum protection, bol..."
@@ -1025,38 +1001,38 @@
     "inStock": true,
     "sku": "HRZ-4F0FD334",
     "bike_compatibility": [
-      "TVS Apache RTX 300 new"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p>Upgrade your adventure machine with the TVS Apache RTX 300 Raptor Crash Guard Upper &amp; Lower Set (Red) engineered for maximum protection, bol..."
     ]
   },
   {
-    "id": "prod-1750A064",
-    "name": "LCB TVS APACHE RTX 300 VAMBRACE BASH PLATE",
+    "id": "prod-4F0FD334",
+    "name": "TVS APACHE RTX 300 RAPTOR CRASH GUARD UPPER & LOWER SET",
     "category": "Bike Protection",
-    "subcategory": "Engine Guards and Skid Plate",
-    "brand": "LCB",
-    "price": 2649.0,
-    "originalPrice": 3046.0,
-    "image": "images_processed/inventory_sync_multisite/lcb/proMImg_02_1772030579.webp",
+    "subcategory": "Crash Guard",
+    "brand": "Legundary Customs",
+    "price": 6990.0,
+    "originalPrice": 8038.0,
+    "image": "images/legundary_customs/2_a7989ce6-e82c-4020-b1c0-2080eb59ca93.webp",
     "gallery": [
-      "images_processed/inventory_sync_multisite/lcb/proMImg_02_1772030579.webp"
+      "images/legundary_customs/2_a7989ce6-e82c-4020-b1c0-2080eb59ca93.webp"
     ],
     "rating": 4.8,
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-1750A064",
+    "sku": "HRZ-4F0FD334",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
-      "<div><strong>ZANA Bash Plate for TVS APACHE RTX 300 (MS Black) (ZI-8720)<br><br>Description:</strong></div>\n<div><strong></strong></div>\n<div>Bash ..."
+      "<p>Upgrade your adventure machine with the TVS Apache RTX 300 Raptor Crash Guard Upper &amp; Lower Set (Red) engineered for maximum protection, bol..."
     ]
   },
   {
-    "id": "prod-87EC508B",
+    "id": "prod-6DB22C99",
     "name": "LCB TVS APACHE RTX 300 VAMBRACE BASH PLATE",
     "category": "Bike Protection",
     "subcategory": "Engine Guards and Skid Plate",
@@ -1071,9 +1047,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-87EC508B",
+    "sku": "HRZ-6DB22C99",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<div><strong>ZANA Bash Plate for TVS APACHE RTX 300 (MS Black) (ZI-8720)<br><br>Description:</strong></div>\n<div><strong></strong></div>\n<div>Bash ..."
@@ -1097,7 +1073,31 @@
     "inStock": true,
     "sku": "HRZ-6DB22C99",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
+    ],
+    "highlights": [
+      "<div><strong>ZANA Bash Plate for TVS APACHE RTX 300 (MS Black) (ZI-8720)<br><br>Description:</strong></div>\n<div><strong></strong></div>\n<div>Bash ..."
+    ]
+  },
+  {
+    "id": "prod-6DB22C99",
+    "name": "LCB TVS APACHE RTX 300 VAMBRACE BASH PLATE",
+    "category": "Bike Protection",
+    "subcategory": "Engine Guards and Skid Plate",
+    "brand": "LCB",
+    "price": 2649.0,
+    "originalPrice": 3046.0,
+    "image": "images_processed/inventory_sync_multisite/lcb/proMImg_02_1772030579.webp",
+    "gallery": [
+      "images_processed/inventory_sync_multisite/lcb/proMImg_02_1772030579.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-6DB22C99",
+    "bike_compatibility": [
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<div><strong>ZANA Bash Plate for TVS APACHE RTX 300 (MS Black) (ZI-8720)<br><br>Description:</strong></div>\n<div><strong></strong></div>\n<div>Bash ..."
@@ -1121,7 +1121,7 @@
     "inStock": true,
     "sku": "HRZ-AEFF056D",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-start=\"142\" data-end=\"512\">Upgrade your TVS Apache RTX 300 with the rugged and performance-focused Vector Radiator Grill Black, engineered ..."
@@ -1145,7 +1145,7 @@
     "inStock": true,
     "sku": "HRZ-361999E1",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<h2 class=\"all-heading\" data-mce-fragment=\"1\">Product Description<span class=\"right-line\" data-mce-fragment=\"1\"></span>\n</h2>\n<div class=\"height-20..."
@@ -1169,7 +1169,7 @@
     "inStock": true,
     "sku": "HRZ-C09B8008",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p>Introducing the Legundary V-Strom Vambrace Bashplate, now available at Bandidos Pitstop \u2013 the ultimate protection upgrade for your Suzuki V-Stro..."
@@ -1193,7 +1193,7 @@
     "inStock": true,
     "sku": "HRZ-06040132",
     "bike_compatibility": [
-      "Hero Xpulse 200 Standard"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The Legundary Xpulse 200 4V Pro Vector Radiator Grill, available at Bandidos pitstop, is a premium accessory designed to provide superior protec..."
@@ -1217,7 +1217,7 @@
     "inStock": true,
     "sku": "HRZ-EFB8E95E",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Conquer rugged terrains with confidence using the Legundary Xpulse Xplorer Crashguard BS6 with Slider, exclusively available at Bandidos Pitstop..."
@@ -1320,7 +1320,7 @@
     ]
   },
   {
-    "id": "prod-4D0887A5",
+    "id": "prod-021C8F1C",
     "name": "LCB YAMAHA XSR 155 VECTOR RADIATOR GRILL",
     "category": "Bike Protection",
     "subcategory": "Radiator Guard",
@@ -1335,7 +1335,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-4D0887A5",
+    "sku": "HRZ-021C8F1C",
     "bike_compatibility": [
       "Yamaha XSR 155"
     ],
@@ -1409,12 +1409,12 @@
     "inStock": true,
     "sku": "HRZ-8E22B055",
     "bike_compatibility": [
-      "KTM 250 Duke"
+      "KTM Duke 390 Gen-3"
     ],
     "highlights": []
   },
   {
-    "id": "prod-8A06D8FC",
+    "id": "prod-F30F75CE",
     "name": "SUMP GUARD MILD STEEL v.1 FOR KAWASAKI KLX 230 COMPATIBLE ONLY WITH MOTO TORQUE CRASH GUARD",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -1429,14 +1429,14 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-8A06D8FC",
+    "sku": "HRZ-F30F75CE",
     "bike_compatibility": [
       "Kawasaki KLX 230"
     ],
     "highlights": []
   },
   {
-    "id": "prod-FEA1E05D",
+    "id": "prod-F30F75CE",
     "name": "SUMP GUARD MILD STEEL v.1 FOR KAWASAKI KLX 230 COMPATIBLE ONLY WITH MOTO TORQUE CRASH GUARD",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -1451,7 +1451,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-FEA1E05D",
+    "sku": "HRZ-F30F75CE",
     "bike_compatibility": [
       "Kawasaki KLX 230"
     ],
@@ -1497,7 +1497,7 @@
     "inStock": true,
     "sku": "HRZ-B63B83F9",
     "bike_compatibility": [
-      "Royal Enfield Continental GT 650"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p><span style=\"text-decoration: underline;\"><strong>MATERIAL :</strong></span><br><br><strong>*Made with rigid Mild Steel 25.4 mm thickness tubes,..."
@@ -1593,7 +1593,7 @@
     "inStock": true,
     "sku": "HRZ-2C6D4F9A",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\" class=\"p1\"><span data-mce-fragment=\"1\" class=\"s1\">Made with rigid Mild Steel 25 mm Diameter tubes, with impact resistance ..."
@@ -1617,7 +1617,7 @@
     "inStock": true,
     "sku": "HRZ-C2AC5437",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>The JB Racing Himalayan 450 Crash Guard, available at Bandidos pitstop is a must-have accessory for adventure riders seeking superior protection..."
@@ -1641,7 +1641,7 @@
     "inStock": true,
     "sku": "HRZ-F1182969",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque Royal Enfield Interceptor 650 GT 650 Crash Guard v2.0 (Black)</strong><br><br>\n</div>\n<div>\n<strong>Material</stron..."
@@ -1689,7 +1689,7 @@
     "inStock": true,
     "sku": "HRZ-800D905E",
     "bike_compatibility": [
-      "KTM 250 Duke"
+      "KTM Duke 390 Gen-3"
     ],
     "highlights": [
       "<p>Get the compact look with some cool styled crash guard for KTM DUKE 250/390 GEN 3.\u00a0<br>This crash guard has been designed and developed to give ..."
@@ -1737,7 +1737,7 @@
     "inStock": true,
     "sku": "HRZ-AA7CB7CC",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<h1 data-mce-fragment=\"1\">Mototorque Himalayan Scram 411 Crash Guard V2.0</h1>\n<p><strong>Material</strong></p>\n<p data-mce-fragment=\"1\">Made With ..."
@@ -1785,7 +1785,7 @@
     "inStock": true,
     "sku": "HRZ-27FBE3D4",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque Suzuki V Strom 250 SX Crash Guard v2.0 (Black)<br><br></strong>\n<p>Whether it\u2019s the open highway or the daily city ..."
@@ -1809,7 +1809,7 @@
     "inStock": true,
     "sku": "HRZ-7162EB23",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p>Engineered specifically for the JB Racing X pulse 210 Rigid X Disc Caliper Guard Black this caliper guard delivers both rugged protection and re..."
@@ -1833,7 +1833,7 @@
     "inStock": true,
     "sku": "HRZ-3C46FD3C",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Protect your Royal Enfield Hunter 350 with this sturdy Engine Guard, designed to add an extra layer of safety to the motorcycle\u2019s engine area du..."
@@ -1857,7 +1857,7 @@
     "inStock": true,
     "sku": "HRZ-FBAF82E1",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p>The Moto Torque Crash Guard Max Pro X Pulse 210 2025 in black mild steel is a rugged and essential protective accessory designed specifically fo..."
@@ -1881,7 +1881,7 @@
     "inStock": true,
     "sku": "HRZ-028FDFDA",
     "bike_compatibility": [
-      "Yamaha MT-15"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "<p><span data-mce-fragment=\"1\">MATERIAL</span><br data-mce-fragment=\"1\"><br data-mce-fragment=\"1\"></p>\n<p data-mce-fragment=\"1\"><strong data-mce-fr..."
@@ -1905,7 +1905,7 @@
     "inStock": true,
     "sku": "HRZ-BDD2CD23",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p><strong>ROYAL ENFIELD HUNTER 350 is a bike for amateurs and that's why every hunter 350 lover wants to present his/her favorite vehicle in the b..."
@@ -1929,7 +1929,7 @@
     "inStock": true,
     "sku": "HRZ-1759B0D4",
     "bike_compatibility": [
-      "KTM Duke 390 Gen-3"
+      "KTM Duke 250 / 390 Gen-2"
     ],
     "highlights": [
       "<p>Thor Crash Guard For duke 250/390- Gen-3\u00a0 is a robust and integrated motorcycle accessory designed to provide exceptional protection. Crafted wi..."
@@ -1953,7 +1953,7 @@
     "inStock": true,
     "sku": "HRZ-FABC376D",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">*GUARENTEED TO LAST FOR A LIFETIME - MATERIAL INTEGRITY &amp; CORRROSION RESISTANT\u00a0</strong>..."
@@ -1977,7 +1977,7 @@
     "inStock": true,
     "sku": "HRZ-D583DAFB",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<div>\n<div><strong>ZANA Radiator Guard Aluminium Black for Royal Enfield Himalayan 450</strong></div>\n<div>\n<ul>\n<li>All our Aluminium Radiator Gua..."
@@ -2025,7 +2025,7 @@
     "inStock": true,
     "sku": "HRZ-E941C6CE",
     "bike_compatibility": [
-      "Royal Enfield Continental GT 650 Apex Grey"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>Presenting radiator grill for Interceptor <span>&amp; Continental GT</span>. <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Ca..."
@@ -2073,14 +2073,14 @@
     "inStock": true,
     "sku": "HRZ-4E98CC28",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Upgrade your Royal Enfield Himalayan 450's protection with the Legundary Master Cylinder Guard from Bandidos Pitstop. T..."
     ]
   },
   {
-    "id": "prod-2536103A",
+    "id": "prod-26756A61",
     "name": "LCB KTM ADV 390 2025 RAPTOR CRASHGAURD",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -2095,9 +2095,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2536103A",
+    "sku": "HRZ-26756A61",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your bike with the robust Legundary Mild Steel Crash Guard in striking Black, available at <span style=\"font-size: 11.0pt; line-height: ..."
@@ -2121,7 +2121,7 @@
     "inStock": true,
     "sku": "HRZ-26756A61",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your bike with the robust Legundary Mild Steel Crash Guard in striking Black, available at <span style=\"font-size: 11.0pt; line-height: ..."
@@ -2145,7 +2145,7 @@
     "inStock": true,
     "sku": "HRZ-080A3E94",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Protect your ride with the Legundary Meteor Buckler Master Cylinder Guard SS, available exclusively at Bandidos Pitstop. Crafted from high-quali..."
@@ -2169,7 +2169,7 @@
     "inStock": true,
     "sku": "HRZ-B8E2B4A7",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">A reservoir guard that lasts for years; just like your Meteor.</span>The brake fluid cap desig..."
@@ -2193,14 +2193,14 @@
     "inStock": true,
     "sku": "HRZ-8A723521",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Scram 440"
     ],
     "highlights": [
       "<p>The Legundary Royal Enfield Guerrilla 450 Master Cylinder Guard available at Bandidos Pitstop is an essential accessory designed to protect your..."
     ]
   },
   {
-    "id": "prod-5B28EB9D",
+    "id": "prod-0F3899C9",
     "name": "LCB XPULSE 200 4V PRO DEFENDER CRASHGAURD",
     "category": "Bike Protection",
     "subcategory": "Crash Guard",
@@ -2215,9 +2215,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-5B28EB9D",
+    "sku": "HRZ-0F3899C9",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The Legundary Xpulse 200 4V Pro Defender Crash Guard, available at Bandidos pitstop, is a must-have accessory for adventure riders seeking enhan..."
@@ -2241,7 +2241,7 @@
     "inStock": true,
     "sku": "HRZ-0F3899C9",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The Legundary Xpulse 200 4V Pro Defender Crash Guard, available at Bandidos pitstop, is a must-have accessory for adventure riders seeking enhan..."
@@ -2265,7 +2265,7 @@
     "inStock": true,
     "sku": "HRZ-8980A547",
     "bike_compatibility": [
-      "Honda CB350 DLX Pro"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Elevate your riding experience and protect your Honda H'ness CB350 with the MotoCare Sum Guard, designed exclusively for your bike. This premium..."
@@ -2289,7 +2289,7 @@
     "inStock": true,
     "sku": "HRZ-97F84261",
     "bike_compatibility": [
-      "Honda CB350 DLX Pro"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque \u00a0Honda H'Ness 350 CB350 RS Crash Guard v2.0 (Black)</strong><br><br>\n</div>\n<div>\n<strong>Material</strong>\u00a0</div>\n..."
@@ -2313,7 +2313,7 @@
     "inStock": true,
     "sku": "HRZ-673641AD",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<table width=\"465\" data-mce-fragment=\"1\">\n<tbody data-mce-fragment=\"1\">\n<tr data-mce-fragment=\"1\">\n<td data-mce-fragment=\"1\"><strong data-mce-fragm..."
@@ -2337,14 +2337,14 @@
     "inStock": true,
     "sku": "HRZ-38A3EA39",
     "bike_compatibility": [
-      "Bajaj Pulsar N250 Dual ABS"
+      "Bajaj Pulsar NS200"
     ],
     "highlights": [
       "<h1>Jb Racing Crash Guard For Bajaj Pulsar Ns 200</h1>\n<p><span>Presenting a high quality custom crash guard for Bajaj NS200 One of the most essent..."
     ]
   },
   {
-    "id": "prod-A27911EA",
+    "id": "prod-D62D87BD",
     "name": "MT - X PULSE 210 FRONT MASTER CYL GUARD SS",
     "category": "Bike Protection",
     "subcategory": "Master Cylinder Guard",
@@ -2359,9 +2359,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A27911EA",
+    "sku": "HRZ-D62D87BD",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque KTM Adventure 2025 390 250 X Front Master Cylinder Guard (SS)</strong><br><br>The Moto Torque KTM Adventure 2025 39..."
@@ -2385,7 +2385,7 @@
     "inStock": true,
     "sku": "HRZ-D62D87BD",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque KTM Adventure 2025 390 250 X Front Master Cylinder Guard (SS)</strong><br><br>The Moto Torque KTM Adventure 2025 39..."
@@ -2433,7 +2433,7 @@
     "inStock": true,
     "sku": "HRZ-49BC7BEE",
     "bike_compatibility": [
-      "Yamaha MT-15 V2 Deluxe"
+      "Yamaha"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong>Motoaggrandize Frame Slider Crash Protector for Yamaha R15 V2 | R15 V3 | R15S | MT-15\u00a0Motorcycle Crash Guard with ..."
@@ -2464,7 +2464,7 @@
     ]
   },
   {
-    "id": "prod-7E10A197",
+    "id": "prod-25910665",
     "name": "MT - YAMAHA XSR 155 RADIATOR GAURD SS",
     "category": "Bike Protection",
     "subcategory": "Radiator Guard",
@@ -2479,7 +2479,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7E10A197",
+    "sku": "HRZ-25910665",
     "bike_compatibility": [
       "Yamaha XSR 155"
     ],
@@ -2529,7 +2529,7 @@
     "inStock": true,
     "sku": "HRZ-AF88A926",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<div>\n<span style=\"color: #000000;\"><strong><span style=\"color: #dd4646;\">Product Description: </span></strong></span><span style=\"color: rgb(221, ..."
@@ -2575,7 +2575,7 @@
     "inStock": true,
     "sku": "HRZ-025B8A35",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong>Description:</strong></p>\n<p data-mce-fragment=\"1\"><b data-mce-fragment=\"1\">MATERIAL</b></p>\n<ul data-mce-fragment..."
@@ -2599,7 +2599,7 @@
     "inStock": true,
     "sku": "HRZ-8FE5D2E8",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><strong>A well designed bash plate provides full under-engine coverage\u00a0and is\u00a0designed to provide maximum protection and high-quality fit and fi..."
@@ -2671,7 +2671,7 @@
     "inStock": true,
     "sku": "HRZ-8A6FF8FF",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your riding ergonomics with the Legundary Aluminium Handle Riser Black, available at <span style=\"font-size: 11.0pt; line-height: 107%; ..."
@@ -2695,14 +2695,14 @@
     "inStock": true,
     "sku": "HRZ-27E0EA7C",
     "bike_compatibility": [
-      "Honda CB350 DLX Pro"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<h1>Motocaan-Honda H\u2019ness (CB350) \u2013 Handle Bar Riser \u2013 Motocaan</h1>\n<p data-start=\"167\" data-end=\"507\">Enhance your riding comfort with the <stron..."
     ]
   },
   {
-    "id": "prod-ECF78194",
+    "id": "prod-470D74F3",
     "name": "MT - HIMALAYAN HANDLE BAR",
     "category": "Handlebar & Accessories",
     "subcategory": "Handlebars",
@@ -2717,9 +2717,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-ECF78194",
+    "sku": "HRZ-470D74F3",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Embark on a journey of distinction with the MOTOCRUX Handlebar Riser Silver, meticulously crafted for the Royal Enfield Himalayan 411 BS4/BS6. E..."
@@ -2743,7 +2743,7 @@
     "inStock": true,
     "sku": "HRZ-470D74F3",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Embark on a journey of distinction with the MOTOCRUX Handlebar Riser Silver, meticulously crafted for the Royal Enfield Himalayan 411 BS4/BS6. E..."
@@ -2767,7 +2767,7 @@
     "inStock": true,
     "sku": "HRZ-C0B8D492",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<div>\n<span style=\"color: #000000;\"><strong><span style=\"color: #dd4646;\">Product Description: </span></strong></span><span style=\"color: rgb(221, ..."
@@ -2791,14 +2791,14 @@
     "inStock": true,
     "sku": "HRZ-2817BD2D",
     "bike_compatibility": [
-      "TVS Apache RTX 300 new"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p><!--StartFragment --></p>\n<p>Ride in comfort, control with confidence. The <strong>Moto Torque Handlebar Riser</strong>\u00a0for TVS Apache RTX 300 i..."
     ]
   },
   {
-    "id": "prod-004C37C0",
+    "id": "prod-8E3D924D",
     "name": "MT - XPULSE HANDLE BAR",
     "category": "Handlebar & Accessories",
     "subcategory": "Handlebars",
@@ -2813,9 +2813,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-004C37C0",
+    "sku": "HRZ-8E3D924D",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The Legundary Hero Xpulse 210 Do..."
@@ -2839,7 +2839,7 @@
     "inStock": true,
     "sku": "HRZ-8E3D924D",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The Legundary Hero Xpulse 210 Do..."
@@ -2863,7 +2863,7 @@
     "inStock": true,
     "sku": "HRZ-755C3EDA",
     "bike_compatibility": [
-      "Yamaha MT 15"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "<h4>Product Description</h4>\n<div class=\"content--title\">Product information \"Kidney belt Contigo\"</div>\n<div class=\"product--description clearfix\"..."
@@ -2887,7 +2887,7 @@
     "inStock": true,
     "sku": "HRZ-2B7179B9",
     "bike_compatibility": [
-      "KTM Adventure 390 Rally"
+      "Yezdi Adventure"
     ],
     "highlights": [
       "<h4>Product Description\u00a0</h4>\n<p>\u00a0<strong>NOTE: Compatible to KTM Adventure 250 &amp; 390\u00a0</strong></p>\n<p><span class=\"_8Pl3R\">KTM Adventure Handl..."
@@ -2911,7 +2911,7 @@
     "inStock": true,
     "sku": "HRZ-F2377A90",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full\" dir=\"auto\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"true\">\n<div class=\"text-base my-au..."
@@ -2935,7 +2935,7 @@
     "inStock": true,
     "sku": "HRZ-D2157249",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The Legundary Hero Xpulse 210 To..."
@@ -2959,7 +2959,7 @@
     "inStock": true,
     "sku": "HRZ-022D69BC",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>Upgrade your ride with the Legundary Interceptor Footrest, designed exclusively for Royal Enfield Interceptor and available at Bandidos Pitstop...."
@@ -2983,7 +2983,7 @@
     "inStock": true,
     "sku": "HRZ-EDF89DEC",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p>Enhance passenger comfort and durability with the Bolster Pillion Footrest for TVS Apache RTX 300. Designed specifically for the <span class=\"ho..."
@@ -3007,7 +3007,7 @@
     "inStock": true,
     "sku": "HRZ-1271BA1F",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The Legundary Xpulse Rallytrek Footrest Pair, available at Bandidos pitstop, is a robust and practical upgrade for adventure enthusiasts. Design..."
@@ -3055,7 +3055,7 @@
     "inStock": true,
     "sku": "HRZ-8636FF38",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<p><meta charset=\"UTF-8\">Designed with precision and built for comfort, this all-new pillion footrest features a durable steel base plate paired wi..."
@@ -3079,7 +3079,7 @@
     "inStock": true,
     "sku": "HRZ-E3E3B6D3",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Enhance your riding comfort and control with the Royal Enfield HUNTER 350 - MOTOCRUX Double Side Foot Rest. Crafted with precision and designed ..."
@@ -3103,7 +3103,7 @@
     "inStock": true,
     "sku": "HRZ-448C2B90",
     "bike_compatibility": [
-      "Royal Enfield Super Meteor 650 Astral"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "<p><span data-mce-fragment=\"1\">The JB Racing Super Meteor 650 Pillion Footrest available at Bandidos Pitstop is a reliable and sturdy accessory des..."
@@ -3151,7 +3151,7 @@
     "inStock": true,
     "sku": "HRZ-BB769203",
     "bike_compatibility": [
-      "Triumph"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p>The Legundary Triumph Tiger 660 Bolster Pillion Foot Rest available at Bandidos Pitstop is a premium motorcycle accessory designed to enhance yo..."
@@ -3175,7 +3175,7 @@
     "inStock": true,
     "sku": "HRZ-57861D06",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<div>\n<span style=\"color: #000000;\"><strong><span style=\"color: #dd4646;\">Product Description:\u00a0 </span></strong></span><span style=\"color: rgb(0, 0..."
@@ -3199,7 +3199,7 @@
     "inStock": true,
     "sku": "HRZ-1C74943D",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Upgrade your Harley 440X Foot Rest rear Footrest, designed to enhance both style and comfort for your riding companion...."
@@ -3223,7 +3223,7 @@
     "inStock": true,
     "sku": "HRZ-EFDF9B9F",
     "bike_compatibility": [
-      "Royal Enfield Super Meteor 650 Astral"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Looking for a reliable and comfortable foot rest for your Super Meteor 650? Look no further, as the brand Legundary has got you covered! Our Pil..."
@@ -3247,7 +3247,7 @@
     "inStock": true,
     "sku": "HRZ-FA9EFC16",
     "bike_compatibility": [
-      "KTM 250 Adventure"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your touring setup with the Mild Steel and Aluminium GPS Mount in Silver and Black for KTM Adventure 390 (2025 model), available at Legu..."
@@ -3295,7 +3295,7 @@
     "inStock": true,
     "sku": "HRZ-01763385",
     "bike_compatibility": [
-      "KTM Duke 390 Gen-3"
+      "Bajaj Pulsar NS400Z"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\"><strong data-mce-fragment=\"1\">Add a sporty edge to your\u00a0Duke 250</strong></p>\n<p data-mce-fragment=\"1\">If you have found y..."
@@ -3343,7 +3343,7 @@
     "inStock": true,
     "sku": "HRZ-B09B73E3",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Add a bold touch to your Dominar with the Legundary Dominar Brooch Number Plate Holder, now available at Bandidos Pitstop. Designed for riders w..."
@@ -3367,7 +3367,7 @@
     "inStock": true,
     "sku": "HRZ-35626F4E",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full\" dir=\"auto\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"true\">\n<div class=\"text-base my-au..."
@@ -3391,7 +3391,7 @@
     "inStock": true,
     "sku": "HRZ-D2D762C4",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Upgrade your Royal Enfield Himalayan\u2019s lighting setup with the Legundary Himalayan Foglight Mount, available at Bandidos Pitstop. Designed speci..."
@@ -3415,7 +3415,7 @@
     "inStock": true,
     "sku": "HRZ-142554E0",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Upgrade your Honda H'ness CB350 with the Legundary Hness NYX Foglight Mount Set, now available at Bandidos Pitstop. Designed exclusively for a s..."
@@ -3439,7 +3439,7 @@
     "inStock": true,
     "sku": "HRZ-BCEB8F88",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your touring setup with the Legundary Mild Steel and Aluminium GPS Mount in Silver and Black, available at\u00a0<span style=\"font-size: 11.0p..."
@@ -3463,7 +3463,7 @@
     "inStock": true,
     "sku": "HRZ-A233A7C6",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Illuminate your rides with the Legundary Meteor NYX Foglight Mount Set, exclusively available at Bandidos Pitstop. Designed specifically for Roy..."
@@ -3487,7 +3487,7 @@
     "inStock": true,
     "sku": "HRZ-24C5CC3F",
     "bike_compatibility": [
-      "Royal Enfield Super Meteor 650 Astral"
+      "Royal Enfield Super Meteor 650"
     ],
     "highlights": [
       "<p>There's no need to take risks when it comes to driving on foggy roads, especially when you can get the top-of-the-line Super Meteor 650 Fog Ligh..."
@@ -3511,7 +3511,7 @@
     "inStock": true,
     "sku": "HRZ-E29C70DE",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p>Introducing the Legundary V-Strom Ploigos GPS Mount, now available at Bandidos Pitstop \u2013 the ultimate solution for V-Strom riders seeking a secu..."
@@ -3535,7 +3535,7 @@
     "inStock": true,
     "sku": "HRZ-0CD4213E",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">A small and compact yet very powerful fog light can light up the harshest of viewing conditions. With powerful LEDs, it..."
@@ -3583,14 +3583,14 @@
     "inStock": true,
     "sku": "HRZ-33872E3D",
     "bike_compatibility": [
-      "KTM Adventure 390 Rally"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque KTM Adventure 2025 390 250 GPS Mount (Orange)</strong><br><strong></strong><span></span>\n</div>\n<ul>\n<li>Designed s..."
     ]
   },
   {
-    "id": "prod-DF10E853",
+    "id": "prod-A47F40AF",
     "name": "MT - HIMALAYAN 450 - GPS MOUNT",
     "category": "Guards & Mounts",
     "subcategory": "Crash Guard",
@@ -3605,9 +3605,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-DF10E853",
+    "sku": "HRZ-A47F40AF",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p>The Moto Torque Himalayan 450 GPS Mount is a rugged and practical accessory designed to securely hold your GPS device or smartphone on your Roya..."
@@ -3631,7 +3631,7 @@
     "inStock": true,
     "sku": "HRZ-A47F40AF",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p>The Moto Torque Himalayan 450 GPS Mount is a rugged and practical accessory designed to securely hold your GPS device or smartphone on your Roya..."
@@ -3655,7 +3655,7 @@
     "inStock": true,
     "sku": "HRZ-B45CE360",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\">Elevate your Royal Enfield Himalayan 450 to new heights of sophistication and protection with the Moto Torque HIMALAYAN 45..."
@@ -3679,7 +3679,7 @@
     "inStock": true,
     "sku": "HRZ-4DB56E67",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>The Moto Torque GPS Mount for Royal Enfield Himalayan is a practical navigation accessory designed to make long rides safer and more convenient...."
@@ -3703,7 +3703,7 @@
     "inStock": true,
     "sku": "HRZ-A4AE2E8C",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p><span>Having to stop your rides mid-way and check your phone is massively inconvenient and unsafe. Mounting a phone on your bike could be a hass..."
@@ -3727,7 +3727,7 @@
     "inStock": true,
     "sku": "HRZ-A832696D",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p>Crafted specifically for the JB Racing X Pulse 210 Stealth GPS Mount is built from robust mild-steel and finished in a sleek matte black powder-..."
@@ -3775,7 +3775,7 @@
     "inStock": true,
     "sku": "HRZ-2D2BD627",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p>Elevate your riding experience with the MotoCare GPS Mount, designed for motorcycle enthusiasts who demand precision, convenience, and safety on..."
@@ -3799,7 +3799,7 @@
     "inStock": true,
     "sku": "HRZ-C1441FE2",
     "bike_compatibility": [
-      "Triumph"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p>Enhance the rugged appeal of your Triumph Tracker 400 while safeguarding its headlight with the Cosmic Headlight Grill. Designed specifically fo..."
@@ -3926,7 +3926,7 @@
     ]
   },
   {
-    "id": "prod-9BEC4170",
+    "id": "prod-48A5BC65",
     "name": "LCB BAJA PULSAR NS400 CASQUE  REAR OIL CAP",
     "category": "Oil Caps & Stands",
     "subcategory": "Rear Oil Cap",
@@ -3941,9 +3941,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-9BEC4170",
+    "sku": "HRZ-48A5BC65",
     "bike_compatibility": [
-      "Bajaj Pulsar N250 Dual ABS"
+      "Bajaj Pulsar NS400Z"
     ],
     "highlights": [
       "<p>The Pulsar NS400Z Rear Oil Cap from Legundary Custom, available at Bandidos Pitstop is a high-quality accessory designed to enhance the performa..."
@@ -3967,7 +3967,7 @@
     "inStock": true,
     "sku": "HRZ-48A5BC65",
     "bike_compatibility": [
-      "Bajaj Pulsar N250 Dual ABS"
+      "Bajaj Pulsar NS400Z"
     ],
     "highlights": [
       "<p>The Pulsar NS400Z Rear Oil Cap from Legundary Custom, available at Bandidos Pitstop is a high-quality accessory designed to enhance the performa..."
@@ -3991,7 +3991,7 @@
     "inStock": true,
     "sku": "HRZ-504FC763",
     "bike_compatibility": [
-      "Bajaj Pulsar N250 Dual ABS"
+      "Bajaj Pulsar NS400Z"
     ],
     "highlights": [
       "<p>The Legundary Tricorn Front Oil Cap for the Bajaj Pulsar NS400Z, available at Bandidos Pitstop, is a premium aftermarket accessory designed to e..."
@@ -4039,7 +4039,7 @@
     "inStock": true,
     "sku": "HRZ-9D10B98A",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full\" dir=\"auto\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"true\">\n<div class=\"text-base my-au..."
@@ -4063,7 +4063,7 @@
     "inStock": true,
     "sku": "HRZ-9D3E3EFE",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Upgrade your Dominar\u2019s style and durability with the Legundary Dominar Spyro Rear Brake Fluid Cap SS, available exclusively at Bandidos Pitstop...."
@@ -4087,7 +4087,7 @@
     "inStock": true,
     "sku": "HRZ-268F6497",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p><span data-mce-fragment=\"1\"></span><span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif; mso-ascii-theme-font: m..."
@@ -4111,7 +4111,7 @@
     "inStock": true,
     "sku": "HRZ-C86A561A",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p>Crafted specifically for the JB Racing X Pulse Front Oil Cap from JB Racing is constructed from sturdy mild steel with a sleek black powder-coat..."
@@ -4135,7 +4135,7 @@
     "inStock": true,
     "sku": "HRZ-E606CF71",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p>The Legundary RE Himalayan 450 Fortis Side Stand Base, available at Bandidos pitstop, is a must-have accessory for riders seeking enhanced stabi..."
@@ -4159,7 +4159,7 @@
     "inStock": true,
     "sku": "HRZ-E3DFD55B",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Elevate the appearance of your Royal Enfield Himalayan 450 while adding a touch of functionality with the Legundary Tri..."
@@ -4183,14 +4183,14 @@
     "inStock": true,
     "sku": "HRZ-6B609F18",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Enhance your Royal Enfield Himalayan's performance and style with the Legundary Himalayan Front Brake Fluid Cap, exclusively available at Bandid..."
     ]
   },
   {
-    "id": "prod-E5656D32",
+    "id": "prod-BCD4FD6A",
     "name": "LCB HIMALAYAN REAR BRAKE FLUID CAP SS",
     "category": "Oil Caps & Stands",
     "subcategory": "Rear Oil Cap",
@@ -4205,9 +4205,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-E5656D32",
+    "sku": "HRZ-BCD4FD6A",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Enhance the durability and style of your Himalayan with the Legundary Rear Brake Fluid Cap SS, available at Bandidos Pitstop. Crafted from high-..."
@@ -4231,7 +4231,7 @@
     "inStock": true,
     "sku": "HRZ-BCD4FD6A",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Enhance the durability and style of your Himalayan with the Legundary Rear Brake Fluid Cap SS, available at Bandidos Pitstop. Crafted from high-..."
@@ -4255,7 +4255,7 @@
     "inStock": true,
     "sku": "HRZ-93599783",
     "bike_compatibility": [
-      "Honda CB350RS Hue Edition"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Upgrade your Honda H\u2019ness CB350 with the Legundary Hness Aries Front Brake Fluid Cap, exclusively available at Bandidos Pitstop. Crafted from hi..."
@@ -4279,7 +4279,7 @@
     "inStock": true,
     "sku": "HRZ-C4947A97",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Enhance the stability and style of your Honda Hness with the Legundary Hness Brogue Side Stand Base, available at Bandidos Pitstop. Crafted from..."
@@ -4303,7 +4303,7 @@
     "inStock": true,
     "sku": "HRZ-41F5A6AD",
     "bike_compatibility": [
-      "Honda CB350RS Hue Edition"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Upgrade your Honda CB350RS with the <strong data-start=\"36\" data-end=\"84\">Legundary CB350RS Spyro Rear Brake Fluid Cap</strong>, now available a..."
@@ -4327,7 +4327,7 @@
     "inStock": true,
     "sku": "HRZ-21D0D40A",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p style=\"text-align: left;\">Enhance the stability and safety of your Royal Enfield Interceptor 650 with the Legundary Interceptor Side Stand Base ..."
@@ -4351,7 +4351,7 @@
     "inStock": true,
     "sku": "HRZ-91F0749E",
     "bike_compatibility": [
-      "KTM 250 Adventure"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Aluminium Rear Oil Cap Silver for the KTM Adventure 390 (2025 model), available at Legundary Custom Built, is a premium aftermarket upgrade ..."
@@ -4375,7 +4375,7 @@
     "inStock": true,
     "sku": "HRZ-2CFA6B0E",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance the stability of your bike with the Legundary Aluminium and Mild Steel Side Stand Base in a striking silver and black combination, avail..."
@@ -4399,7 +4399,7 @@
     "inStock": true,
     "sku": "HRZ-6AFAFC09",
     "bike_compatibility": [
-      "KTM 250 Adventure"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Aluminium Front Oil Cap Silver for KTM Adventure 390 (2025 model), available at Legundary Custom Built, is a sleek and functional upgrade de..."
@@ -4423,7 +4423,7 @@
     "inStock": true,
     "sku": "HRZ-0BD9F220",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Aluminium Paddock Spool Silver, available at <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif;..."
@@ -4447,7 +4447,7 @@
     "inStock": true,
     "sku": "HRZ-ADE390BA",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 And Scrambler 400 X Casque Rear Oil Cap, a distinguished product from the Legundary custom brand exclusively feature..."
@@ -4471,7 +4471,7 @@
     "inStock": true,
     "sku": "HRZ-9041C861",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400,</span>Tracker 400 <span style=\"font-size: 0.875rem;\">And Scrambler 400 X Tricorn Front Oil Cap , a distinguished cr..."
@@ -4495,7 +4495,7 @@
     "inStock": true,
     "sku": "HRZ-D802A0B9",
     "bike_compatibility": [
-      "Triumph Tiger"
+      "Triumph Tiger Sport 660"
     ],
     "highlights": [
       "<p>The Legundary Triumph Tiger 660 Casque Rear Oil Cap available at Bandidos Pitstop is a top-quality accessory designed to enhance both the functi..."
@@ -4519,7 +4519,7 @@
     "inStock": true,
     "sku": "HRZ-131F7037",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-end=\"743\" data-start=\"426\">Crafted specifically for the TVS APACHE RTX 300, the Casque Rear Oil Cap ensures OEM-perfect compatibility and s..."
@@ -4543,7 +4543,7 @@
     "inStock": true,
     "sku": "HRZ-0514D31C",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p>Upgrade your adventure machine with the Fortis Side Stand Base designed exclusively for the TVS Apache RTX 300. Built for stability, durability,..."
@@ -4567,7 +4567,7 @@
     "inStock": true,
     "sku": "HRZ-995656CD",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-start=\"145\" data-end=\"474\">Upgrade the detailing and durability of your TVS APACHE RTX 300 with the premium Tricorn Front Oil Cap in Silver..."
@@ -4591,7 +4591,7 @@
     "inStock": true,
     "sku": "HRZ-F7E22560",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p>Enhance the stability of your adventure ride with the Legundary V Strom Brogue Side Stand Base, available exclusively at Bandidos Pitstop. Desig..."
@@ -4615,7 +4615,7 @@
     "inStock": true,
     "sku": "HRZ-E792590B",
     "bike_compatibility": [
-      "Hero Xpulse 200 Standard"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The Legundary Xpulse 200 4V Pro Tricorn Front Oil Cap, available at Bandidos Pitstop, is a premium upgrade designed for durability and performan..."
@@ -4639,7 +4639,7 @@
     "inStock": true,
     "sku": "HRZ-B79CC1A0",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Upgrade your Hero Xpulse with the Legundary Xpulse Side Stand Base SS, available at Bandidos Pitstop \u2014 a must-have for off-road and adventure ri..."
@@ -4781,7 +4781,7 @@
     "inStock": true,
     "sku": "HRZ-61BCEA61",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p class=\"all-heading\"><strong><span style=\"color: #dd4646;\">Product Description:</span></strong></p>\n\n<ul>\n  <li><span style=\"color: #000000;\">The..."
@@ -4853,7 +4853,7 @@
     "inStock": true,
     "sku": "HRZ-43683965",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<div class=\"product-single__subtitle mb-0\">\n<div class=\"product-block description-block\">\n<div class=\"rte\">\n<h3 class=\"product_title entry-title\">G..."
@@ -4877,7 +4877,7 @@
     "inStock": true,
     "sku": "HRZ-80A6A40A",
     "bike_compatibility": [
-      "KTM 390 Adventure Standard"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p data-start=\"161\" data-end=\"485\">The MotoTorque Side Stand Extender is a must-have upgrade for riders who frequently park on uneven or soft terra..."
@@ -4901,7 +4901,7 @@
     "inStock": true,
     "sku": "HRZ-88C323BF",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": []
   },
@@ -4923,7 +4923,7 @@
     "inStock": true,
     "sku": "HRZ-5589CCEB",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<h1>Moto Torque Himalayan Scram 411 Side Stand Extender\u00a0</h1>\n<h4><span style=\"text-decoration: underline;\">Description:</span></h4>\n<p data-start=..."
@@ -4947,7 +4947,7 @@
     "inStock": true,
     "sku": "HRZ-2A1DC70D",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<div class=\"product-block description-block\">\n<div class=\"rte\">\n<p>SKU :\u00a0HRSPD40004S</p>\n<p>Are you ready to take your Triumph 400 Motorcycle to th..."
@@ -4993,7 +4993,7 @@
     "inStock": true,
     "sku": "HRZ-F63C391C",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Give your Hunter 350 a sleek and aggressive rear profile with the Legundary Hunter Blitz Tail Tidy, available at Bandidos Pitstop. Designed to r..."
@@ -5017,7 +5017,7 @@
     "inStock": true,
     "sku": "HRZ-0A256C97",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 And Scrambler 400 X Blitz Tail Tidy, a standout creation from the Legundary custom brand available exclusively at Ba..."
@@ -5065,7 +5065,7 @@
     "inStock": true,
     "sku": "HRZ-393B28E4",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The X Pulse 200 4V Enduro Tail Clamp for Hero X Pulse 200 4V, available at Bandidospitstop, is a perfect blend of functionality and rugged style..."
@@ -5137,14 +5137,14 @@
     "inStock": true,
     "sku": "HRZ-3DFC289C",
     "bike_compatibility": [
-      "KTM 250 Duke"
+      "KTM Duke 390 Gen-3"
     ],
     "highlights": [
       "<p>Introducing our tail tidy Designed specifically for bikes, it provides a sleek and streamlined look while effectively organizing and securing th..."
     ]
   },
   {
-    "id": "prod-BE55FA6C",
+    "id": "prod-D22E06AC",
     "name": "Raida - Rainpro Bike Cover Navy Blue XXL",
     "category": "Bike Essentials",
     "subcategory": "Windshield",
@@ -5159,7 +5159,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-BE55FA6C",
+    "sku": "HRZ-D22E06AC",
     "bike_compatibility": [
       "Universal"
     ],
@@ -5168,7 +5168,7 @@
     ]
   },
   {
-    "id": "prod-5A0C85C4",
+    "id": "prod-D22E06AC",
     "name": "Raida - Rainpro Bike Cover Navy Blue XXL",
     "category": "Bike Essentials",
     "subcategory": "Windshield",
@@ -5183,7 +5183,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-5A0C85C4",
+    "sku": "HRZ-D22E06AC",
     "bike_compatibility": [
       "Universal"
     ],
@@ -5281,7 +5281,7 @@
     "inStock": true,
     "sku": "HRZ-C219A76A",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p>This high-performance air filter from BMC is engineered to replace your bike stock filter with a premium \u201cfull-moulding\u201d cotton gauze element ta..."
@@ -5329,7 +5329,7 @@
     "inStock": true,
     "sku": "HRZ-C02E1F4F",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>The BMC Airfilter Bajaj Dominar available at Bandidos Pitstop is a crucial component for maintaining optimal engine performance and longevity. a..."
@@ -5353,7 +5353,7 @@
     "inStock": true,
     "sku": "HRZ-C6ABB3B6",
     "bike_compatibility": [
-      "Royal Enfield Continental GT 650 Apex Grey"
+      "Royal Enfield Continental GT 650"
     ],
     "highlights": [
       "<p>BMC Air Filters are manufactured using a proprietary molding process that yields a truly seamless part. approximately 500gram. A<span style=\"fon..."
@@ -5401,7 +5401,7 @@
     "inStock": true,
     "sku": "HRZ-6646D2A4",
     "bike_compatibility": [
-      "Hero Xpulse 200 Standard"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The BMC Air filter Hero Xpulse a..."
@@ -5425,7 +5425,7 @@
     "inStock": true,
     "sku": "HRZ-499949D5",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>BMC Air Filters are manufactured using a proprietary molding process that yields a truly seamless part. approximately 500gram. <span style=\"font..."
@@ -5497,7 +5497,7 @@
     "inStock": true,
     "sku": "HRZ-D9FB7504",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>BMC Air Filters are manufactured using a proprietary molding process that yields a truly seamless part. approximately 500gram. These panel / cyl..."
@@ -5521,7 +5521,7 @@
     "inStock": true,
     "sku": "HRZ-5D8ECA4F",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<h1>Bmc Air Filter For Royal Enfield Himalayan 411 (2018)/ Scram 411 (Till 2022) - Fm966/08</h1>\n<h2>Description:</h2>\n<p>\u2022 \u00a0 \u00a0The Panel / Cylindri..."
@@ -5545,7 +5545,7 @@
     "inStock": true,
     "sku": "HRZ-F463117F",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p><strong>Compatibility Note:</strong></p>\n<ul>\n<li>\n<span class=\"taxonomy-term count-1\"><span>ROYAL ENFIELD </span>HIMALAYAN</span><span>\u00a0</span>..."
@@ -5569,7 +5569,7 @@
     "inStock": true,
     "sku": "HRZ-CACA95A3",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<h1>BMC Air Filter FM01070 for RE Interceptor 650/GT 650</h1>\n<h4><span style=\"text-decoration: underline;\">Description:</span></h4>\n<p data-start=..."
@@ -5617,7 +5617,7 @@
     "inStock": true,
     "sku": "HRZ-592AF90D",
     "bike_compatibility": [
-      "Yamaha"
+      "Yamaha NMAX 155"
     ],
     "highlights": [
       "<h1>BMC Air Filter FM01115 For Yamaha Aerox 155</h1>\n<p><span style=\"text-decoration: underline;\"><strong>Description:</strong></span></p>\n<p data-..."
@@ -5641,7 +5641,7 @@
     "inStock": true,
     "sku": "HRZ-527D1DC7",
     "bike_compatibility": [
-      "Yamaha R15 V4 Metallic"
+      "Yamaha R15 V4"
     ],
     "highlights": [
       "<p>BMC Air Filters are manufactured using a proprietary molding process that yields a truly seamless part. approximately 500gram. These panel / cyl..."
@@ -5713,7 +5713,7 @@
     "inStock": true,
     "sku": "HRZ-0BD8BCF0",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<h1 class=\"MsoNormal\">Aew Megaphone Exhaust For Interceptor/Gt650- Te 103</h1>\n<p>The Megaphone Silencer Te 103 \u2013 Latest Addition To The Aew Interc..."
@@ -5737,7 +5737,7 @@
     "inStock": true,
     "sku": "HRZ-8CD40666",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p>Enhance the breathing performance of your Royal Enfield Himalayan 450 Sherpa with the N-Gage Hyper Flow Air Filter, designed for riders who want..."
@@ -5761,7 +5761,7 @@
     "inStock": true,
     "sku": "HRZ-F9C1DCE9",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>NGAGE\u00a0Hyper flow Air filter are made out of 4 layers surgical grade cotton gauze sandwiched between epoxy coated aluminum mesh provided with sup..."
@@ -5785,7 +5785,7 @@
     "inStock": true,
     "sku": "HRZ-0F68F3DD",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<h1>Hyper Flow Air Filter for Hero X Pulse 200 2V/4V/2T</h1>\n<h2>\n<br>Description:</h2>\n<p>Cotton Gauze Air Filters Offer Several Benefits Compared..."
@@ -5809,7 +5809,7 @@
     "inStock": true,
     "sku": "HRZ-516BA4FE",
     "bike_compatibility": [
-      "Royal Enfield Himalayan"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<div style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 12px 0; border-radius: 8px;\"><iframe src=\"https://www...."
@@ -5857,7 +5857,7 @@
     "inStock": true,
     "sku": "HRZ-5396CC03",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The Legundary Hero Xpulse 210 NY..."
@@ -5905,7 +5905,7 @@
     "inStock": true,
     "sku": "HRZ-B6B94CFD",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Pulsar NS400Z"
     ],
     "highlights": [
       "<p><span>Launching a new Head Light grill for your Bajaj Dominar 400. Designed and Manufactured from High-grade mild steel with CNC laser cutting m..."
@@ -5953,7 +5953,7 @@
     "inStock": true,
     "sku": "HRZ-2D77119D",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Give your Dominar a rugged and aggressive upgrade with the Legundary Dominar Venator Headlight Grill, available exclusively at Bandidos Pitstop...."
@@ -5977,7 +5977,7 @@
     "inStock": true,
     "sku": "HRZ-63F61169",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p><span>The Legundary Harley Davidson 440X Mig Headlight Grill available at Bandidos Pitstop is an essential accessory for motorcycle enthusiasts ..."
@@ -6001,7 +6001,7 @@
     "inStock": true,
     "sku": "HRZ-03B45700",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Enhance your Royal Enfield Himalayan BS6's rugged appeal and headlight protection with the Legundary Himalayan MIG Headlight Grill, now availabl..."
@@ -6025,7 +6025,7 @@
     "inStock": true,
     "sku": "HRZ-EABDBC59",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Add a bold and rugged edge to your ride with the Legundary Hunter Stalkerx Headlight Grill, exclusively available at Bandidos Pitstop. Designed ..."
@@ -6049,7 +6049,7 @@
     "inStock": true,
     "sku": "HRZ-EE68E444",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance both the protection and rugged appeal of your bike with the Legundary Mild Steel and Aluminium Headlight Grill in Silver and Black, avai..."
@@ -6073,7 +6073,7 @@
     "inStock": true,
     "sku": "HRZ-D6695DED",
     "bike_compatibility": [
-      "KTM Duke 390 Gen-3"
+      "KTM Duke 250"
     ],
     "highlights": [
       "<p>Give your KTM Duke 250 a rugged, battle-ready look with the Legundary Venator Headlight Grill, exclusively available at Bandidos Pitstop. Design..."
@@ -6097,7 +6097,7 @@
     "inStock": true,
     "sku": "HRZ-688E4D7F",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Enhance your Royal Enfield Meteor\u2019s rugged appeal and add an extra layer of protection with the Legundary Meteor MIG Headlight Grill, available ..."
@@ -6121,7 +6121,7 @@
     "inStock": true,
     "sku": "HRZ-F9A60C67",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Guerrilla 450"
     ],
     "highlights": [
       "<p><span data-sheets-root=\"1\">The Royal Enfield Guerrilla 450 Headlight Grill from Legundary Custom Built, available at Bandidos Pitstop is a premi..."
@@ -6145,7 +6145,7 @@
     "inStock": true,
     "sku": "HRZ-DD51D8B2",
     "bike_compatibility": [
-      "Royal Enfield Scram 440 new"
+      "Royal Enfield Scram 440"
     ],
     "highlights": [
       "<p>The Royal Enfield Scram 440 Cosmic Headlight Grill is a premium protection accessory engineered for riders who demand both style and functionali..."
@@ -6169,7 +6169,7 @@
     "inStock": true,
     "sku": "HRZ-0E6F76C3",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 And Scrambler 400 X Cosmic Headlight Grill, a product of the Legundary custom brand available exclusively at Bandido..."
@@ -6193,7 +6193,7 @@
     "inStock": true,
     "sku": "HRZ-4E45F277",
     "bike_compatibility": [
-      "Hero Xpulse 200 Standard"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Enhance the protection and style of your Legundary Xpulse 200 4V Pro Cosmic Headlight Grill, available at Bandidos pitstop. Designed to shield y..."
@@ -6217,7 +6217,7 @@
     "inStock": true,
     "sku": "HRZ-C86CA7D1",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Crafted specifically for the JB Racing X Pulse 210 Halox Headlight Grill is built from robust mild-steel and finished in a stealthy black powder..."
@@ -6481,7 +6481,7 @@
     "inStock": true,
     "sku": "HRZ-2E531D93",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">The JB Racing Himalayan 450 Fog Light Mount Set offered at Bandidos Pitstop is a comprehensive solution for securely mo..."
@@ -6505,7 +6505,7 @@
     "inStock": true,
     "sku": "HRZ-A066FF1B",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<div class=\"row\">\n<div class=\"col-sm-12\"><img src=\"https://cdn.staticans.com/image/data/gps/23-Aug-2023/FOG-LIGHT-MOUNT-20230823T051447Z-001-2-1-BA..."
@@ -6553,7 +6553,7 @@
     "inStock": true,
     "sku": "HRZ-0185477E",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<p></p>"
@@ -6577,7 +6577,7 @@
     "inStock": true,
     "sku": "HRZ-C7689CE2",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The JB Racing X Pulse 210 LUX Fog Light Mount Black is engineered to seamlessly integrate with your Xpulse 210 front end, offering a rugged and ..."
@@ -6601,7 +6601,7 @@
     "inStock": true,
     "sku": "HRZ-FF46D138",
     "bike_compatibility": [
-      "Honda CB350 DLX Pro"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<h1>JB Racing Light Mount For Honda H'ness CB350</h1>\n<p><span>The JB Racing Fog Light Mount is designed to fit fog lights to your Honda H'ness CB3..."
@@ -6625,7 +6625,7 @@
     "inStock": true,
     "sku": "HRZ-E81B81C3",
     "bike_compatibility": [
-      "Hero Xpulse 200 Standard"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p><strong><span style=\"color: #ff8000;\">What are Open Box Bargains?\u00a0- These are products which are significantly discounted because they are:</spa..."
@@ -6649,7 +6649,7 @@
     "inStock": true,
     "sku": "HRZ-CE15C9C2",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Elevate your motorcycle's fog light setup with the JB Racing Triumph Speed 400 Fog Light Mount available at Bandidos Pi..."
@@ -6673,7 +6673,7 @@
     "inStock": true,
     "sku": "HRZ-666B00BF",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p class=\"all-heading\"><strong><span style=\"color: #dd4646;\">Product Description:</span></strong></p>\n<ul>\n<li style=\"color: rgb(0, 0, 0);\" data-st..."
@@ -6704,7 +6704,7 @@
     ]
   },
   {
-    "id": "prod-BC1A2A6F",
+    "id": "prod-B84890FE",
     "name": "AXOR ENZO BLACK NEON YELLOW GLOVES 2XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6719,7 +6719,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-BC1A2A6F",
+    "sku": "HRZ-B84890FE",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6728,7 +6728,7 @@
     ]
   },
   {
-    "id": "prod-F611BE11",
+    "id": "prod-3F8DF88A",
     "name": "AXOR ENZO BLACK NEON YELLOW GLOVES L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6743,7 +6743,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-F611BE11",
+    "sku": "HRZ-3F8DF88A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6752,7 +6752,7 @@
     ]
   },
   {
-    "id": "prod-B8FDBD09",
+    "id": "prod-B84890FE",
     "name": "AXOR ENZO BLACK NEON YELLOW GLOVES 2XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6767,7 +6767,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-B8FDBD09",
+    "sku": "HRZ-B84890FE",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6824,7 +6824,7 @@
     ]
   },
   {
-    "id": "prod-DD63D72E",
+    "id": "prod-D91870F9",
     "name": "AXOR GATOR GLOVES BLACK RED M",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6839,7 +6839,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-DD63D72E",
+    "sku": "HRZ-D91870F9",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6848,7 +6848,7 @@
     ]
   },
   {
-    "id": "prod-402BBB2A",
+    "id": "prod-3054B97E",
     "name": "AXOR GATOR GLOVES BLACK RED XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6863,7 +6863,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-402BBB2A",
+    "sku": "HRZ-3054B97E",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6872,7 +6872,7 @@
     ]
   },
   {
-    "id": "prod-01611156",
+    "id": "prod-D91870F9",
     "name": "AXOR GATOR GLOVES BLACK RED M",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6887,7 +6887,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-01611156",
+    "sku": "HRZ-D91870F9",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6896,7 +6896,7 @@
     ]
   },
   {
-    "id": "prod-1DD35D81",
+    "id": "prod-3054B97E",
     "name": "AXOR GATOR GLOVES BLACK RED XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6911,7 +6911,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-1DD35D81",
+    "sku": "HRZ-3054B97E",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6920,7 +6920,7 @@
     ]
   },
   {
-    "id": "prod-1A446BB4",
+    "id": "prod-EC3B441C",
     "name": "AXOR GATOR GLOVES BLACK NEON GREEN L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -6935,31 +6935,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-1A446BB4",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<p><span style=\"color: #ed1c24;\"><strong><span style=\"color: #dd4646;\">Size Chart:</span></strong></span>\u00a0</p>\n<p><img height=\"114\" width=\"95\" alt=..."
-    ]
-  },
-  {
-    "id": "prod-A65932C2",
-    "name": "AXOR GATOR GLOVES BLACK NEON GREEN L",
-    "category": "Riding Gears",
-    "subcategory": "Gloves",
-    "brand": "Axor",
-    "price": 1646.0,
-    "originalPrice": 1892.0,
-    "image": "images_processed/inventory_sync_multisite2/axor/1_003e9796-9112-45f6-a956-904157240fd9.webp",
-    "gallery": [
-      "images_processed/inventory_sync_multisite2/axor/1_003e9796-9112-45f6-a956-904157240fd9.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-A65932C2",
+    "sku": "HRZ-EC3B441C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -6992,7 +6968,31 @@
     ]
   },
   {
-    "id": "prod-5568CFD8",
+    "id": "prod-EC3B441C",
+    "name": "AXOR GATOR GLOVES BLACK NEON GREEN L",
+    "category": "Riding Gears",
+    "subcategory": "Gloves",
+    "brand": "Axor",
+    "price": 1646.0,
+    "originalPrice": 1892.0,
+    "image": "images_processed/inventory_sync_multisite2/axor/1_003e9796-9112-45f6-a956-904157240fd9.webp",
+    "gallery": [
+      "images_processed/inventory_sync_multisite2/axor/1_003e9796-9112-45f6-a956-904157240fd9.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-EC3B441C",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<p><span style=\"color: #ed1c24;\"><strong><span style=\"color: #dd4646;\">Size Chart:</span></strong></span>\u00a0</p>\n<p><img height=\"114\" width=\"95\" alt=..."
+    ]
+  },
+  {
+    "id": "prod-D91870F9",
     "name": "AXOR GATOR GLOVES BLACK RED M",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7007,7 +7007,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-5568CFD8",
+    "sku": "HRZ-D91870F9",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7208,7 +7208,7 @@
     ]
   },
   {
-    "id": "prod-8B91EEC7",
+    "id": "prod-CF1E32F2",
     "name": "CRAMSTER BREEZER JACKET BLACK WHITE-S",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -7223,7 +7223,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-8B91EEC7",
+    "sku": "HRZ-CF1E32F2",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7256,7 +7256,7 @@
     ]
   },
   {
-    "id": "prod-926236D9",
+    "id": "prod-CF1E32F2",
     "name": "CRAMSTER BREEZER JACKET BLACK WHITE-S",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -7271,7 +7271,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-926236D9",
+    "sku": "HRZ-CF1E32F2",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7304,7 +7304,7 @@
     ]
   },
   {
-    "id": "prod-27B9C858",
+    "id": "prod-831DB030",
     "name": "CRAMSTER BREEZER MOTOR SPORT GLOVES - BLACK/L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7319,31 +7319,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-27B9C858",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<div class=\"text-row\">\n<div class=\"text-row\">\n<h2>Cramster Riding Gloves</h2>\n<p class=\"cursor-hover\"><b class=\"cursor-hover\">IMPACT PROTECTION</b>..."
-    ]
-  },
-  {
-    "id": "prod-12A60E1C",
-    "name": "CRAMSTER BREEZER MOTOR SPORT GLOVES - BLACK/L",
-    "category": "Riding Gears",
-    "subcategory": "Gloves",
-    "brand": "Cramster",
-    "price": 2100.0,
-    "originalPrice": 2415.0,
-    "image": "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01_1_1.webp",
-    "gallery": [
-      "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01_1_1.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-12A60E1C",
+    "sku": "HRZ-831DB030",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7376,22 +7352,22 @@
     ]
   },
   {
-    "id": "prod-C96CC45E",
-    "name": "CRAMSTER BREEZER MOTOR SPORT GLOVES - FLUORO/M",
+    "id": "prod-831DB030",
+    "name": "CRAMSTER BREEZER MOTOR SPORT GLOVES - BLACK/L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
     "brand": "Cramster",
     "price": 2100.0,
     "originalPrice": 2415.0,
-    "image": "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01.webp",
+    "image": "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01_1_1.webp",
     "gallery": [
-      "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01.webp"
+      "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01_1_1.webp"
     ],
     "rating": 4.8,
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-C96CC45E",
+    "sku": "HRZ-831DB030",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7424,7 +7400,31 @@
     ]
   },
   {
-    "id": "prod-7D35BAD1",
+    "id": "prod-1F39A448",
+    "name": "CRAMSTER BREEZER MOTOR SPORT GLOVES - FLUORO/M",
+    "category": "Riding Gears",
+    "subcategory": "Gloves",
+    "brand": "Cramster",
+    "price": 2100.0,
+    "originalPrice": 2415.0,
+    "image": "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01.webp",
+    "gallery": [
+      "images_processed/inventory_sync_fuzzy/cramster/Cramstar_breezerGloves_01.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-1F39A448",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<div class=\"text-row\">\n<div class=\"text-row\">\n<h2>Cramster Riding Gloves</h2>\n<p class=\"cursor-hover\"><b class=\"cursor-hover\">IMPACT PROTECTION</b>..."
+    ]
+  },
+  {
+    "id": "prod-7931C05A",
     "name": "CRAMSTER FLUX SP GLOVES BLACK WHITE L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7439,7 +7439,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7D35BAD1",
+    "sku": "HRZ-7931C05A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7448,7 +7448,7 @@
     ]
   },
   {
-    "id": "prod-43976253",
+    "id": "prod-4DAF646A",
     "name": "CRAMSTER BREEZER SP GLOVES-BLACK WHITE/XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7463,7 +7463,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-43976253",
+    "sku": "HRZ-4DAF646A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7496,7 +7496,7 @@
     ]
   },
   {
-    "id": "prod-522CFD4B",
+    "id": "prod-D67BF665",
     "name": "Cramster Flux Boots Mid Black 11",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -7511,7 +7511,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-522CFD4B",
+    "sku": "HRZ-D67BF665",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7520,7 +7520,7 @@
     ]
   },
   {
-    "id": "prod-F1A6E648",
+    "id": "prod-D67BF665",
     "name": "Cramster Flux Boots Mid Black 11",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -7535,7 +7535,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-F1A6E648",
+    "sku": "HRZ-D67BF665",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7592,7 +7592,7 @@
     ]
   },
   {
-    "id": "prod-8D914D64",
+    "id": "prod-E60BFC12",
     "name": "Cramster Flux Boots Mid Brown 10",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -7607,31 +7607,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-8D914D64",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<p><strong>Cramster Flux Motorcycle Touring Boots Mid (Black)</strong></p>\n<p><strong>Impact Protection</strong></p>\n<ul>\n<li aria-level=\"1\"><span ..."
-    ]
-  },
-  {
-    "id": "prod-D3D539F3",
-    "name": "Cramster Flux Boots Mid Brown 10",
-    "category": "Riding Gears",
-    "subcategory": "Boots",
-    "brand": "Cramster",
-    "price": 5999.0,
-    "originalPrice": 6898.0,
-    "image": "images_processed/inventory_sync_multisite/cramster/Cramster_Flux_Boots_Brown_01.webp",
-    "gallery": [
-      "images_processed/inventory_sync_multisite/cramster/Cramster_Flux_Boots_Brown_01.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-D3D539F3",
+    "sku": "HRZ-E60BFC12",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7664,7 +7640,31 @@
     ]
   },
   {
-    "id": "prod-B7E92292",
+    "id": "prod-E60BFC12",
+    "name": "Cramster Flux Boots Mid Brown 10",
+    "category": "Riding Gears",
+    "subcategory": "Boots",
+    "brand": "Cramster",
+    "price": 5999.0,
+    "originalPrice": 6898.0,
+    "image": "images_processed/inventory_sync_multisite/cramster/Cramster_Flux_Boots_Brown_01.webp",
+    "gallery": [
+      "images_processed/inventory_sync_multisite/cramster/Cramster_Flux_Boots_Brown_01.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-E60BFC12",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<p><strong>Cramster Flux Motorcycle Touring Boots Mid (Black)</strong></p>\n<p><strong>Impact Protection</strong></p>\n<ul>\n<li aria-level=\"1\"><span ..."
+    ]
+  },
+  {
+    "id": "prod-1E9E24A7",
     "name": "CRAMSTER FLUX WP MOTORSPORT GLOVES-BLACK/2XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7679,7 +7679,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-B7E92292",
+    "sku": "HRZ-1E9E24A7",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7688,7 +7688,7 @@
     ]
   },
   {
-    "id": "prod-76CE5610",
+    "id": "prod-D1FE3920",
     "name": "CRAMSTER FLUX WP MOTORSPORT GLOVES-BLACK/L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7703,7 +7703,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-76CE5610",
+    "sku": "HRZ-D1FE3920",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7712,7 +7712,7 @@
     ]
   },
   {
-    "id": "prod-07DBFBE7",
+    "id": "prod-4DFEA3CC",
     "name": "CRAMSTER FLUX JACKET BLACK  XL",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -7727,7 +7727,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-07DBFBE7",
+    "sku": "HRZ-4DFEA3CC",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7760,7 +7760,7 @@
     ]
   },
   {
-    "id": "prod-66A0B04F",
+    "id": "prod-137550CD",
     "name": "CRAMSTER FLUX JACKET NAVY BLUE M",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -7775,7 +7775,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-66A0B04F",
+    "sku": "HRZ-137550CD",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7832,7 +7832,7 @@
     ]
   },
   {
-    "id": "prod-A549EFDA",
+    "id": "prod-A0470EE1",
     "name": "CRAMSTER FLUX SP GLOVES BLACK GREY XL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7847,7 +7847,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A549EFDA",
+    "sku": "HRZ-A0470EE1",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7856,7 +7856,7 @@
     ]
   },
   {
-    "id": "prod-CF801236",
+    "id": "prod-7931C05A",
     "name": "CRAMSTER FLUX SP GLOVES BLACK WHITE L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7871,7 +7871,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-CF801236",
+    "sku": "HRZ-7931C05A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -7928,7 +7928,7 @@
     ]
   },
   {
-    "id": "prod-3B1396F0",
+    "id": "prod-7931C05A",
     "name": "CRAMSTER FLUX SP GLOVES BLACK WHITE L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -7943,31 +7943,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-3B1396F0",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<p><strong>Cramster Flux SP Gloves</strong></p>\n<p data-mce-fragment=\"1\"><span>City commutes or open highways, Flux SP Gloves provide the comfort y..."
-    ]
-  },
-  {
-    "id": "prod-6D22570D",
-    "name": "CRAMSTER FLUX SP GLOVES BLACK WHITE L",
-    "category": "Riding Gears",
-    "subcategory": "Gloves",
-    "brand": "Cramster",
-    "price": 1899.0,
-    "originalPrice": 2183.0,
-    "image": "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-White-Cramster_13.webp",
-    "gallery": [
-      "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-White-Cramster_13.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-6D22570D",
+    "sku": "HRZ-7931C05A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8000,22 +7976,22 @@
     ]
   },
   {
-    "id": "prod-0F38C3B8",
-    "name": "CRAMSTER FLUX SP GLOVES RED L",
+    "id": "prod-7931C05A",
+    "name": "CRAMSTER FLUX SP GLOVES BLACK WHITE L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
     "brand": "Cramster",
     "price": 1899.0,
     "originalPrice": 2183.0,
-    "image": "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-Red-Cramster_6.webp",
+    "image": "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-White-Cramster_13.webp",
     "gallery": [
-      "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-Red-Cramster_6.webp"
+      "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-White-Cramster_13.webp"
     ],
     "rating": 4.8,
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-0F38C3B8",
+    "sku": "HRZ-7931C05A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8024,7 +8000,7 @@
     ]
   },
   {
-    "id": "prod-6BA122AD",
+    "id": "prod-EDD34A69",
     "name": "CRAMSTER FLUX SP GLOVES RED L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8039,7 +8015,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-6BA122AD",
+    "sku": "HRZ-EDD34A69",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8048,7 +8024,7 @@
     ]
   },
   {
-    "id": "prod-0D2097CC",
+    "id": "prod-EDD34A69",
     "name": "CRAMSTER FLUX SP GLOVES RED L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8063,7 +8039,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-0D2097CC",
+    "sku": "HRZ-EDD34A69",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8072,7 +8048,7 @@
     ]
   },
   {
-    "id": "prod-E80D120B",
+    "id": "prod-EDD34A69",
     "name": "CRAMSTER FLUX SP GLOVES RED L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8087,7 +8063,31 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-E80D120B",
+    "sku": "HRZ-EDD34A69",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<p><strong>Cramster Flux SP Gloves</strong></p>\n<p data-mce-fragment=\"1\"><span>City commutes or open highways, Flux SP Gloves provide the comfort y..."
+    ]
+  },
+  {
+    "id": "prod-EDD34A69",
+    "name": "CRAMSTER FLUX SP GLOVES RED L",
+    "category": "Riding Gears",
+    "subcategory": "Gloves",
+    "brand": "Cramster",
+    "price": 1899.0,
+    "originalPrice": 2183.0,
+    "image": "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-Red-Cramster_6.webp",
+    "gallery": [
+      "images_processed/inventory_sync_multisite/cramster/Flux-SP-Gloves-Black-Red-Cramster_6.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-EDD34A69",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8144,7 +8144,7 @@
     ]
   },
   {
-    "id": "prod-72F7DB98",
+    "id": "prod-D1FE3920",
     "name": "CRAMSTER FLUX WP MOTORSPORT GLOVES-BLACK/L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8159,7 +8159,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-72F7DB98",
+    "sku": "HRZ-D1FE3920",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8216,7 +8216,7 @@
     ]
   },
   {
-    "id": "prod-AE0DD53B",
+    "id": "prod-4C425970",
     "name": "CRAMSTER K2K MOTOSPORT GLOVES - GREY/L",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8231,7 +8231,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-AE0DD53B",
+    "sku": "HRZ-4C425970",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8408,7 +8408,7 @@
     ]
   },
   {
-    "id": "prod-C988781E",
+    "id": "prod-4D80A0D4",
     "name": "DSG NERO V2 PANT BLACK/38",
     "category": "Riding Gears",
     "subcategory": "Riding Pants",
@@ -8423,31 +8423,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-C988781E",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<div class=\"container\">\n<div class=\"row\">\n<div role=\"main\" class=\"content col-lg-9 col-md-8 col-sm-12\" id=\"contents-detail\">\n<div class=\"content-ar..."
-    ]
-  },
-  {
-    "id": "prod-07052B59",
-    "name": "DSG NERO V2 PANT BLACK/38",
-    "category": "Riding Gears",
-    "subcategory": "Riding Pants",
-    "brand": "DSG",
-    "price": 7950.0,
-    "originalPrice": 9142.0,
-    "image": "images_processed/inventory_sync_fuzzy/dsg/dsg_nero_v2_riding_pants_4.webp",
-    "gallery": [
-      "images_processed/inventory_sync_fuzzy/dsg/dsg_nero_v2_riding_pants_4.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-07052B59",
+    "sku": "HRZ-4D80A0D4",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8480,7 +8456,31 @@
     ]
   },
   {
-    "id": "prod-97AEF010",
+    "id": "prod-4D80A0D4",
+    "name": "DSG NERO V2 PANT BLACK/38",
+    "category": "Riding Gears",
+    "subcategory": "Riding Pants",
+    "brand": "DSG",
+    "price": 7950.0,
+    "originalPrice": 9142.0,
+    "image": "images_processed/inventory_sync_fuzzy/dsg/dsg_nero_v2_riding_pants_4.webp",
+    "gallery": [
+      "images_processed/inventory_sync_fuzzy/dsg/dsg_nero_v2_riding_pants_4.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-4D80A0D4",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<div class=\"container\">\n<div class=\"row\">\n<div role=\"main\" class=\"content col-lg-9 col-md-8 col-sm-12\" id=\"contents-detail\">\n<div class=\"content-ar..."
+    ]
+  },
+  {
+    "id": "prod-C2A371BF",
     "name": "DSG RACE PRO SPORT JACKET BLK RED GLD/L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8495,7 +8495,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-97AEF010",
+    "sku": "HRZ-C2A371BF",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8504,7 +8504,7 @@
     ]
   },
   {
-    "id": "prod-9902609F",
+    "id": "prod-C2A371BF",
     "name": "DSG RACE PRO SPORT JACKET BLK RED GLD/L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8519,7 +8519,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-9902609F",
+    "sku": "HRZ-C2A371BF",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8528,7 +8528,7 @@
     ]
   },
   {
-    "id": "prod-4388DA2E",
+    "id": "prod-C2A371BF",
     "name": "DSG RACE PRO SPORT JACKET BLK RED GLD/L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8543,7 +8543,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-4388DA2E",
+    "sku": "HRZ-C2A371BF",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8552,7 +8552,7 @@
     ]
   },
   {
-    "id": "prod-2944B4EA",
+    "id": "prod-6C20981F",
     "name": "DSG RACE PRO V3 JACKET BLK/YEL FL/XL",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8567,7 +8567,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2944B4EA",
+    "sku": "HRZ-6C20981F",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8576,7 +8576,7 @@
     ]
   },
   {
-    "id": "prod-257E90AB",
+    "id": "prod-6C20981F",
     "name": "DSG RACE PRO V3 JACKET BLK/YEL FL/XL",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8591,7 +8591,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-257E90AB",
+    "sku": "HRZ-6C20981F",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8600,7 +8600,7 @@
     ]
   },
   {
-    "id": "prod-53E8C562",
+    "id": "prod-6C20981F",
     "name": "DSG RACE PRO V3 JACKET BLK/YEL FL/XL",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8615,7 +8615,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-53E8C562",
+    "sku": "HRZ-6C20981F",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8737,7 +8737,7 @@
     "inStock": true,
     "sku": "HRZ-D6C590E4",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-end=\"474\" data-start=\"119\">Upgrade your TVS Apache RTX 300 with the premium Titan Boot Guards Silver, crafted from high-grade aluminium and..."
@@ -8936,7 +8936,7 @@
     ]
   },
   {
-    "id": "prod-C014F6AF",
+    "id": "prod-5F2B0934",
     "name": "RAIDA-BASE LAYER BLACK TOP M",
     "category": "Riding Gears",
     "subcategory": "Other Riding Gear",
@@ -8951,7 +8951,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-C014F6AF",
+    "sku": "HRZ-5F2B0934",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8960,7 +8960,7 @@
     ]
   },
   {
-    "id": "prod-022DA4D4",
+    "id": "prod-1DE990AA",
     "name": "RAIDA - DRIFT GLOVES HI-WIZ SIZE M",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -8975,7 +8975,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-022DA4D4",
+    "sku": "HRZ-1DE990AA",
     "bike_compatibility": [
       "Universal"
     ],
@@ -8984,7 +8984,7 @@
     ]
   },
   {
-    "id": "prod-953F7DD5",
+    "id": "prod-F4F8FF7C",
     "name": "RAIDA - DRYMAX RAIN JACKET BLUE SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -8999,7 +8999,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-953F7DD5",
+    "sku": "HRZ-F4F8FF7C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9008,7 +9008,7 @@
     ]
   },
   {
-    "id": "prod-B9374202",
+    "id": "prod-F4F8FF7C",
     "name": "RAIDA - DRYMAX RAIN JACKET BLUE SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9023,7 +9023,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-B9374202",
+    "sku": "HRZ-F4F8FF7C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9056,7 +9056,7 @@
     ]
   },
   {
-    "id": "prod-BD6DFC7F",
+    "id": "prod-589CC23D",
     "name": "RAIDA - MOTORCYCLE BOOTS / TOURER GREY SIZE 9",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -9071,7 +9071,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-BD6DFC7F",
+    "sku": "HRZ-589CC23D",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9080,7 +9080,7 @@
     ]
   },
   {
-    "id": "prod-A1C1D8B9",
+    "id": "prod-D687BE9F",
     "name": "RAIDA - REVLOX SHOE COVER SIZE XL",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -9095,31 +9095,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A1C1D8B9",
-    "bike_compatibility": [
-      "Universal"
-    ],
-    "highlights": [
-      "<p><span style=\"color: rgb(221, 70, 70);\"><strong>Size Chart:</strong></span></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spa..."
-    ]
-  },
-  {
-    "id": "prod-89FEFBD9",
-    "name": "RAIDA - REVLOX SHOE COVER SIZE XL",
-    "category": "Riding Gears",
-    "subcategory": "Boots",
-    "brand": "Raida",
-    "price": 1299.0,
-    "originalPrice": 1493.0,
-    "image": "images_processed/inventory_sync_fuzzy/raida/1_cc1d7b79-c5ca-45ca-bd61-d487958363f5.webp",
-    "gallery": [
-      "images_processed/inventory_sync_fuzzy/raida/1_cc1d7b79-c5ca-45ca-bd61-d487958363f5.webp"
-    ],
-    "rating": 4.8,
-    "reviewCount": 10,
-    "ridersInstalled": 10,
-    "inStock": true,
-    "sku": "HRZ-89FEFBD9",
+    "sku": "HRZ-D687BE9F",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9152,7 +9128,31 @@
     ]
   },
   {
-    "id": "prod-7220CDBC",
+    "id": "prod-D687BE9F",
+    "name": "RAIDA - REVLOX SHOE COVER SIZE XL",
+    "category": "Riding Gears",
+    "subcategory": "Boots",
+    "brand": "Raida",
+    "price": 1299.0,
+    "originalPrice": 1493.0,
+    "image": "images_processed/inventory_sync_fuzzy/raida/1_cc1d7b79-c5ca-45ca-bd61-d487958363f5.webp",
+    "gallery": [
+      "images_processed/inventory_sync_fuzzy/raida/1_cc1d7b79-c5ca-45ca-bd61-d487958363f5.webp"
+    ],
+    "rating": 4.8,
+    "reviewCount": 10,
+    "ridersInstalled": 10,
+    "inStock": true,
+    "sku": "HRZ-D687BE9F",
+    "bike_compatibility": [
+      "Universal"
+    ],
+    "highlights": [
+      "<p><span style=\"color: rgb(221, 70, 70);\"><strong>Size Chart:</strong></span></p>\n<style type=\"text/css\">\n.tg  {border-collapse:collapse;border-spa..."
+    ]
+  },
+  {
+    "id": "prod-2AA7D7C1",
     "name": "RAIDA -MOTORCYCLE BOOTS / TOURER RES SIZE 10",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -9167,7 +9167,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7220CDBC",
+    "sku": "HRZ-2AA7D7C1",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9200,7 +9200,7 @@
     ]
   },
   {
-    "id": "prod-34BF44CE",
+    "id": "prod-589CC23D",
     "name": "RAIDA - MOTORCYCLE BOOTS / TOURER GREY SIZE 9",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -9215,7 +9215,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-34BF44CE",
+    "sku": "HRZ-589CC23D",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9224,7 +9224,7 @@
     ]
   },
   {
-    "id": "prod-26105344",
+    "id": "prod-0EAB08DF",
     "name": "RAIDA- AIRWAVE GLOVES/HI-WIZ XXL",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9239,7 +9239,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-26105344",
+    "sku": "HRZ-0EAB08DF",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9296,7 +9296,7 @@
     ]
   },
   {
-    "id": "prod-A44AB0F7",
+    "id": "prod-B6C65A59",
     "name": "RAIDA-AQUA DRY WATERPROOF GLOVES HI-WIZ",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9311,7 +9311,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A44AB0F7",
+    "sku": "HRZ-B6C65A59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9320,7 +9320,7 @@
     ]
   },
   {
-    "id": "prod-A80F0635",
+    "id": "prod-B6C65A59",
     "name": "RAIDA-AQUA DRY WATERPROOF GLOVES HI-WIZ",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9335,7 +9335,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A80F0635",
+    "sku": "HRZ-B6C65A59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9344,7 +9344,7 @@
     ]
   },
   {
-    "id": "prod-12B47C1D",
+    "id": "prod-4A96DE9B",
     "name": "RAIDA-AQUA DRY WATERPROOF GLOVES BLACK M",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9359,7 +9359,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-12B47C1D",
+    "sku": "HRZ-4A96DE9B",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9392,7 +9392,7 @@
     ]
   },
   {
-    "id": "prod-E3DD8D74",
+    "id": "prod-B6C65A59",
     "name": "RAIDA-AQUA DRY WATERPROOF GLOVES HI-WIZ",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9407,7 +9407,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-E3DD8D74",
+    "sku": "HRZ-B6C65A59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9416,7 +9416,7 @@
     ]
   },
   {
-    "id": "prod-263BD19D",
+    "id": "prod-B6C65A59",
     "name": "RAIDA-AQUA DRY WATERPROOF GLOVES HI-WIZ",
     "category": "Riding Gears",
     "subcategory": "Gloves",
@@ -9431,7 +9431,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-263BD19D",
+    "sku": "HRZ-B6C65A59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9488,7 +9488,7 @@
     ]
   },
   {
-    "id": "prod-2522C66E",
+    "id": "prod-5F2B0934",
     "name": "RAIDA-BASE LAYER BLACK TOP M",
     "category": "Riding Gears",
     "subcategory": "Other Riding Gear",
@@ -9503,7 +9503,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2522C66E",
+    "sku": "HRZ-5F2B0934",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9560,7 +9560,7 @@
     ]
   },
   {
-    "id": "prod-149CFEDB",
+    "id": "prod-7E916521",
     "name": "RAIDA-DISCOVER BOOTS SIZE 8",
     "category": "Riding Gears",
     "subcategory": "Boots",
@@ -9575,7 +9575,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-149CFEDB",
+    "sku": "HRZ-7E916521",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9704,7 +9704,7 @@
     ]
   },
   {
-    "id": "prod-EB6C5853",
+    "id": "prod-B5D740E4",
     "name": "RAIDA-DRYMAX RAIN JACKET BLACK L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9719,7 +9719,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-EB6C5853",
+    "sku": "HRZ-B5D740E4",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9776,7 +9776,7 @@
     ]
   },
   {
-    "id": "prod-0810E2ED",
+    "id": "prod-F4F8FF7C",
     "name": "RAIDA - DRYMAX RAIN JACKET BLUE SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9791,7 +9791,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-0810E2ED",
+    "sku": "HRZ-F4F8FF7C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9824,7 +9824,7 @@
     ]
   },
   {
-    "id": "prod-4E2684CE",
+    "id": "prod-F4F8FF7C",
     "name": "RAIDA - DRYMAX RAIN JACKET BLUE SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9839,7 +9839,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-4E2684CE",
+    "sku": "HRZ-F4F8FF7C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9872,7 +9872,7 @@
     ]
   },
   {
-    "id": "prod-2251D1F5",
+    "id": "prod-2FE78B59",
     "name": "RAIDA-REVLOX RAIN JACKET BLACK SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9887,7 +9887,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2251D1F5",
+    "sku": "HRZ-2FE78B59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -9896,7 +9896,7 @@
     ]
   },
   {
-    "id": "prod-08B21EED",
+    "id": "prod-2FE78B59",
     "name": "RAIDA-REVLOX RAIN JACKET BLACK SIZE L",
     "category": "Riding Gears",
     "subcategory": "Riding Jackets",
@@ -9911,7 +9911,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-08B21EED",
+    "sku": "HRZ-2FE78B59",
     "bike_compatibility": [
       "Universal"
     ],
@@ -10417,7 +10417,7 @@
     "inStock": true,
     "sku": "HRZ-37C2D9AF",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTR 310"
     ],
     "highlights": [
       "<p><span>The Legundary TVS Apache RTR 310 Gopher Luggage Carrier available at Bandidos pitstop is an essential accessory for motorcyclists seeking ..."
@@ -10441,7 +10441,7 @@
     "inStock": true,
     "sku": "HRZ-FADB0CC1",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Upgrade your long-distance riding comfort with the Legundary Backrest for Bajaj Dominar, available at Bandidos Pitstop. Designed with precision ..."
@@ -10561,7 +10561,7 @@
     "inStock": true,
     "sku": "HRZ-5F36F51F",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Conquer every ride with confidence using the Legundary Dominar Poseidon Saddlestay With Carrier, now available at Bandidos Pitstop. Engineered s..."
@@ -10585,14 +10585,14 @@
     "inStock": true,
     "sku": "HRZ-DE3F1915",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<p><span>The Legundary Harley Davidson 440X Gopher Luggage Carrier available at Bandidos Pitstop is a versatile and durable accessory designed to e..."
     ]
   },
   {
-    "id": "prod-F45E9F83",
+    "id": "prod-F48B9909",
     "name": "LCB HERO X PULSE 210 XTRUDER SADDLE STAY",
     "category": "Luggage & Touring",
     "subcategory": "Saddle Stays",
@@ -10607,9 +10607,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-F45E9F83",
+    "sku": "HRZ-F48B9909",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<h1>Legundary Hero X Pulse Saddle Stay</h1>\n<style type=\"text/css\"><!--\ntd {border: 1px solid #cccccc;}br {mso-data-placement:same-cell;}\n--></styl..."
@@ -10633,7 +10633,7 @@
     "inStock": true,
     "sku": "HRZ-062D31E3",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p><span>Unveil the ultimate riding experience with the all-new Legundary Himalayan 450 Aragorn Saddle Stay, now exclusively available at Bandidos ..."
@@ -10657,7 +10657,7 @@
     "inStock": true,
     "sku": "HRZ-A89E6378",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<div id=\"featurebullets_feature_div\" class=\"celwidget\" data-feature-name=\"featurebullets\" data-csa-c-id=\"l21v4e-2ggwo7-o01ck6-2olv82\" data-cel-widg..."
@@ -10681,7 +10681,7 @@
     "inStock": true,
     "sku": "HRZ-9188AA9F",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>The Legundary Himalayan Huckitta Carrier Plate BS6, available at Bandidos Pitstop, is the perfect utility upgrade for your Royal Enfield Himalay..."
@@ -10705,7 +10705,7 @@
     "inStock": true,
     "sku": "HRZ-9120965A",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Introducing the Legundary Hness Atlas Carrier 2.0, now available at Bandidos Pitstop \u2014 the perfect blend of rugged utility and sleek design, spe..."
@@ -10729,7 +10729,7 @@
     "inStock": true,
     "sku": "HRZ-2512AEBE",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<h1>LCB Interceptor 650 Backrest With Carrier</h1>\n<h4 data-start=\"192\" data-end=\"218\"><span style=\"text-decoration: underline;\">Description:</span..."
@@ -10753,7 +10753,7 @@
     "inStock": true,
     "sku": "HRZ-D8C5EE83",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p data-start=\"215\" data-end=\"507\">Take on every journey with confidence using the Legundary Hunter Gopher Luggage Carrier, exclusively at Bandidos..."
@@ -10777,7 +10777,7 @@
     "inStock": true,
     "sku": "HRZ-D20F823A",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>GrandPitstop's TOPRACK WITH BACKREST WITH PARCEL SHELF - Black for Royal Enfield - INTERCEPTOR Automated CNC machines are used to bend the tubes..."
@@ -10801,7 +10801,7 @@
     "inStock": true,
     "sku": "HRZ-72FCE3F2",
     "bike_compatibility": [
-      "Royal Enfield Interceptor 650 Twin"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<p>Upgrade your touring comfort and utility with the Legundary Interceptor Backrest With Carrier, available at Bandidos Pitstop. Specially designed..."
@@ -10825,14 +10825,14 @@
     "inStock": true,
     "sku": "HRZ-6DED9908",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Mild Steel Saddle Stay Black, available at\u00a0<span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif; m..."
     ]
   },
   {
-    "id": "prod-7903B466",
+    "id": "prod-F824A6B4",
     "name": "LCB KTM ADV 390 2025 GOPHER LUGGAGE CARRIER",
     "category": "Luggage & Touring",
     "subcategory": "Luggage Racks",
@@ -10847,9 +10847,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7903B466",
+    "sku": "HRZ-F824A6B4",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Mild Steel Luggage Carrier Black, available at <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-seri..."
@@ -10873,7 +10873,7 @@
     "inStock": true,
     "sku": "HRZ-F824A6B4",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>The Legundary Mild Steel Luggage Carrier Black, available at <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-seri..."
@@ -10897,7 +10897,7 @@
     "inStock": true,
     "sku": "HRZ-D9EF210A",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Introducing the Legundary Meteor Atlas Heavy Luggage Carrier, now available at Bandidos Pitstop \u2013 the ultimate solution for riders who crave dur..."
@@ -10921,7 +10921,7 @@
     "inStock": true,
     "sku": "HRZ-4D129E63",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p><span>A crash guard can protect your motorcycle during an event of an accident or crash. This Crash guard is strongly built with additional slid..."
@@ -10945,7 +10945,7 @@
     "inStock": true,
     "sku": "HRZ-4B4758CC",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<h2 class=\"product__details--info__title mb-15\">MotoCare CNC Carrier Plate for Royal Enfield Meteor 350 \u2013 Precision-Machined, Durable &amp; Lightwe..."
@@ -10976,7 +10976,7 @@
     ]
   },
   {
-    "id": "prod-020E682F",
+    "id": "prod-BBF7B5C2",
     "name": "LCB RE GUERILLA 450 GOPHER LUGGAGE CARRIER WITH MS PLATE",
     "category": "Luggage & Touring",
     "subcategory": "Luggage Racks",
@@ -10991,9 +10991,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-020E682F",
+    "sku": "HRZ-BBF7B5C2",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Guerrilla 450"
     ],
     "highlights": [
       "<p><span data-sheets-root=\"1\">The Royal Enfield Guerrilla 450 Luggage Carrier Plate from available at Bandidos Pitstop is crafted from premium alum..."
@@ -11017,7 +11017,7 @@
     "inStock": true,
     "sku": "HRZ-BBF7B5C2",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Guerrilla 450"
     ],
     "highlights": [
       "<p><span data-sheets-root=\"1\">The Royal Enfield Guerrilla 450 Luggage Carrier Plate from available at Bandidos Pitstop is crafted from premium alum..."
@@ -11065,7 +11065,7 @@
     "inStock": true,
     "sku": "HRZ-425311FE",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 And Scrambler 400 X Atlas Luggage Carrier, a remarkable creation from the Legundary custom brand featured at Bandido..."
@@ -11089,7 +11089,7 @@
     "inStock": true,
     "sku": "HRZ-40EA378E",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 Voyager Bashplate, an exemplary offering from the legundary custom brand found at Bandidos Pitstop, is the embodimen..."
@@ -11137,7 +11137,7 @@
     "inStock": true,
     "sku": "HRZ-E32986F7",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-end=\"524\" data-start=\"134\">Upgrade your touring setup with the TVS Apache RTX 300 Aviator Saddle stay \u2013 a rugged and reliable luggage suppo..."
@@ -11161,14 +11161,14 @@
     "inStock": true,
     "sku": "HRZ-02EC110E",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p>The Legundary V-Strom Huckitta Carrier Plate, available at Bandidos Pitstop, is a premium-grade luggage solution designed exclusively for Suzuki..."
     ]
   },
   {
-    "id": "prod-2830B7FA",
+    "id": "prod-FADCDF8D",
     "name": "LCB X PULSE SMALL CARRIER PLATE",
     "category": "Luggage & Touring",
     "subcategory": "Luggage Racks",
@@ -11183,9 +11183,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2830B7FA",
+    "sku": "HRZ-FADCDF8D",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Carrier plates let you carry additional luggage with you on your rides. These Carrier plates are installed on top of yo..."
@@ -11209,7 +11209,7 @@
     "inStock": true,
     "sku": "HRZ-FADCDF8D",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">Carrier plates let you carry additional luggage with you on your rides. These Carrier plates are installed on top of yo..."
@@ -11233,7 +11233,7 @@
     "inStock": true,
     "sku": "HRZ-F48B9909",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<h1>Legundary Hero X Pulse Saddle Stay</h1>\n<style type=\"text/css\"><!--\ntd {border: 1px solid #cccccc;}br {mso-data-placement:same-cell;}\n--></styl..."
@@ -11257,7 +11257,7 @@
     "inStock": true,
     "sku": "HRZ-7DFEBDCE",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Enhance your riding comfort and pillion support with the Legundary Xpulse Backrest, available exclusively at Bandidos Pitstop. Designed specific..."
@@ -11281,7 +11281,7 @@
     "inStock": true,
     "sku": "HRZ-7C45CCCE",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>Upgrade your adventure machine with the Legundary Xpulse Big Carrier Plate, available at Bandidos Pitstop. Specially designed for the Hero Xpuls..."
@@ -11377,7 +11377,7 @@
     "inStock": true,
     "sku": "HRZ-FD7F6160",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque Honda H'Ness 350 Back Carrier (Black)</strong><br><br>\n</div>\n<div>\n<strong>Material</strong>\u00a0</div>\n<div>\n<ul>\n<li..."
@@ -11401,7 +11401,7 @@
     "inStock": true,
     "sku": "HRZ-DF9632C4",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<h1>Mototorque Dominar Back Carrier</h1>\n<p><strong><span style=\"text-decoration: underline;\">Description:</span></strong></p>\n<p>Material:<br>Made..."
@@ -11425,7 +11425,7 @@
     "inStock": true,
     "sku": "HRZ-9F89796B",
     "bike_compatibility": [
-      "Yamaha MT-15 V2 Deluxe"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p style=\"text-align: left;\">Now easily mount the saddlebags on your Yamaha MT15 by installing our Saddle Stay. This easy to install and remove sad..."
@@ -11502,7 +11502,7 @@
     ]
   },
   {
-    "id": "prod-4A1FF800",
+    "id": "prod-612195CD",
     "name": "MT - HARLEY DAVIDSON 440X BACK CARRIER WITH BACK REST",
     "category": "Luggage & Touring",
     "subcategory": "Luggage Racks",
@@ -11517,9 +11517,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-4A1FF800",
+    "sku": "HRZ-612195CD",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">The MTQ Harley 440X Carrier With Back Rest available at Bandidos Pitstop is a versatile accessory designed to enhance t..."
@@ -11543,7 +11543,7 @@
     "inStock": true,
     "sku": "HRZ-612195CD",
     "bike_compatibility": [
-      "Harley Davidson Harley 440X"
+      "Harley-Davidson X440"
     ],
     "highlights": [
       "<span data-mce-fragment=\"1\">The MTQ Harley 440X Carrier With Back Rest available at Bandidos Pitstop is a versatile accessory designed to enhance t..."
@@ -11567,7 +11567,7 @@
     "inStock": true,
     "sku": "HRZ-3C6ECFDE",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<h2 class=\"all-heading\" data-mce-fragment=\"1\">Product Description<span class=\"right-line\" data-mce-fragment=\"1\"></span>\n</h2>\n<div class=\"height-20..."
@@ -11591,7 +11591,7 @@
     "inStock": true,
     "sku": "HRZ-8E1AC255",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Transform your Royal Enfield Hunter 350 into a versatile touring machine with the MOTOCRUX Carrier featuring a Back Rest. Crafted from high-qual..."
@@ -11615,7 +11615,7 @@
     "inStock": true,
     "sku": "HRZ-84D6E5BC",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Enhance your riding adventures with the MotoCare Saddle Stay, meticulously designed to complement the Royal Enfield Hunter 350. This premium acc..."
@@ -11639,7 +11639,7 @@
     "inStock": true,
     "sku": "HRZ-4CE35F5D",
     "bike_compatibility": [
-      "Universal"
+      "Royal Enfield Interceptor 650"
     ],
     "highlights": [
       "<h1>Back Carrier-Moto Torque-V2/Mt 15\u00a0</h1>\n<p data-start=\"615\" data-end=\"871\" class=\"\">Upgrade your Yamaha MT-15 with the <strong data-start=\"650\"..."
@@ -11687,7 +11687,7 @@
     "inStock": true,
     "sku": "HRZ-39656829",
     "bike_compatibility": [
-      "Bajaj Pulsar N250 Dual ABS"
+      "Bajaj Pulsar NS200"
     ],
     "highlights": [
       "<h1>Mototorque Saddle Stay For Pulsar NS200</h1>\n<h4><span style=\"text-decoration: underline;\">Descripton:</span></h4>\n<p>Material<br data-mce-frag..."
@@ -11759,14 +11759,14 @@
     "inStock": true,
     "sku": "HRZ-ACDCF936",
     "bike_compatibility": [
-      "Suzuki V-Strom SX"
+      "Suzuki V-Strom 800DE"
     ],
     "highlights": [
       "<p><span class=\"relative -mx-px my-[-0.2rem] rounded px-px py-[0.2rem] transition-colors duration-100 ease-in-out\">The Legundary Suzuki V Strom 800..."
     ]
   },
   {
-    "id": "prod-A974DBD7",
+    "id": "prod-F5E0F053",
     "name": "MT - X PULSE BACK CARRIER",
     "category": "Luggage & Touring",
     "subcategory": "Luggage Racks",
@@ -11781,9 +11781,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-A974DBD7",
+    "sku": "HRZ-F5E0F053",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The JB Racing X Pulse 210 Kargo Luggage Carrier Black And Silver from Bandidos pitstop offers a robust luggage\u2010carrying solution tailor-made for..."
@@ -11807,7 +11807,7 @@
     "inStock": true,
     "sku": "HRZ-4E955E7F",
     "bike_compatibility": [
-      "Hero Xpulse 210"
+      "Hero XPulse 210"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full focus:outline-none [--shadow-height:45px] has-data-writing-block:pointer-events-none has-data-writin..."
@@ -11831,7 +11831,7 @@
     "inStock": true,
     "sku": "HRZ-F5E0F053",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p>The JB Racing X Pulse 210 Kargo Luggage Carrier Black And Silver from Bandidos pitstop offers a robust luggage\u2010carrying solution tailor-made for..."
@@ -11901,7 +11901,7 @@
     "inStock": true,
     "sku": "HRZ-D2349829",
     "bike_compatibility": [
-      "Yamaha MT 15"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "LUGGAGE CARRIER FOR - YAMAHA MT 15"
@@ -11949,7 +11949,7 @@
     "inStock": true,
     "sku": "HRZ-F00360E0",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p><span data-sheets-userformat='{\"2\":14783,\"3\":{\"1\":0,\"3\":1},\"4\":{\"1\":2,\"2\":16776960},\"5\":{\"1\":[{\"1\":2,\"2\":0,\"5\":{\"1\":0}},{\"1\":0,\"2\":0,\"3\":3},{\"1\"..."
@@ -11973,7 +11973,7 @@
     "inStock": true,
     "sku": "HRZ-AC12DB0E",
     "bike_compatibility": [
-      "Royal Enfield Scram"
+      "Royal Enfield Scram 411"
     ],
     "highlights": [
       "<p data-start=\"117\" data-end=\"651\">Enhance your touring capability with the Moto Torque Back Carrier for Royal Enfield Scram 411, now available at ..."
@@ -12021,7 +12021,7 @@
     "inStock": true,
     "sku": "HRZ-C52A3430",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Scrambler 400 X"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque Triumph Speed 400 Scrambler 400X Back Carrier (Black)<br></strong><br>\n</div>\n<div>With an efficient TOP PLATE, mou..."
@@ -12213,7 +12213,7 @@
     "inStock": true,
     "sku": "HRZ-97938D04",
     "bike_compatibility": [
-      "Royal Enfield Himalayan"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": []
   },
@@ -12571,7 +12571,7 @@
     "inStock": true,
     "sku": "HRZ-DED3473E",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<p>Enhance your Honda H\u2019ness CB350's bold character with the Legundary Hness Zephyr Pro Metal Visor, available exclusively at Bandidos Pitstop. Cra..."
@@ -12595,7 +12595,7 @@
     "inStock": true,
     "sku": "HRZ-61EF7544",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Royal Enfield Hunter 350"
     ],
     "highlights": [
       "<p>Elevate your Hunter 350\u2019s rugged appeal with the Legundary Hunter Aegis Metal Visor, now available at Bandidos Pitstop. Built for riders who dem..."
@@ -12619,7 +12619,7 @@
     "inStock": true,
     "sku": "HRZ-3E7FA04A",
     "bike_compatibility": [
-      "Royal Enfield Guerrilla 450 Analogue"
+      "Royal Enfield Guerrilla 450"
     ],
     "highlights": [
       "<p>The Royal Enfield Guerrilla 450 Zephyr Metal Visor from Legundary Custom, available at Bandidos Pitstop is a premium accessory designed to enhan..."
@@ -12643,7 +12643,7 @@
     "inStock": true,
     "sku": "HRZ-3CAF6EF1",
     "bike_compatibility": [
-      "Triumph Speed 400 Roadster"
+      "Triumph Speed 400"
     ],
     "highlights": [
       "<p><span>The Triumph Speed 400 Zephyr <span style=\"font-size: 11.0pt; line-height: 107%; font-family: 'Calibri',sans-serif; mso-ascii-theme-font: m..."
@@ -12667,7 +12667,7 @@
     "inStock": true,
     "sku": "HRZ-08E08EC4",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<p data-end=\"520\" data-start=\"184\">Upgrade your adventure touring setup with the PLOIGOS GPS Mount with Visor Extender for the TVS Apache RTX 300. ..."
@@ -12770,7 +12770,7 @@
     ]
   },
   {
-    "id": "prod-9B752082",
+    "id": "prod-F60503B3",
     "name": "MT 15 METAL VISOR- BLACK (MTECH)",
     "category": "Helmets & Accessories",
     "subcategory": "Helmet Visor",
@@ -12785,9 +12785,9 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-9B752082",
+    "sku": "HRZ-F60503B3",
     "bike_compatibility": [
-      "Yamaha MT 15"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "<p>Come let\u2019s play some colours on your beast..! This new metal visor is similar in colour and most suitable for the mt15 model. <span style=\"font-..."
@@ -12842,7 +12842,7 @@
     ]
   },
   {
-    "id": "prod-DC7B6098",
+    "id": "prod-73C5034A",
     "name": "SMK OFF ROAD GOGGLES",
     "category": "Helmets & Accessories",
     "subcategory": "Helmet Accessories",
@@ -12857,7 +12857,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-DC7B6098",
+    "sku": "HRZ-73C5034A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -12914,7 +12914,7 @@
     ]
   },
   {
-    "id": "prod-36CBB78A",
+    "id": "prod-574A20C6",
     "name": "SMK Stellar Sports Adox Matt Black Grey (MA266) Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -12929,7 +12929,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-36CBB78A",
+    "sku": "HRZ-574A20C6",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13010,7 +13010,7 @@
     ]
   },
   {
-    "id": "prod-7405B972",
+    "id": "prod-448DD99C",
     "name": "SMK Stellar Sports Stage Matt Black Grey (MA262) Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13025,7 +13025,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-7405B972",
+    "sku": "HRZ-448DD99C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13058,7 +13058,7 @@
     ]
   },
   {
-    "id": "prod-6D210A0E",
+    "id": "prod-8A3B2BF4",
     "name": "SMK TYPHOON RIVAL DUAL SPOILER GL213 L",
     "category": "Helmets & Accessories",
     "subcategory": "Helmet Accessories",
@@ -13073,7 +13073,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-6D210A0E",
+    "sku": "HRZ-8A3B2BF4",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13082,7 +13082,7 @@
     ]
   },
   {
-    "id": "prod-D28461D4",
+    "id": "prod-A93D9019",
     "name": "SMK TYPHOON WCV DUAL SPOILER MA200 XL",
     "category": "Helmets & Accessories",
     "subcategory": "Helmet Accessories",
@@ -13097,7 +13097,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-D28461D4",
+    "sku": "HRZ-A93D9019",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13106,7 +13106,7 @@
     ]
   },
   {
-    "id": "prod-EABCFD67",
+    "id": "prod-8A3B2BF4",
     "name": "SMK TYPHOON RIVAL DUAL SPOILER GL213 L",
     "category": "Helmets & Accessories",
     "subcategory": "Helmet Accessories",
@@ -13121,7 +13121,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-EABCFD67",
+    "sku": "HRZ-8A3B2BF4",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13250,7 +13250,7 @@
     ]
   },
   {
-    "id": "prod-D06DFB43",
+    "id": "prod-B157B643",
     "name": "KYT Striker 2V #02 Matt Black Red Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13265,7 +13265,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-D06DFB43",
+    "sku": "HRZ-B157B643",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13298,7 +13298,7 @@
     ]
   },
   {
-    "id": "prod-9D5C17E9",
+    "id": "prod-D8874A3A",
     "name": "KYT Striker 2V AF37 Livery Gloss Black White Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13313,7 +13313,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-9D5C17E9",
+    "sku": "HRZ-D8874A3A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13322,7 +13322,7 @@
     ]
   },
   {
-    "id": "prod-204BECF8",
+    "id": "prod-EF9E4095",
     "name": "KYT Striker 2V AF37 Livery Matt Black Red Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13337,7 +13337,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-204BECF8",
+    "sku": "HRZ-EF9E4095",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13370,7 +13370,7 @@
     ]
   },
   {
-    "id": "prod-6F249AF6",
+    "id": "prod-D8874A3A",
     "name": "KYT Striker 2V AF37 Livery Gloss Black White Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13385,7 +13385,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-6F249AF6",
+    "sku": "HRZ-D8874A3A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13634,7 +13634,7 @@
     ]
   },
   {
-    "id": "prod-49C2B3A0",
+    "id": "prod-BEB2B6AB",
     "name": "KYT TT Revo Fuselage Red Gloss Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13649,7 +13649,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-49C2B3A0",
+    "sku": "HRZ-BEB2B6AB",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13682,7 +13682,7 @@
     ]
   },
   {
-    "id": "prod-4DB58E2B",
+    "id": "prod-6AD0BF5C",
     "name": "KYT TT Revo Gear Black Red Gloss Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13697,7 +13697,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-4DB58E2B",
+    "sku": "HRZ-6AD0BF5C",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13778,7 +13778,7 @@
     ]
   },
   {
-    "id": "prod-3F892E17",
+    "id": "prod-41C0A8F3",
     "name": "KYT TT Revo Leopard India Edition Gloss Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13793,7 +13793,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-3F892E17",
+    "sku": "HRZ-41C0A8F3",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13898,7 +13898,7 @@
     ]
   },
   {
-    "id": "prod-47763722",
+    "id": "prod-4B35F691",
     "name": "KYT TT Revo Plain Gloss Black Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13913,7 +13913,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-47763722",
+    "sku": "HRZ-4B35F691",
     "bike_compatibility": [
       "Universal"
     ],
@@ -13946,7 +13946,7 @@
     ]
   },
   {
-    "id": "prod-C0EC649D",
+    "id": "prod-6DF80F8F",
     "name": "KYT TT Revo Plain Black Matt Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -13961,7 +13961,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-C0EC649D",
+    "sku": "HRZ-6DF80F8F",
     "bike_compatibility": [
       "Universal"
     ],
@@ -14042,7 +14042,7 @@
     ]
   },
   {
-    "id": "prod-5AF46D31",
+    "id": "prod-C998D38A",
     "name": "KYT TT Revo Sushi Time Gloss Helmet",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -14057,7 +14057,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-5AF46D31",
+    "sku": "HRZ-C998D38A",
     "bike_compatibility": [
       "Universal"
     ],
@@ -14138,7 +14138,7 @@
     ]
   },
   {
-    "id": "prod-921A745B",
+    "id": "prod-25F47DCA",
     "name": "Zap Dual Visor Alliance Full Face Helmet With Spoiler",
     "category": "Helmets & Accessories",
     "subcategory": "Full-Face Helmet",
@@ -14153,7 +14153,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-921A745B",
+    "sku": "HRZ-25F47DCA",
     "bike_compatibility": [
       "Universal"
     ],
@@ -14570,7 +14570,7 @@
     ]
   },
   {
-    "id": "prod-0324DF93",
+    "id": "prod-F7D3FF07",
     "name": "VEGA HELMET DIRT X DX",
     "category": "Helmets & Accessories",
     "subcategory": "Other Helmet",
@@ -14585,7 +14585,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-0324DF93",
+    "sku": "HRZ-F7D3FF07",
     "bike_compatibility": [
       "Universal"
     ],
@@ -14993,7 +14993,7 @@
     "inStock": true,
     "sku": "HRZ-F60503B3",
     "bike_compatibility": [
-      "Yamaha MT 15"
+      "Yamaha MT-15 V2"
     ],
     "highlights": [
       "<p>Come let\u2019s play some colours on your beast..! This new metal visor is similar in colour and most suitable for the mt15 model. <span style=\"font-..."
@@ -15353,7 +15353,7 @@
     "inStock": true,
     "sku": "HRZ-3A248951",
     "bike_compatibility": [
-      "Royal Enfield Hunter 350 Metro"
+      "Universal"
     ],
     "highlights": [
       "<p data-mce-fragment=\"1\">Apex, the new sport touring helmet, born to satisfy the needs of the riders looking for maximum stability and aerodynamic ..."
@@ -15504,7 +15504,7 @@
     ]
   },
   {
-    "id": "prod-AE576864",
+    "id": "prod-5B5385C3",
     "name": "CRAMSTER VELOCITY MOTORCYCLE JEANS M (30)",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -15519,7 +15519,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-AE576864",
+    "sku": "HRZ-5B5385C3",
     "bike_compatibility": [
       "Universal"
     ],
@@ -15593,7 +15593,7 @@
     "inStock": true,
     "sku": "HRZ-16C54594",
     "bike_compatibility": [
-      "Honda Hness CB 350"
+      "Honda H'ness CB 350"
     ],
     "highlights": [
       "<article class=\"text-token-text-primary w-full\" dir=\"auto\" data-testid=\"conversation-turn-2\" data-scroll-anchor=\"true\">\n<div class=\"text-base my-au..."
@@ -15617,7 +15617,7 @@
     "inStock": true,
     "sku": "HRZ-2B3167C0",
     "bike_compatibility": [
-      "Bajaj Dominar 400 Touring Factory"
+      "Bajaj Dominar 400"
     ],
     "highlights": [
       "<p>Upgrade your bike\u2019s style and performance with the Legundary Dominar Aries Front Brake Fluid Cap, available exclusively at Bandidos Pitstop. Pre..."
@@ -15641,7 +15641,7 @@
     "inStock": true,
     "sku": "HRZ-8AA713B7",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 450"
     ],
     "highlights": [
       "<p>The Legundary Himalayan 450 Fort Knox SB Bolt On Mounts, available at Bandidos pitstop, are a must-have accessory for adventure riders seeking a..."
@@ -15665,7 +15665,7 @@
     "inStock": true,
     "sku": "HRZ-DC6F58BC",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Royal Enfield Himalayan 411"
     ],
     "highlights": [
       "<p>Conquer every terrain with confidence using the Legundary Himalayan Aragorn Saddlestay BS6, exclusively available at Bandidos Pitstop. Designed ..."
@@ -15689,7 +15689,7 @@
     "inStock": true,
     "sku": "HRZ-5663C6C8",
     "bike_compatibility": [
-      "KTM Adventure 390"
+      "KTM Adventure 390 (2025)"
     ],
     "highlights": [
       "<p>Enhance your bike with the Legundary Mild Steel Acrylic Headlight Grill in Yellow and White, <span class=\"relative -mx-px my-[-0.2rem] rounded p..."
@@ -15713,7 +15713,7 @@
     "inStock": true,
     "sku": "HRZ-0DE64974",
     "bike_compatibility": [
-      "Royal Enfield Meteor 350 Stellar"
+      "Royal Enfield Meteor 350"
     ],
     "highlights": [
       "<p>Introducing the Legundary Meteor Vermillion Solo Expedition Rack, exclusively available at Bandidos Pitstop \u2013 the perfect companion for your sol..."
@@ -15785,7 +15785,7 @@
     "inStock": true,
     "sku": "HRZ-B03929CA",
     "bike_compatibility": [
-      "TVS Apache RR310 BTO"
+      "TVS Apache RTX 300"
     ],
     "highlights": [
       "<h1>TVS APACHE RTX 300 RADIATOR GRILL</h1>\n<p data-start=\"429\" data-end=\"845\">Enhance the protection and styling of your <strong data-start=\"472\" d..."
@@ -15809,7 +15809,7 @@
     "inStock": true,
     "sku": "HRZ-77C0BE54",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<article data-scroll-anchor=\"true\" data-testid=\"conversation-turn-2\" dir=\"auto\" class=\"text-token-text-primary w-full\">\n<div class=\"text-base my-au..."
@@ -15977,7 +15977,7 @@
     "inStock": true,
     "sku": "HRZ-6B5366E8",
     "bike_compatibility": [
-      "Royal Enfield Himalayan 450 Adventure"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p><meta charset=\"UTF-8\"><span>With an efficient back rack, mounting your luggage becomes easy and effortless. This back rack is simple to install ..."
@@ -16001,7 +16001,7 @@
     "inStock": true,
     "sku": "HRZ-294B0BBC",
     "bike_compatibility": [
-      "Suzuki V Strom 250"
+      "Suzuki V-Strom SX 250"
     ],
     "highlights": [
       "<p class=\"all-heading\"><strong><span style=\"color: #dd4646;\">Product Description:</span></strong></p>\n<style type=\"text/css\"><!--td {border: 1px so..."
@@ -16025,7 +16025,7 @@
     "inStock": true,
     "sku": "HRZ-7263C5D3",
     "bike_compatibility": [
-      "KTM Adventure 390 Rally"
+      "Yezdi Adventure"
     ],
     "highlights": [
       "<div>\n<div>\n<strong>Moto Torque Yezdi Adventure 2025 Top Plate (Black)</strong><br><br>\n</div>\n<div>\n<p>Moto Torque Yezdi Adventure 2025 Top Plate ..."
@@ -16224,7 +16224,7 @@
     ]
   },
   {
-    "id": "prod-2D7CD22E",
+    "id": "prod-3E09B1B5",
     "name": "SMK AGNAR TEKTRON GL263 L",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -16239,7 +16239,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-2D7CD22E",
+    "sku": "HRZ-3E09B1B5",
     "bike_compatibility": [
       "Universal"
     ],
@@ -16344,7 +16344,7 @@
     ]
   },
   {
-    "id": "prod-10E99224",
+    "id": "prod-D7FD2FAA",
     "name": "SMK AGNAR TEKTRON MA664 M",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -16359,7 +16359,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-10E99224",
+    "sku": "HRZ-D7FD2FAA",
     "bike_compatibility": [
       "Universal"
     ],
@@ -16656,7 +16656,7 @@
     ]
   },
   {
-    "id": "prod-450509FA",
+    "id": "prod-0970A8FC",
     "name": "SMK GULLWING MATT BLACK MA200 M",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -16671,7 +16671,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-450509FA",
+    "sku": "HRZ-0970A8FC",
     "bike_compatibility": [
       "Universal"
     ],
@@ -17328,7 +17328,7 @@
     ]
   },
   {
-    "id": "prod-368FF060",
+    "id": "prod-7E2BFFDB",
     "name": "SMK TYPHOON SPARKO GL266 L",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -17343,7 +17343,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-368FF060",
+    "sku": "HRZ-7E2BFFDB",
     "bike_compatibility": [
       "Universal"
     ],
@@ -17472,7 +17472,7 @@
     ]
   },
   {
-    "id": "prod-3D12CADA",
+    "id": "prod-A64D41B5",
     "name": "SMK TYPHOON BLACK GL200 XL",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -17487,7 +17487,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-3D12CADA",
+    "sku": "HRZ-A64D41B5",
     "bike_compatibility": [
       "Universal"
     ],
@@ -17640,7 +17640,7 @@
     ]
   },
   {
-    "id": "prod-FA9F62EE",
+    "id": "prod-5269D547",
     "name": "SMK TYPHOON RIVAL GL 256 M",
     "category": "General Accessories",
     "subcategory": "Miscellaneous",
@@ -17655,7 +17655,7 @@
     "reviewCount": 10,
     "ridersInstalled": 10,
     "inStock": true,
-    "sku": "HRZ-FA9F62EE",
+    "sku": "HRZ-5269D547",
     "bike_compatibility": [
       "Universal"
     ],
@@ -18401,7 +18401,7 @@
     "inStock": true,
     "sku": "HRZ-1907FB9A",
     "bike_compatibility": [
-      "Hero Xpulse 200"
+      "Hero XPulse 200 4V"
     ],
     "highlights": [
       "<p><span>This set of 5 Xpulse 200 4v / Xpulse Pro combo can protect your motorcycle Headlight Grill, Radiator Guard, Disk Oil Guard, Reservoir Oil ..."

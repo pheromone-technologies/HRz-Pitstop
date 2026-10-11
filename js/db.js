@@ -6,27 +6,33 @@
 window.HRz = window.HRz || {};
 
 const CACHE_KEYS = {
-  BIKES: "hrz_db_bikes_v16",
-  PRODUCTS: "hrz_db_products_v16",
-  COMPATIBILITY: "hrz_db_compatibility_v16",
-  REVIEWS: "hrz_db_reviews_v16",
-  ORDERS: "hrz_db_orders_v16",
-  BUNDLES: "hrz_db_bundles_v16"
+  BIKES: "hrz_db_bikes_v20",
+  PRODUCTS: "hrz_db_products_v20",
+  COMPATIBILITY: "hrz_db_compatibility_v20",
+  REVIEWS: "hrz_db_reviews_v20",
+  ORDERS: "hrz_db_orders_v20",
+  BUNDLES: "hrz_db_bundles_v20"
 };
 
 const DEFAULT_BIKES = [
-  { "id": "bike-re-him-450-adv", "brand": "Royal Enfield", "model": "Himalayan", "year": 2024, "variant": "450 Adventure", "engineCc": 452, "category": "Adventure", "region": "Global" },
-  { "id": "bike-re-him-450-sum", "brand": "Royal Enfield", "model": "Himalayan", "year": 2024, "variant": "450 Summit", "engineCc": 452, "category": "Adventure", "region": "Global" },
-  { "id": "bike-re-him-411-scram", "brand": "Royal Enfield", "model": "Himalayan", "year": 2023, "variant": "411 Scram", "engineCc": 411, "category": "Adventure", "region": "Global" },
-  { "id": "bike-re-hun-350-met", "brand": "Royal Enfield", "model": "Hunter", "year": 2024, "variant": "350 Metro", "engineCc": 349, "category": "Roadster", "region": "Global" },
-  { "id": "bike-re-cla-350-reb", "brand": "Royal Enfield", "model": "Classic", "year": 2024, "variant": "350 Reborn", "engineCc": 349, "category": "Classic", "region": "Global" },
-  { "id": "bike-ktm-duke-390-g3", "brand": "KTM", "model": "Duke", "year": 2024, "variant": "390 Gen-3", "engineCc": 399, "category": "Naked", "region": "India" },
-  { "id": "bike-yam-mt15-v2", "brand": "Yamaha", "model": "MT-15", "year": 2024, "variant": "V2 Deluxe", "engineCc": 155, "category": "Naked", "region": "India" },
-  { "id": "bike-tvs-apc-rr310", "brand": "TVS", "model": "Apache", "year": 2024, "variant": "RR310 BTO", "engineCc": 312, "category": "Supersport", "region": "India" },
-  { "id": "bike-hnd-cb350-pro", "brand": "Honda", "model": "CB350", "year": 2024, "variant": "DLX Pro", "engineCc": 348, "category": "Classic", "region": "India" },
-  { "id": "bike-baj-dom-400", "brand": "Bajaj", "model": "Dominar", "year": 2024, "variant": "400 Touring Factory", "engineCc": 373, "category": "Tourer", "region": "India" },
-  { "id": "bike-bmw-g310-gs", "brand": "BMW", "model": "G310", "year": 2024, "variant": "GS Adventure", "engineCc": 313, "category": "Adventure", "region": "Global" },
-  { "id": "bike-tri-spd-400", "brand": "Triumph", "model": "Speed", "year": 2024, "variant": "400 Roadster", "engineCc": 398, "category": "Roadster", "region": "Global" }
+  { "id": "bike-re-him-450-adv", "brand": "Royal Enfield", "model": "Himalayan 450", "year": 2024, "variant": "450 Adventure", "engineCc": 452, "category": "Adventure", "region": "Global" },
+  { "id": "bike-re-him-450-sum", "brand": "Royal Enfield", "model": "Himalayan 450", "year": 2024, "variant": "450 Summit", "engineCc": 452, "category": "Adventure", "region": "Global" },
+  { "id": "bike-re-him-411", "brand": "Royal Enfield", "model": "Himalayan 411", "year": 2023, "variant": "411 Base", "engineCc": 411, "category": "Adventure", "region": "Global" },
+  { "id": "bike-re-him-411-scram", "brand": "Royal Enfield", "model": "Scram 411", "year": 2023, "variant": "411 Base", "engineCc": 411, "category": "Scrambler", "region": "Global" },
+  { "id": "bike-re-hun-350-met", "brand": "Royal Enfield", "model": "Hunter 350", "year": 2024, "variant": "350 Metro", "engineCc": 349, "category": "Roadster", "region": "Global" },
+  { "id": "bike-re-cla-350-reb", "brand": "Royal Enfield", "model": "Classic 350 Reborn", "year": 2024, "variant": "350 Reborn", "engineCc": 349, "category": "Classic", "region": "Global" },
+  { "id": "bike-re-met-350-ste", "brand": "Royal Enfield", "model": "Meteor 350", "year": 2024, "variant": "350 Stellar", "engineCc": 349, "category": "Cruiser", "region": "Global" },
+  { "id": "bike-re-int-650-twi", "brand": "Royal Enfield", "model": "Interceptor 650", "year": 2024, "variant": "650 Twin", "engineCc": 648, "category": "Twin", "region": "Global" },
+  { "id": "bike-re-gt-650-ape", "brand": "Royal Enfield", "model": "Continental GT 650", "year": 2024, "variant": "650 Apex Grey", "engineCc": 648, "category": "Cafe Racer", "region": "Global" },
+  { "id": "bike-re-sm-650-ast", "brand": "Royal Enfield", "model": "Super Meteor 650", "year": 2024, "variant": "650 Astral", "engineCc": 648, "category": "Cruiser", "region": "Global" },
+  { "id": "bike-re-gue-450-ana", "brand": "Royal Enfield", "model": "Guerrilla 450", "year": 2024, "variant": "450 Analogue", "engineCc": 452, "category": "Roadster", "region": "Global" },
+  { "id": "bike-ktm-duke-390-g3", "brand": "KTM", "model": "Duke 390 Gen-3", "year": 2024, "variant": "Gen-3 Standard", "engineCc": 399, "category": "Naked", "region": "India" },
+  { "id": "bike-yam-mt15-v2", "brand": "Yamaha", "model": "MT-15 V2", "year": 2024, "variant": "V2 Deluxe", "engineCc": 155, "category": "Naked", "region": "India" },
+  { "id": "bike-tvs-apc-rr310", "brand": "TVS", "model": "Apache RR 310", "year": 2024, "variant": "RR310 BTO", "engineCc": 312, "category": "Supersport", "region": "India" },
+  { "id": "bike-hnd-cb350-pro", "brand": "Honda", "model": "H'ness CB 350", "year": 2024, "variant": "DLX Pro", "engineCc": 348, "category": "Classic", "region": "India" },
+  { "id": "bike-baj-dom-400", "brand": "Bajaj", "model": "Dominar 400", "year": 2024, "variant": "400 Touring Factory", "engineCc": 373, "category": "Tourer", "region": "India" },
+  { "id": "bike-bmw-g310-gs", "brand": "BMW", "model": "G 310 GS", "year": 2024, "variant": "GS Adventure", "engineCc": 313, "category": "Adventure", "region": "Global" },
+  { "id": "bike-tri-spd-400", "brand": "Triumph", "model": "Speed 400", "year": 2024, "variant": "400 Roadster", "engineCc": 398, "category": "Roadster", "region": "Global" }
 ];
 
 const DEFAULT_PRODUCTS = [
@@ -279,7 +285,7 @@ class DBService {
 
     try {
       if (window.HRz.Storage?.cleanupLegacyKeys) {
-        window.HRz.Storage.cleanupLegacyKeys([...Object.values(CACHE_KEYS), "hrz-pitstop-state-v6", "hrz_db_bikes_v7", "hrz_db_products_v7", "hrz_db_compatibility_v7", "hrz_db_reviews_v7", "hrz_db_orders_v7", "hrz_db_bundles_v7"]);
+        window.HRz.Storage.cleanupLegacyKeys([...Object.values(CACHE_KEYS), "hrz_db_bikes_v16", "hrz_db_products_v16", "hrz_db_compatibility_v16", "hrz_db_reviews_v16", "hrz_db_orders_v16", "hrz_db_bundles_v16", "hrz-pitstop-state-v6", "hrz_db_bikes_v7", "hrz_db_products_v7", "hrz_db_compatibility_v7", "hrz_db_reviews_v7", "hrz_db_orders_v7", "hrz_db_bundles_v7"]);
       }
 
       const cachedBikes = localStorage.getItem(CACHE_KEYS.BIKES);
