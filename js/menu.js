@@ -38,7 +38,7 @@ class Menu {
       "TVS": [
         "Apache RR 310", "Apache RTR 310", "Apache RTX 300", "Ronin 225"
       ],
-      "HARLEY-DAVIDSON": [
+      "HARLEY DAVIDSON": [
         "X440"
       ],
       "SUZUKI": [
@@ -165,55 +165,55 @@ class Menu {
               <div class="mega-v-col">
                 <h4 class="mega-col-title" onclick="window.HRz.Menu.navigateToSearch('ROYAL ENFIELD')">ROYAL ENFIELD</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["ROYAL ENFIELD"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["ROYAL ENFIELD"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
                 <h4 class="mega-col-title second-cat" onclick="window.HRz.Menu.navigateToSearch('HARLEY DAVIDSON')">HARLEY DAVIDSON</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["HARLEY DAVIDSON"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["HARLEY DAVIDSON"] || shopByBike["HARLEY-DAVIDSON"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
               </div>
               <!-- Col 2 -->
               <div class="mega-v-col">
                 <h4 class="mega-col-title" onclick="window.HRz.Menu.navigateToSearch('KTM')">KTM</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["KTM"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["KTM"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
                 <h4 class="mega-col-title second-cat" onclick="window.HRz.Menu.navigateToSearch('BAJAJ')">BAJAJ</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["BAJAJ"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["BAJAJ"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
               </div>
               <!-- Col 3 -->
               <div class="mega-v-col">
                 <h4 class="mega-col-title" onclick="window.HRz.Menu.navigateToSearch('HONDA')">HONDA</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["HONDA"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["HONDA"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
                 <h4 class="mega-col-title second-cat" onclick="window.HRz.Menu.navigateToSearch('HERO')">HERO</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["HERO"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["HERO"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
               </div>
               <!-- Col 4 -->
               <div class="mega-v-col">
                 <h4 class="mega-col-title" onclick="window.HRz.Menu.navigateToSearch('YAMAHA')">YAMAHA</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["YAMAHA"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["YAMAHA"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
                 <h4 class="mega-col-title second-cat" onclick="window.HRz.Menu.navigateToSearch('SUZUKI')">SUZUKI</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["SUZUKI"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["SUZUKI"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
               </div>
               <!-- Col 5 -->
               <div class="mega-v-col no-border">
                 <h4 class="mega-col-title" onclick="window.HRz.Menu.navigateToSearch('TRIUMPH')">TRIUMPH</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["TRIUMPH"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["TRIUMPH"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
                 <h4 class="mega-col-title second-cat" onclick="window.HRz.Menu.navigateToSearch('TVS')">TVS</h4>
                 <ul class="mega-col-list">
-                  ${shopByBike["TVS"].map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
+                  ${(shopByBike["TVS"] || []).map(m => `<li><a href="#catalog?search=${encodeURIComponent(m)}" onclick="window.HRz.Menu.closeAll()">${escapeHTML(m)}</a></li>`).join("")}
                 </ul>
               </div>
             </div>
@@ -528,7 +528,7 @@ class Menu {
                           <span>All ${escapeHTML(brand)} Bikes</span>
                           <i>→</i>
                         </a>
-                        ${shopByBike[brand].map(model => `
+                        ${(shopByBike[brand] || []).map(model => `
                           <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(model)}" onclick="window.HRz.Menu.closeAll()">
                             <span>${escapeHTML(model)}</span>
                             <i>→</i>
