@@ -1,11 +1,25 @@
 # HRz Pitstop
 
-This project must be served over HTTP. Opening `index.html` directly with `file://` can block the JSON fetches and leave the app without its full dataset.
+Static storefront for HRz motorcycle accessories and riding gear.
 
-Run it with one of these commands from the project root:
+## Run locally
 
-- `npx serve .`
-- `python -m http.server 8000`
-- VS Code Live Server
+The app must be served over HTTP because it loads JSON datasets with `fetch`.
 
-Then open the local URL the server prints, such as `http://localhost:3000` or `http://localhost:8000`.
+```sh
+python3 -m http.server 8000 --directory .
+```
+
+Open `http://localhost:8000`.
+
+## Project layout
+
+- `index.html`: storefront entrypoint
+- `css/`: application stylesheets
+- `js/`: application modules
+- `data/`: runtime JSON datasets
+- `images/`: curated storefront and bike imagery
+- `images_processed/`: product imagery referenced by the catalog
+- `tools/`: inventory import, image processing, and verification utilities
+
+There is currently no production deployment configuration or live hostname in this repository. The local HTTP server is the verified host for development.

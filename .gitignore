@@ -3,3 +3,10 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Local tooling output and source exports
+tools/output/
+tools/source/
+*.log
+scratch_*
+temp_*
