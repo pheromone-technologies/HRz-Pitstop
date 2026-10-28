@@ -1,0 +1,671 @@
+"""
+Script to restore js/product.js to the user's authentic original design from
+_vault_archive/legacy_project_clones/hrx website 2/js/product.js,
+while cleanly integrating the required color variant selector without any
+unwanted AI bloat (no fake logistics box, no fake compatibility box, no button disable hacks).
+"""
+
+content = r'''/* =============================================
+   HRz PITSTOP – Product Detail Page & Trust Signals Module
+   ============================================= */
+
+window.HRz = window.HRz || {};
+
+class ProductDetailView {
+  static currentGallery = [];
+  static currentGalleryIndex = 0;
+  static viewerKeyHandler = null;
+
+  static getGalleryImages(product) {
+    const gallery = Array.isArray(product.gallery) ? product.gallery.filter(Boolean) : [];
+    if (product.image && !gallery.includes(product.image)) {
+      gallery.unshift(product.image);
+    }
+    return Array.from(new Set(gallery));
+  }
+
+  static ensureViewer() {
+    let viewer = document.getElementById("productGalleryViewer");
+    if (viewer) return viewer;
+
+    viewer = document.createElement("div");
+    viewer.id = "productGalleryViewer";
+    viewer.className = "gallery-viewer";
+    viewer.innerHTML = `
+      <div class="gallery-viewer-backdrop" id="galleryViewerBackdrop"></div>
+      <section class="gallery-viewer-panel" role="dialog" aria-modal="true" aria-label="Product image viewer">
+        <button type="button" class="gallery-viewer-close" id="galleryViewerClose" aria-label="Close viewer">×</button>
+        <button type="button" class="gallery-viewer-nav prev" id="galleryViewerPrev" aria-label="Previous image">←</button>
+        <div class="gallery-viewer-stage">
+          <img id="galleryViewerImage" src="" alt="Product image preview" />
+        </div>
+        <button type="button" class="gallery-viewer-nav next" id="galleryViewerNext" aria-label="Next image">→</button>
+        <div class="gallery-viewer-meta">
+          <strong id="galleryViewerTitle"></strong>
+          <span id="galleryViewerCounter"></span>
+        </div>
+      </section>
+    `;
+    document.body.appendChild(viewer);
+
+    viewer.querySelector("#galleryViewerBackdrop").onclick = () => this.closeViewer();
+    viewer.querySelector("#galleryViewerClose").onclick = () => this.closeViewer();
+    viewer.querySelector("#galleryViewerPrev").onclick = () => this.moveViewer(-1);
+    viewer.querySelector("#galleryViewerNext").onclick = () => this.moveViewer(1);
+
+    const stage = viewer.querySelector(".gallery-viewer-stage");
+    if (stage) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      stage.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+      }, { passive: true });
+
+      stage.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      stage.addEventListener("touchend", (e) => {
+        const touch = e.changedTouches[0];
+        if (!touch) return;
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+        if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          this.moveViewer(deltaX < 0 ? 1 : -1);
+        }
+      });
+    }
+
+    if (!this.viewerKeyHandler) {
+      this.viewerKeyHandler = (e) => {
+        const activeViewer = document.getElementById("productGalleryViewer");
+        if (!activeViewer || !activeViewer.classList.contains("open")) return;
+        if (e.key === "Escape") this.closeViewer();
+        if (e.key === "ArrowLeft") this.moveViewer(-1);
+        if (e.key === "ArrowRight") this.moveViewer(1);
+      };
+      document.addEventListener("keydown", this.viewerKeyHandler);
+    }
+
+    return viewer;
+  }
+
+  static updateViewer() {
+    const viewer = document.getElementById("productGalleryViewer");
+    if (!viewer || !this.currentGallery.length) return;
+
+    const image = viewer.querySelector("#galleryViewerImage");
+    const title = viewer.querySelector("#galleryViewerTitle");
+    const counter = viewer.querySelector("#galleryViewerCounter");
+
+    if (image) image.src = this.currentGallery[this.currentGalleryIndex];
+    if (title) title.textContent = "Swipe or use arrows to browse";
+    if (counter) counter.textContent = `${this.currentGalleryIndex + 1} / ${this.currentGallery.length}`;
+  }
+
+  static openViewer(gallery, index = 0) {
+    this.currentGallery = gallery;
+    this.currentGalleryIndex = index;
+    const viewer = this.ensureViewer();
+    this.updateViewer();
+    viewer.classList.add("open");
+    document.body.classList.add("gallery-viewer-open");
+    
+    if (!window.history.state || !window.history.state.panelOpen) {
+      window.history.pushState({ panelOpen: true }, "");
+    }
+  }
+
+  static moveViewer(delta) {
+    if (!this.currentGallery.length) return;
+    this.currentGalleryIndex = (this.currentGalleryIndex + delta + this.currentGallery.length) % this.currentGallery.length;
+    this.updateViewer();
+  }
+
+  static closeViewer(isPopState = false) {
+    const viewer = document.getElementById("productGalleryViewer");
+    const wasOpen = viewer && viewer.classList.contains("open");
+    if (viewer) viewer.classList.remove("open");
+    document.body.classList.remove("gallery-viewer-open");
+    
+    if (wasOpen && !isPopState && window.history.state && window.history.state.panelOpen) {
+      window.history.back();
+    }
+  }
+
+  static bindGalleryInteractions(container, gallery) {
+    const mainFrame = container.querySelector(".main-image-frame");
+    const mainImage = container.querySelector("#mainProductImage");
+    const thumbs = Array.from(container.querySelectorAll(".thumb-btn"));
+
+    const setActiveImage = (index) => {
+      const safeIndex = (index + gallery.length) % gallery.length;
+      const src = gallery[safeIndex];
+      if (!src) return safeIndex;
+
+      thumbs.forEach((thumb, thumbIndex) => thumb.classList.toggle("active", thumbIndex === safeIndex));
+      if (mainImage) {
+        mainImage.src = src;
+        mainImage.dataset.galleryIndex = String(safeIndex);
+      }
+      const carousel = container.querySelector(".mobile-swipe-carousel");
+      if (carousel && carousel.children[safeIndex]) {
+        carousel.scrollTo({ left: carousel.children[safeIndex].offsetLeft, behavior: "smooth" });
+      }
+      return safeIndex;
+    };
+
+    const openAtCurrentImage = () => {
+      const activeThumbIndex = thumbs.findIndex(btn => btn.classList.contains("active"));
+      const currentIndex = activeThumbIndex >= 0 ? activeThumbIndex : Number(mainImage?.dataset.galleryIndex || 0);
+      this.openViewer(gallery, currentIndex);
+    };
+
+    let suppressClick = false;
+
+    if (mainFrame && mainImage) {
+      mainImage.dataset.galleryIndex = "0";
+
+      mainFrame.onmousemove = (e) => {
+        const rect = mainFrame.getBoundingClientRect();
+        const x = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
+        const y = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
+        mainFrame.style.setProperty("--zoom-x", `${x}%`);
+        mainFrame.style.setProperty("--zoom-y", `${y}%`);
+        mainFrame.classList.add("zooming");
+      };
+
+      mainFrame.onmouseleave = () => mainFrame.classList.remove("zooming");
+      mainFrame.onclick = () => {
+        if (suppressClick) return;
+        openAtCurrentImage();
+      };
+
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchMoved = false;
+
+      mainFrame.addEventListener("touchstart", (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchMoved = false;
+      }, { passive: true });
+
+      mainFrame.addEventListener("touchmove", (e) => {
+        const touch = e.touches[0];
+        if (!touch) return;
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (Math.abs(deltaX) > 8 || Math.abs(deltaY) > 8) {
+          touchMoved = true;
+        }
+
+        if (Math.abs(deltaX) > Math.abs(deltaY)) {
+          e.preventDefault();
+        }
+      }, { passive: false });
+
+      mainFrame.addEventListener("touchend", (e) => {
+        const touch = e.changedTouches[0];
+        if (!touch) return;
+        const deltaX = touch.clientX - touchStartX;
+        const deltaY = touch.clientY - touchStartY;
+
+        if (Math.abs(deltaX) > 42 && Math.abs(deltaX) > Math.abs(deltaY)) {
+          suppressClick = true;
+          window.setTimeout(() => { suppressClick = false; }, 250);
+          const currentIndex = Number(mainImage.dataset.galleryIndex || 0);
+          setActiveImage(deltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+        } else if (!touchMoved) {
+          openAtCurrentImage();
+        }
+      });
+    }
+
+    container.querySelectorAll(".carousel-image").forEach((img, index) => {
+      img.onclick = () => {
+        this.openViewer(gallery, index);
+      };
+    });
+
+    thumbs.forEach((btn, index) => {
+      btn.onclick = () => {
+        setActiveImage(index);
+        if (mainFrame) mainFrame.classList.remove("zooming");
+        btn.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+      };
+    });
+
+    setActiveImage(Number(mainImage?.dataset.galleryIndex || 0));
+  }
+
+  static render(container, productId, initialColor = null) {
+    if (window.HRz.Storage && window.HRz.Storage.addRecentlyViewed) {
+      window.HRz.Storage.addRecentlyViewed(productId);
+    }
+
+    const product = window.HRz.DB.getProductById(productId);
+    const activeBike = window.HRz.Storage.getActiveBike();
+    const escapeHTML = window.HRz.Utils.escapeHTML;
+
+    if (!product) {
+      container.innerHTML = `
+        <div class="empty-state-card">
+          <div class="empty-icon">⚠️</div>
+          <h3>Product Not Found or Unavailable</h3>
+          <p>The motorcycle accessory or part you are looking for has been discontinued or moved.</p>
+          <button class="accent-button" onclick="window.location.hash='catalog'">Return to Catalog</button>
+        </div>
+      `;
+      return;
+    }
+
+    window.HRz.SEO.updateSEOForView("product", { product });
+
+    let defaultVariantIdx = 0;
+    if (initialColor && product.variants && product.variants.length > 0) {
+      const foundIdx = product.variants.findIndex(v => (v.color || v.name || "").toLowerCase().includes(initialColor.toLowerCase()));
+      if (foundIdx !== -1) defaultVariantIdx = foundIdx;
+    }
+
+    const displayVariant = product.variants && product.variants.length > 0 ? product.variants[defaultVariantIdx] : null;
+    const displayImage = displayVariant ? (displayVariant.image || product.image) : product.image;
+    const displayPrice = displayVariant && displayVariant.price ? displayVariant.price : product.price;
+
+    const fitment = window.HRz.DB.checkFitment(product.id, activeBike);
+    const reviews = window.HRz.DB.getReviews().filter(r => r.productId === product.id && r.status === "published");
+    const relatedProducts = window.HRz.DB.getProductsForBike(activeBike).filter(p => p.id !== product.id).slice(0, 4);
+    const utils = window.HRz.Utils;
+    const gallery = (displayVariant && displayVariant.gallery && displayVariant.gallery.length > 0)
+      ? displayVariant.gallery
+      : this.getGalleryImages(product);
+
+    container.innerHTML = `
+      <div class="breadcrumb-trail">
+        <a href="#home">Home</a> / <a href="#catalog">Catalog</a> / <span class="current">${escapeHTML(product.name)}</span>
+      </div>
+
+      <div class="product-detail-layout">
+        <!-- Media Gallery -->
+        <div class="product-detail-gallery">
+          <div class="gallery-badge-row">
+            <span class="gallery-count-chip">${gallery.length} photo${gallery.length === 1 ? '' : 's'}</span>
+          </div>
+          <div class="main-image-frame desktop-only" role="button" tabindex="0" aria-label="Open product image viewer">
+            <img id="mainProductImage" src="${escapeHTML(displayImage)}" alt="${escapeHTML(product.name)}" loading="lazy" onerror="this.src='images/helmet_product.webp'" />
+          </div>
+          <div class="mobile-swipe-carousel mobile-only">
+            ${gallery.map(img => `
+              <img src="${escapeHTML(img)}" alt="${escapeHTML(product.name)}" class="carousel-image" loading="lazy" onerror="this.src='images/helmet_product.webp'" />
+            `).join("")}
+          </div>
+          <div class="thumbnail-strip">
+            ${gallery.map((img, i) => `
+              <button class="thumb-btn ${i === 0 ? "active" : ""}" data-src="${escapeHTML(img)}">
+                <img src="${escapeHTML(img)}" alt="Thumbnail ${i+1}" loading="lazy" />
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- Product Specs & Fitment -->
+        <div class="product-detail-specs">
+          <div class="sku-category-badge">${escapeHTML(product.category)} · SKU: <strong>${escapeHTML(product.sku)}</strong></div>
+          <h1 class="product-detail-title">${escapeHTML(product.name)}</h1>
+
+          ${product.variants && product.variants.length > 1 ? `
+            <div class="product-variants-section">
+              <h4>Select Color</h4>
+              <div class="color-selector-grid">
+                ${product.variants.map((v, idx) => `
+                  <button class="color-btn ${idx === defaultVariantIdx ? 'active' : ''}" data-index="${idx}" title="${escapeHTML(v.color || v.name)}">
+                    ${v.image ? `<img class="color-btn-img" src="${escapeHTML(v.image)}" alt="${escapeHTML(v.color || v.name)}" loading="lazy" onerror="this.src='images/helmet_product.webp'" />` : ''}
+                    <span class="color-btn-text">${escapeHTML(v.color || v.name)}</span>
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+          ` : ""}
+
+          <div class="product-detail-social">
+            ${utils.renderStarRating(product.rating)}
+            <span class="social-proof-text">(${reviews.length} Verified Rider Reviews · ${product.ridersInstalled}+ Installed)</span>
+          </div>
+
+          <div class="detail-price-box">
+            <div class="price-row">
+              <span class="detail-price">${utils.formatCurrency(displayPrice)}</span>
+              ${product.originalPrice ? `<span class="detail-original-price">${utils.formatCurrency(product.originalPrice)}</span>` : ""}
+              <span class="tax-inclusive-tag">Inclusive of all taxes & free shipping</span>
+            </div>
+          </div>
+
+          <div class="fitment-guarantee-banner ${fitment ? "verified-fit" : "universal-fit"}">
+            <div class="banner-icon">${fitment ? "🛡️" : "🔧"}</div>
+            <div class="banner-content">
+              <strong>${fitment ? `100% Guaranteed OEM Fit for ${activeBike ? escapeHTML(activeBike.brand) + " " + escapeHTML(activeBike.model) : "Your Motorcycle"}` : "Universal Motorcycle Compatibility"}</strong>
+              <p>${fitment ? escapeHTML(fitment.notes) : "Compatible with standard motorcycle mounts & clamps."}</p>
+            </div>
+          </div>
+
+          <div class="purchase-actions-row">
+            <button class="add-to-bag-hero-btn" id="addToBagHeroBtn">
+              Add to Bag
+            </button>
+            <button class="buy-now-btn" id="buyNowBtn">
+              Buy Now
+            </button>
+          </div>
+          <div style="margin-top: 12px; margin-bottom: 24px;">
+            <button class="text-button report-fitment-issue-btn" id="reportFitmentIssueBtn" style="color: var(--mute); text-decoration: underline; font-size: 12px; background: none; border: none; padding: 0; cursor: pointer;">
+              Didn't Fit My Bike?
+            </button>
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="detail-trust-grid">
+            <div class="trust-pill"><span class="icon">✅</span> 7-Day Free Fitment Return Guarantee</div>
+            <div class="trust-pill"><span class="icon">📜</span> ${escapeHTML(product.authenticity || "100% OEM Certified")}</div>
+            <div class="trust-pill"><span class="icon">🔒</span> ${escapeHTML(product.warranty || "12 Months Warranty")}</div>
+          </div>
+
+          ${product.description ? `
+            <div class="product-description-box" style="margin-top:24px; color:var(--mute); font-size:14px; line-height:1.6;">
+              <p>${escapeHTML(product.description)}</p>
+            </div>
+          ` : ""}
+
+          ${product.sizes ? `
+            <div class="product-size-box" style="margin-top:20px;">
+              <label style="display:block; font-family:'Barlow Condensed'; font-size:18px; margin-bottom:8px; text-transform:uppercase;">Select Size</label>
+              <select class="size-select" style="width:100%; max-width:200px; padding:10px; background:#111; color:#fff; border:1px solid #333; outline:none; font-family: 'DM Sans', sans-serif;">
+                ${product.sizes.split(',').map(s => `<option value="${escapeHTML(s.trim())}">${escapeHTML(s.trim())}</option>`).join("")}
+              </select>
+            </div>
+          ` : ""}
+
+          <div class="product-highlights-box">
+            <h3>Key Features & Rider Specifications</h3>
+            <ul>
+              ${(product.highlights || []).map(h => `<li><span class="bullet">▶</span> ${escapeHTML(h)}</li>`).join("")}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Installation Photos & Bike-Specific Reviews Section -->
+      <section class="rider-proof-section">
+        <div class="section-title-row">
+          <div>
+            <p class="eyebrow">Real Rider Community</p>
+            <h2>Verified Installation Photos & Reviews</h2>
+          </div>
+        </div>
+
+        <div class="installation-photos-carousel">
+          <h4>Customer Installation Gallery</h4>
+          <div class="install-grid">
+            <div class="install-card">
+              <img src="${escapeHTML(displayImage)}" alt="Installation" loading="lazy" />
+              <div class="install-caption">
+                <strong>Himalayan 450 Summit</strong>
+                <small>Installed by Rahul M. · Bengaluru</small>
+              </div>
+            </div>
+            <div class="install-card">
+              <img src="images/crash_guard_product.webp" alt="Installation" loading="lazy" />
+              <div class="install-caption">
+                <strong>Duke 390 Gen-3</strong>
+                <small>Installed by Ankit S. · Pune</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-list">
+          ${reviews.length === 0 ? `
+            <p class="no-reviews-text">No reviews published yet for this bike model. Be the first rider to submit an installation review!</p>
+          ` : `
+            ${reviews.map(r => `
+              <div class="review-card">
+                <div class="review-header">
+                  <span class="reviewer-name">${escapeHTML(r.reviewerName)}</span>
+                  <span class="review-bike-tag">Verified ${escapeHTML(r.bikeName)}</span>
+                  <span class="review-date">${escapeHTML(r.date)}</span>
+                </div>
+                <div class="review-rating">${utils.renderStarRating(r.rating)}</div>
+                <h4 class="review-title">${escapeHTML(r.title)}</h4>
+                <p class="review-comment">${escapeHTML(r.comment)}</p>
+              </div>
+            `).join("")}
+          `}
+        </div>
+      </section>
+
+      ${relatedProducts.length ? `
+        <section class="rider-proof-section related-products-section">
+          <div class="section-title-row">
+            <div>
+              <p class="eyebrow red">Recommended next</p>
+              <h2>Related Products</h2>
+            </div>
+          </div>
+          <div class="product-grid inner-section related-products-grid">
+            ${relatedProducts.map(p => window.HRz.Catalog.renderProductCard(p, activeBike, window.HRz.Storage.getWishlist())).join("")}
+          </div>
+        </section>
+      ` : ""}
+    `;
+
+    this.bindGalleryInteractions(container, gallery);
+
+    const mainFrame = container.querySelector(".main-image-frame");
+    if (mainFrame) {
+      mainFrame.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const activeThumbIndex = Array.from(container.querySelectorAll(".thumb-btn")).findIndex(btn => btn.classList.contains("active"));
+          this.openViewer(gallery, activeThumbIndex >= 0 ? activeThumbIndex : 0);
+        }
+      };
+    }
+
+    this.bindVariantEvents(product, container);
+
+    const addBtn = container.querySelector("#addToBagHeroBtn");
+    if (addBtn) {
+      addBtn.onclick = () => {
+        let pCopy = { ...product };
+        const activeColorBtn = container.querySelector(".color-btn.active");
+        if (activeColorBtn && product.variants) {
+          const v = product.variants[activeColorBtn.dataset.index];
+          if (v) {
+            pCopy.image = v.image || pCopy.image;
+            pCopy.price = v.price || pCopy.price;
+            pCopy.color = v.color || v.name || pCopy.color;
+            pCopy.id = pCopy.id + "-" + (v.color || v.name || "").toLowerCase().replace(/[^a-z0-9]/g, '-');
+          }
+        }
+        window.dispatchEvent(new CustomEvent("hrz:add-to-cart", { detail: { product: pCopy } }));
+      };
+    }
+
+    const buyNowBtn = container.querySelector("#buyNowBtn");
+    if (buyNowBtn) {
+      buyNowBtn.onclick = () => {
+        let pCopy = { ...product };
+        const activeColorBtn = container.querySelector(".color-btn.active");
+        if (activeColorBtn && product.variants) {
+          const v = product.variants[activeColorBtn.dataset.index];
+          if (v) {
+            pCopy.image = v.image || pCopy.image;
+            pCopy.price = v.price || pCopy.price;
+            pCopy.color = v.color || v.name || pCopy.color;
+            pCopy.id = pCopy.id + "-" + (v.color || v.name || "").toLowerCase().replace(/[^a-z0-9]/g, '-');
+          }
+        }
+        const isLoggedIn = window.HRz.Auth && window.HRz.Auth.isLoggedIn();
+        if (!isLoggedIn) {
+          window.HRz.Auth.showLoginPopup(() => {
+            window.HRz.Cart.add_to_bag_login_prompted = true;
+            window.HRz.Cart.addItem(pCopy);
+            setTimeout(() => { window.location.hash = "checkout"; }, 100);
+          });
+        } else {
+          window.HRz.Cart.addItem(pCopy);
+          setTimeout(() => { window.location.hash = "checkout"; }, 100);
+        }
+      };
+    }
+
+    const reportBtn = container.querySelector("#reportFitmentIssueBtn");
+    if (reportBtn) {
+      reportBtn.onclick = () => this.openFitmentReportModal(product, activeBike);
+    }
+  }
+
+  static openFitmentReportModal(product, activeBike) {
+    let modal = document.getElementById("fitmentReportModal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.id = "fitmentReportModal";
+      modal.className = "modal-overlay";
+      document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `
+      <div class="modal-card">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Fitment Guarantee</p>
+            <h3>Report Fitment Discrepancy</h3>
+          </div>
+          <button type="button" class="close-btn" id="closeReportModal">✕</button>
+        </div>
+        <div class="modal-body">
+          <p>We take fitment accuracy very seriously. If <strong>${window.HRz.Utils.escapeHTML(product.name)}</strong> did not fit your <strong>${activeBike ? window.HRz.Utils.escapeHTML(activeBike.brand) + " " + window.HRz.Utils.escapeHTML(activeBike.model) : "motorcycle"}</strong>, let us know for an instant return label.</p>
+
+          <form id="fitmentReportForm">
+            <div class="form-group">
+              <label>Your Bike Variant</label>
+              <input type="text" value="${activeBike ? window.HRz.Utils.escapeHTML(activeBike.brand) + ' ' + window.HRz.Utils.escapeHTML(activeBike.model) + ' ' + window.HRz.Utils.escapeHTML(activeBike.variant) : 'Motorcycle'}" readonly />
+            </div>
+            <div class="form-group">
+              <label for="fitmentIssueType">Issue Encountered</label>
+              <select id="fitmentIssueType" required>
+                <option value="bolt-alignment">Bolt Holes Do Not Align</option>
+                <option value="clearance">Clearance Issue with Tank/Fairing</option>
+                <option value="missing-bracket">Missing Adapter Bracket</option>
+                <option value="wrong-sku">Received Wrong SKU Variant</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fitmentDetails">Detailed Explanation</label>
+              <textarea id="fitmentDetails" rows="3" placeholder="Describe where it failed to mount..." required></textarea>
+            </div>
+            <button type="submit" class="accent-button full-width-btn">Submit Fitment Claim</button>
+          </form>
+        </div>
+      </div>
+    `;
+
+    modal.classList.add("show");
+    window.HRz.Utils.setupModalAccessibility(modal, () => this.closeFitmentModal());
+    
+    if (!window.history.state || !window.history.state.panelOpen) {
+      window.history.pushState({ panelOpen: true }, "");
+    }
+
+    document.getElementById("closeReportModal").onclick = () => this.closeFitmentModal();
+
+    document.getElementById("fitmentReportForm").onsubmit = (e) => {
+      e.preventDefault();
+      this.closeFitmentModal();
+      window.HRz.Utils.showToast("Fitment report submitted. Our technical team will reach out within 2 hours with a return waybill.", "success");
+    };
+  }
+
+  static closeFitmentModal(isPopState = false) {
+    const modal = document.getElementById("fitmentReportModal");
+    const wasOpen = modal && modal.classList.contains("show");
+    if (modal) modal.classList.remove("show");
+    
+    if (wasOpen && !isPopState && window.history.state && window.history.state.panelOpen) {
+      window.history.back();
+    }
+  }
+
+  static bindVariantEvents(product, container) {
+    if (!product.variants || product.variants.length <= 1) return;
+    
+    const root = container || document;
+    const colorBtns = root.querySelectorAll(".color-btn");
+    const mainImg = root.querySelector("#mainProductImage");
+    const thumbStrip = root.querySelector(".thumbnail-strip");
+    const carouselStrip = root.querySelector(".mobile-swipe-carousel");
+    const priceDisplay = root.querySelector(".detail-price");
+    const origPriceDisplay = root.querySelector(".detail-original-price");
+    const skuBadge = root.querySelector(".sku-category-badge strong");
+    const countChip = root.querySelector(".gallery-count-chip");
+
+    colorBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        colorBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        
+        const v = product.variants[btn.dataset.index];
+        if (!v) return;
+        
+        if (priceDisplay && v.price) priceDisplay.textContent = window.HRz.Utils.formatCurrency(v.price);
+        if (origPriceDisplay && v.price) origPriceDisplay.textContent = window.HRz.Utils.formatCurrency(Math.round(v.price * 1.15));
+        if (skuBadge && v.sku) skuBadge.textContent = v.sku;
+        if (mainImg && v.image) mainImg.src = v.image;
+        
+        const variantGallery = (v.gallery && v.gallery.length > 0) ? v.gallery : [v.image || product.image].filter(Boolean);
+        
+        if (countChip) {
+          countChip.textContent = `${variantGallery.length} photo${variantGallery.length === 1 ? '' : 's'}`;
+        }
+        
+        if (thumbStrip) {
+           thumbStrip.innerHTML = variantGallery.map((img, i) => `
+              <button class="thumb-btn ${i === 0 ? "active" : ""}" data-src="${window.HRz.Utils.escapeHTML(img)}">
+                <img src="${window.HRz.Utils.escapeHTML(img)}" alt="Thumbnail ${i+1}" loading="lazy" />
+              </button>
+           `).join("");
+        }
+           
+        if (carouselStrip) {
+           carouselStrip.innerHTML = variantGallery.map(img => `
+             <img src="${window.HRz.Utils.escapeHTML(img)}" alt="${window.HRz.Utils.escapeHTML(product.name)}" class="carousel-image" loading="lazy" onerror="this.src='images/helmet_product.webp'" />
+           `).join("");
+        }
+        
+        if (container) {
+          this.bindGalleryInteractions(container, variantGallery);
+        }
+      });
+    });
+  }
+}
+
+window.HRz.Product = ProductDetailView;
+'''
+
+with open("js/product.js", "w", encoding="utf-8") as f:
+    f.write(content.strip() + "\n")
+
+print("Successfully restored js/product.js to authentic UI design!")

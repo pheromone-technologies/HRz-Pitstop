@@ -1,0 +1,42 @@
+[
+  {
+    "id": "rev-101",
+    "productId": "crash-guard-steelmoto",
+    "bikeName": "Royal Enfield Himalayan 450 Adventure",
+    "reviewerName": "Vikramaditya S.",
+    "rating": 5,
+    "date": "2026-06-14",
+    "title": "Saved my engine during a low-speed slide in Leh!",
+    "comment": "Installed this before my Ladakh trip. Took a spill on slush near Zoji La. Guard took the full impact, not a scratch on the engine casing or tank! Worth every single rupee.",
+    "verifiedFitment": true,
+    "photo": "images/crash_guard_product.webp",
+    "status": "published"
+  },
+  {
+    "id": "rev-102",
+    "productId": "fog-lights-led",
+    "bikeName": "BMW G310 GS Adventure",
+    "reviewerName": "Rohan D.",
+    "rating": 5,
+    "date": "2026-07-02",
+    "title": "Night visibility upgraded tenfold!",
+    "comment": "Cruising through Western Ghats fog with yellow beam on is an absolute game-changer. Sharp cutoff line means oncoming traffic isn't blinded.",
+    "verifiedFitment": true,
+    "photo": "images/fog_lights_product.webp",
+    "status": "published"
+  },
+  {
+    "id": "rev-103",
+    "productId": "axor-helmet",
+    "bikeName": "KTM Duke 390 Gen-3",
+    "reviewerName": "Ananya K.",
+    "rating": 4,
+    "date": "2026-07-18",
+    "title": "Sleek carbon finish & super light",
+    "comment": "Fits snug and wind noise is well controlled up to 120km/h. Pinlock visor works flawlessly in heavy rain.",
+    "verifiedFitment": true,
+    "photo": "images/helmet_product.webp",
+    "status": "published"
+  }
+]
+

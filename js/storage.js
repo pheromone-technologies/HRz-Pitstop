@@ -13,6 +13,10 @@ const defaultState = {
   cart: [],
   wishlist: [],
   appliedCoupon: null,
+  // Durable guest/login-prompt choice: once a visitor has been shown the
+  // login prompt (guest or sign-in), later sessions must not re-prompt on
+  // every first add-to-bag. Previously this flag lived only in memory.
+  loginPrompted: false,
   fitmentReports: [],
   adminRole: "Admin",
   heroBanner: {
@@ -103,6 +107,17 @@ class StorageService {
       state.activeBike = state.garage[0] || null;
     }
     this.saveState(state);
+  }
+
+  static hasLoginPrompted() {
+    return this.loadState().loginPrompted === true;
+  }
+
+  static setLoginPrompted(value = true) {
+    const state = this.loadState();
+    state.loginPrompted = !!value;
+    this.saveState(state);
+    return state.loginPrompted;
   }
 
   static getCart() {

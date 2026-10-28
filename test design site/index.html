@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description"
+    content="India's leading motorcycle accessories store for Royal Enfield, Yamaha, KTM, BMW & more. Crash guards, helmets, LED fog lights, luggage & verified bike fitment. Free shipping on orders above ₹2,999." />
+  <title>HRz Pitstop | India's #1 Motorcycle Accessories & Riding Gear Store</title>
+  <meta name="keywords"
+    content="motorcycle accessories, crash guards, helmets, LED fog lights, saddlebags, Royal Enfield accessories, KTM accessories, bike accessories India, HRz Pitstop" />
+  <meta name="theme-color" content="#0d0e10" />
+  <meta property="og:title" content="HRz Pitstop | Motorcycle Accessories & Riding Gear" />
+  <meta property="og:description"
+    content="India's premier motorcycle accessories store. 100% genuine parts with verified bike fitment." />
+  <meta property="og:type" content="website" />
+  <meta name="robots" content="index, follow" />
+  <link rel="manifest" href="manifest.json" />
+  <meta property="og:image" content="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e13b31'/><text x='50' y='68' font-size='52' font-weight='900' text-anchor='middle' fill='white' font-family='sans-serif'>HRz</text></svg>" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e13b31'/><text x='50' y='68' font-size='52' font-weight='900' text-anchor='middle' fill='white' font-family='sans-serif'>HRz</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Modular CSS Stylesheets -->
+  <link rel="stylesheet" href="css/base.css?v=79" />
+  <link rel="stylesheet" href="css/layout.css?v=79" />
+  <link rel="stylesheet" href="css/header.css?v=79" />
+  <link rel="stylesheet" href="css/menu.css?v=79" />
+  <link rel="stylesheet" href="css/product.css?v=79" />
+  <link rel="stylesheet" href="css/garage.css?v=79" />
+  <link rel="stylesheet" href="css/cart.css?v=79" />
+  <link rel="stylesheet" href="css/admin.css?v=79" />
+  <link rel="stylesheet" href="css/orders.css?v=79" />
+  <link rel="stylesheet" href="css/auth.css?v=79" />
+  <link rel="stylesheet" href="css/footer.css?v=79" />
+  <link rel="stylesheet" href="css/responsive.css?v=79" />
+
+  <!-- JavaScript Modules -->
+  <script defer src="js/storage.js?v=79"></script>
+  <script defer src="js/auth.js?v=79"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script defer src="js/image_map.js?v=79"></script>
+  <script defer src="js/db.js?v=79"></script>
+  <script defer src="js/utils.js?v=79"></script>
+  <script defer src="js/seo.js?v=79"></script>
+  <script defer src="js/garage.js?v=79"></script>
+  <script defer src="js/catalog.js?v=79"></script>
+  <script defer src="js/product.js?v=79"></script>
+  <script defer src="js/cart.js?v=79"></script>
+  <script defer src="js/checkout.js?v=79"></script>
+  <script defer src="js/search.js?v=79"></script>
+  <script defer src="js/admin.js?v=79"></script>
+  <script defer src="js/menu.js?v=79"></script>
+  <script defer src="js/app.js?v=79"></script>
+</head>
+
+<body>
+  <!-- Top Announcement Bar -->
+  <div class="topline">
+    <span>FREE SHIPPING ON ORDERS OVER ₹2,999</span>
+    <span>RIDE HARD. STAY READY.</span>
+  </div>
+
+  <!-- Sticky Header -->
+  <header class="nav-wrap" id="siteHeader">
+    <a class="brand" href="#home" aria-label="HRz Pitstop home"><img src="images/HRZ_BIKE_LOGO_page-0001-removebg-preview (3)_20250705_182254_0000.webp" alt="HRz PITSTOP" class="brand-img" /></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#home" class="nav-link active" data-view="home">Home</a>
+      <a href="#catalog" class="nav-link" data-view="catalog">Shop All</a>
+      <!-- <a href="#garage" class="nav-link" data-view="garage">My Garage</a> -->
+      <a href="#tracking" class="nav-link" data-view="tracking">Orders</a>
+      <a href="#reviews" class="nav-link" data-view="reviews">Reviews</a>
+      <a href="#help" class="nav-link" data-view="help">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-button" id="searchBtn" aria-label="Search">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button class="icon-button" id="wishlistNavBtn" aria-label="Wishlist">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+      </button>
+      <button class="icon-button" id="mainMenuBtn" aria-label="Main Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <button class="bag" id="openCartBtn" aria-label="Shopping bag">Bag <b id="cartCountBadge">0</b></button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="app">
+    <section class="view active" id="home"></section>
+    <section class="view" id="models"></section>
+    <section class="view" id="catalog"></section>
+    <section class="view" id="product"></section>
+    <section class="view" id="garage"></section>
+    <section class="view" id="checkout"></section>
+    <section class="view" id="tracking"></section>
+    <section class="view" id="reviews"></section>
+    <section class="view" id="help"></section>
+    <section class="view" id="wishlist"></section>
+    <section class="view" id="admin"></section>
+    <section class="view" id="about"></section>
+    <section class="view" id="events"></section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer id="siteFooter">
+    <div class="footer-top">
+      <a class="brand" href="#home"><img src="images/HRZ_BIKE_LOGO_page-0001-removebg-preview (3)_20250705_182254_0000.webp" alt="HRz PITSTOP" class="brand-img" /></a>
+      <div class="footer-links">
+        <div>
+          <b>Shop</b>
+          <a href="#catalog?category=Bike%20Protection">Crash Guards</a>
+          <a href="#catalog?category=Helmets%20%26%20Accessories">Helmets</a>
+          <a href="#catalog?category=Lighting%20%26%20Electrical">Fog Lights</a>
+          <a href="#catalog?category=Luggage%20%26%20Touring">Saddlebags</a>
+        </div>
+        <div>
+          <b>Help</b>
+          <a href="#tracking">Track Order</a>
+          <a href="#help">Returns & Fitment</a>
+          <a href="#help">FAQ</a>
+        </div>
+        <div>
+          <b>Account</b>
+          <!-- <a href="#bikeSelector3D" onclick="document.getElementById('bikeSelector3D').scrollIntoView({behavior: 'smooth'})">My Garage</a> -->
+          <a href="#wishlist">Wishlist</a>
+        </div>
+      </div>
+      <div class="footer-socials">
+        <a href="https://instagram.com/hrzpitstop" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://youtube.com/c/hrzpitstop" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="mailto:support@hrzpitstop.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom-bar">
+      <p>© 2026 HRz PITSTOP. ALL RIGHTS RESERVED. INDIA'S RIDER PARADISE.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="status"></div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/917019348327?text=Hi!%20I%20would%20like%20some%20assistance%20with%20my%20motorcycle%20accessories."
+    target="_blank" class="floating-wa-btn" aria-label="Contact us on WhatsApp">
+    <svg class="wa-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor">
+      <path
+        d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.3l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-2.1-3.6 .1-5.5 2.8-8.3 2.7-2.7 5.5-6.5 8.3-9.7 2.7-3.2 3.6-5.5 5.5-9.3 1.8-3.7 .9-7-4.2-12.5s-12.5-30.2-17.1-41.3c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+    </svg>
+    <span>Contact Us</span>
+  </a>
+
+  <!-- Cart Drawer Overlay -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Cart Slide-out Drawer -->
+  <aside class="cart-drawer drawer" id="cartDrawer" aria-label="Shopping bag">
+    <div class="drawer-head">
+      <h3>Your bag <span id="drawerCount">0</span></h3>
+      <button class="close-drawer" id="closeCartBtn" aria-label="Close">×</button>
+    </div>
+    <div class="cart-free-shipping-bar">
+      <p id="shippingProgressText">Add more for FREE shipping</p>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="shippingProgressBar"></div>
+      </div>
+    </div>
+    <div class="cart-items" id="cartDrawerItems">
+      <p class="empty-state">Your bag is ready when you are.</p>
+    </div>
+    <div class="cart-summary">
+      <div>
+        <span>Subtotal</span>
+        <b id="cartSubtotalText">₹0</b>
+      </div>
+      <small>Shipping and taxes calculated at checkout.</small>
+      <button class="button button-red" id="cartCheckoutBtn" disabled>Order on WhatsApp <span>→</span></button>
+    </div>
+  </aside>
+
+  <!-- Search Panel -->
+  <section class="search-panel" id="searchPanel" aria-label="Product search">
+    <button class="close-search" id="closeSearchBtn" aria-label="Close search">×</button>
+    <p class="eyebrow red">Find your next essential</p>
+    <label>
+      <span>⌕</span>
+      <input id="globalSearch" placeholder="Search crash guards, helmets, lights..." autocomplete="off" />
+    </label>
+    <div id="searchAutocomplete" class="search-results"></div>
+  </section>
+
+  <!-- Quick View Modal -->
+  <section class="quick-view" id="quickView" aria-label="Product details"></section>
+
+  <!-- Mobile Bottom Dock (5 items: Home, Shop, Search, Wishlist, Bag; Garage lives in the header/menu) -->
+  <nav class="mobile-dock" aria-label="Mobile navigation">
+    <a href="#home" class="dock-item active" data-dock="home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#catalog" class="dock-item" data-dock="catalog">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <span>Shop</span>
+    </a>
+    <button id="mobileSearch" class="dock-item" data-dock="search" aria-label="Search">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <span>Search</span>
+    </button>
+    <a href="#wishlist" class="dock-item" data-dock="wishlist" aria-label="Wishlist">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <i id="mobileWishlistCount" aria-label="Wishlist count">0</i>
+      <span>Wishlist</span>
+    </a>
+    <button id="mobileCart" class="dock-item" data-dock="bag" aria-label="Shopping bag">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <path d="M16 10a4 4 0 0 1-8 0"></path>
+      </svg>
+      <i id="mobileCartCount">0</i>
+      <span>Bag</span>
+    </button>
+  </nav>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

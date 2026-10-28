@@ -1,0 +1,22 @@
+[
+  {
+    "id": "monsoon-protection-kit",
+    "name": "Monsoon Rider Protection Kit",
+    "description": "Essential waterproof gear, IP68 LED fog lights, and high-traction ceramic brake pads for heavy downpours.",
+    "price": 8999,
+    "originalPrice": 10999,
+    "discountPercent": 18,
+    "badge": "WEATHERPROOF",
+    "items": ["fog-lights-led", "saddlebags-touring", "brake-pads-ceramic"]
+  },
+  {
+    "id": "expedition-ladakh-kit",
+    "name": "Leh-Ladakh Expedition Pack",
+    "description": "Maximum chassis protection, 40L waterproof luggage, windshield, and auxiliary fog illumination.",
+    "price": 12999,
+    "originalPrice": 15697,
+    "discountPercent": 17,
+    "badge": "BEST VALUE",
+    "items": ["crash-guard-steelmoto", "saddlebags-touring", "fog-lights-led", "windshield-adventure"]
+  }
+]

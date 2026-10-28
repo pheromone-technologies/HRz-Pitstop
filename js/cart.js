@@ -23,23 +23,97 @@ class CartDrawer {
 
     window.addEventListener("hrz:add-to-cart", (e) => {
       const product = e.detail.product;
-      const isPrompted = CartDrawer.add_to_bag_login_prompted === true;
-      const isLoggedIn = window.HRz.Auth && window.HRz.Auth.isLoggedIn();
-
-      if (!isLoggedIn && !isPrompted) {
-        CartDrawer.add_to_bag_login_prompted = true;
-        window.HRz.Auth.showLoginPopup(
+      const quantity = e.detail.quantity;
+      if (this._loginGatePassed()) {
+        this.addItem(product, quantity ? { quantity } : {});
+      } else {
+        this._promptForLogin(
           () => {
-            this.addItem(product);
+            this.addItem(product, quantity ? { quantity } : {});
           },
           () => {
             window.HRz.Utils.showToast("Sign in or guest mode required to add items", "info");
           }
         );
-      } else {
-        this.addItem(product);
       }
     });
+
+    // Shared BUY NOW path: any quick-view or other surface dispatches
+    // "hrz:buy-now" instead of re-implementing add + navigate logic.
+    window.addEventListener("hrz:buy-now", (e) => {
+      if (e.detail && e.detail.product) this.buyNow(e.detail.product);
+    });
+  }
+
+  // True when the visitor is signed in OR has already made a durable
+  // guest/login-prompt choice (persisted in localStorage via Storage, so
+  // it survives reloads — the old in-memory-only flag did not).
+  static _loginGatePassed() {
+    try {
+      if (window.HRz.Auth && window.HRz.Auth.isLoggedIn()) return true;
+    } catch (e) { /* fall through to the persisted choice */ }
+    if (this.add_to_bag_login_prompted === true) return true;
+    try {
+      if (window.HRz.Storage && typeof window.HRz.Storage.hasLoginPrompted === "function") {
+        return window.HRz.Storage.hasLoginPrompted();
+      }
+    } catch (e) { /* fall through */ }
+    return false;
+  }
+
+  // Persist the guest/login-prompt choice BEFORE showing the popup, so
+  // dismissing it (or reloading) does not re-prompt on the next add.
+  // The item from the dismissed attempt itself is still not added; the
+  // next add succeeds without another prompt.
+  static _markLoginPrompted() {
+    this.add_to_bag_login_prompted = true;
+    try {
+      if (window.HRz.Storage && typeof window.HRz.Storage.setLoginPrompted === "function") {
+        window.HRz.Storage.setLoginPrompted(true);
+      }
+    } catch (e) { /* in-memory flag above still applies this session */ }
+  }
+
+  static _promptForLogin(onSuccess, onCancel) {
+    this._markLoginPrompted();
+    if (window.HRz.Auth && typeof window.HRz.Auth.showLoginPopup === "function") {
+      window.HRz.Auth.showLoginPopup(onSuccess, onCancel);
+    } else if (typeof onSuccess === "function") {
+      onSuccess();
+    }
+  }
+
+  // Dedupe key: base product id + variant (colour) + size. Variant-colour
+  // or size suffixed ids must not clobber different sizes or colors.
+  static _cartItemKey(item) {
+    const variant = item.color || item.variant || item.variantName || "";
+    const slug = String(variant).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    let base = item.id || "";
+    if (slug && base.endsWith("-" + slug)) base = base.slice(0, -(slug.length + 1));
+    const size = item.selectedSize || item.size || "";
+    const sizeSlug = String(size).toLowerCase().replace(/[^a-z0-9]+/g, "");
+    if (sizeSlug && base.includes("-size-" + sizeSlug)) {
+      base = base.replace("-size-" + sizeSlug, "");
+    }
+    return base + "||" + slug + (sizeSlug ? "||" + sizeSlug : "");
+  }
+
+  // THE single BUY NOW path (product page and any catalog quick-view):
+  // add (or increment) exactly once, never open the cart drawer, close
+  // any drawer that is already open, then go to checkout. No timer:
+  // setCart is synchronous, so there is nothing to wait 100ms for.
+  static buyNow(product, options = {}) {
+    const proceed = () => {
+      this.addItem(product, { suppressDrawer: true, ...(options.quantity ? { quantity: options.quantity } : {}) });
+      this.closeCart(false, true);
+      window.location.hash = "checkout";
+    };
+    if (this._loginGatePassed()) {
+      proceed();
+    } else {
+      // Dismissing the popup adds nothing and navigates nowhere.
+      this._promptForLogin(proceed, null);
+    }
   }
 
   static openCart() {
@@ -76,13 +150,16 @@ class CartDrawer {
     }
   }
 
-  static addItem(product) {
+  static addItem(product, options = {}) {
     const cart = window.HRz.Storage.getCart();
     const isFirstItem = cart.length === 0;
-    const existing = cart.find(item => item.id === product.id);
+    const qtyToAdd = Math.max(1, Number(options.quantity) || 1);
+    // Match by composite key: id + variant + size
+    const key = this._cartItemKey(product);
+    const existing = cart.find(item => item.id === product.id || this._cartItemKey(item) === key);
 
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += qtyToAdd;
     } else {
       cart.push({
         id: product.id,
@@ -90,18 +167,23 @@ class CartDrawer {
         price: product.price,
         image: product.image,
         sku: product.sku,
-        quantity: 1
+        // Preserve the variant and size so they survive a reload.
+        ...(product.color ? { color: product.color } : {}),
+        ...(product.variant ? { variant: product.variant } : {}),
+        ...(product.selectedSize ? { selectedSize: product.selectedSize } : (product.size ? { selectedSize: product.size } : {})),
+        quantity: qtyToAdd
       });
     }
 
     window.HRz.Storage.setCart(cart);
     this.updateCartBadge();
-    
-    if (isFirstItem) {
+
+    if (isFirstItem && !options.suppressDrawer) {
       this.openCart();
     }
-    
-    window.HRz.Utils.showToast(`Added ${product.name} to bag`, "success");
+
+    const sizeText = product.selectedSize ? ` (Size: ${product.selectedSize})` : "";
+    window.HRz.Utils.showToast(`Added ${product.name}${sizeText} to bag`, "success");
   }
 
   static updateQuantity(productId, delta) {
@@ -121,18 +203,25 @@ class CartDrawer {
   }
 
   static updateCartBadge() {
-    const cart = window.HRz.Storage.getCart();
-    const totalCount = cart.reduce((sum, i) => sum + i.quantity, 0);
+    // A missing badge element (or missing Storage) must never throw.
+    try {
+      const cart = (window.HRz.Storage && typeof window.HRz.Storage.getCart === "function")
+        ? window.HRz.Storage.getCart()
+        : [];
+      const totalCount = cart.reduce((sum, i) => sum + (Number(i.quantity) || 0), 0);
 
-    // Update all badge locations
-    const badge = document.getElementById("cartCountBadge");
-    if (badge) badge.textContent = totalCount;
+      // Update all badge locations, if present
+      const badge = document.getElementById("cartCountBadge");
+      if (badge) badge.textContent = totalCount;
 
-    const drawerCount = document.getElementById("drawerCount");
-    if (drawerCount) drawerCount.textContent = totalCount;
+      const drawerCount = document.getElementById("drawerCount");
+      if (drawerCount) drawerCount.textContent = totalCount;
 
-    const mobileCount = document.getElementById("mobileCartCount");
-    if (mobileCount) mobileCount.textContent = totalCount;
+      const mobileCount = document.getElementById("mobileCartCount");
+      if (mobileCount) mobileCount.textContent = totalCount;
+    } catch (e) {
+      /* Badge update is cosmetic; never break add-to-cart/checkout. */
+    }
   }
 
   static renderCartItems() {
@@ -160,14 +249,18 @@ class CartDrawer {
     if (!container) return;
 
     if (cart.length === 0) {
-      container.innerHTML = `<p class="empty-state">Your bag is ready when you are.</p>`;
+      container.innerHTML = `<p class="empty-state">Your bag is ready when you are.</p>
+        <div class="cart-drawer-actions">
+          <button class="text-button cart-continue-btn">Continue shopping →</button>
+        </div>`;
     } else {
       container.innerHTML = cart.map(item => `
         <div class="cart-item-row">
-          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.src='images/helmet_product.webp'" />
+          <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.onerror=null;this.src=window.HRzPlaceholderImage" />
           <div class="cart-item-info">
             <small class="cart-item-sku">${escapeHTML(item.sku || "Accessory")}</small>
             <h4 class="cart-item-title">${escapeHTML(item.name)}</h4>
+            ${item.selectedSize ? `<span class="cart-item-size-pill">Size: ${escapeHTML(item.selectedSize)}</span>` : ""}
             <b class="cart-item-price">${utils.formatCurrency(item.price)}</b>
             <div class="cart-qty-controls">
               <button class="qty-btn minus-qty" data-id="${item.id}">−</button>
@@ -177,7 +270,11 @@ class CartDrawer {
           </div>
           <button class="remove-cart-item-btn" data-id="${item.id}" aria-label="Remove">×</button>
         </div>
-      `).join("");
+      `).join("") + `
+        <div class="cart-drawer-actions">
+          <button class="text-button cart-clear-btn">Clear bag</button>
+          <button class="text-button cart-continue-btn">Continue shopping →</button>
+        </div>`;
     }
 
     const subtotalEl = document.getElementById("cartSubtotalText");
@@ -195,18 +292,32 @@ class CartDrawer {
       btn.onclick = () => this.updateQuantity(btn.dataset.id, -999);
     });
 
+    container.querySelectorAll(".cart-clear-btn").forEach(btn => {
+      btn.onclick = () => {
+        window.HRz.Storage.setCart([]);
+        this.updateCartBadge();
+        this.renderCartItems();
+      };
+    });
+
+    container.querySelectorAll(".cart-continue-btn").forEach(btn => {
+      btn.onclick = () => this.closeCart();
+    });
+
     const checkoutBtn = document.getElementById("cartCheckoutBtn");
     if (checkoutBtn) {
       checkoutBtn.disabled = cart.length === 0;
       checkoutBtn.onclick = () => {
-        if (window.HRz.Auth && !window.HRz.Auth.isLoggedIn()) {
-          window.HRz.Auth.showLoginPopup(() => {
-            this.closeCart(false, true);
-            window.location.hash = "checkout";
-          });
-        } else {
+        // A durable guest choice is honoured here too: do not re-prompt
+        // a returning guest on every checkout click.
+        const go = () => {
           this.closeCart(false, true);
           window.location.hash = "checkout";
+        };
+        if (this._loginGatePassed()) {
+          go();
+        } else {
+          this._promptForLogin(go, null);
         }
       };
     }

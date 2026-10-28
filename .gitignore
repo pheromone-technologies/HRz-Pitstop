@@ -8,5 +8,9 @@ Thumbs.db
 tools/output/
 tools/source/
 *.log
+scratch/
 scratch_*
 temp_*
+_vault_archive/
+*.bak*
+*.zip

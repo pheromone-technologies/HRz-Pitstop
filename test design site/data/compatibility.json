@@ -1,0 +1,28 @@
+[
+  { "id": "cmp-1", "productId": "axor-helmet", "bikeId": "bike-re-him-450-adv", "fitType": "Universal", "notes": "Fits all riders with helmet lock support", "sku": "HRZ-HLM-UNI" },
+  { "id": "cmp-2", "productId": "axor-helmet", "bikeId": "bike-re-him-450-sum", "fitType": "Universal", "notes": "Fits all riders", "sku": "HRZ-HLM-UNI" },
+  { "id": "cmp-3", "productId": "axor-helmet", "bikeId": "bike-ktm-duke-390-g3", "fitType": "Universal", "notes": "Fits all riders", "sku": "HRZ-HLM-UNI" },
+  { "id": "cmp-4", "productId": "axor-helmet", "bikeId": "bike-yam-mt15-v2", "fitType": "Universal", "notes": "Fits all riders", "sku": "HRZ-HLM-UNI" },
+  { "id": "cmp-5", "productId": "axor-helmet", "bikeId": "bike-tri-spd-400", "fitType": "Universal", "notes": "Fits all riders", "sku": "HRZ-HLM-UNI" },
+  
+  { "id": "cmp-6", "productId": "crash-guard-steelmoto", "bikeId": "bike-re-him-450-adv", "fitType": "OEM Fit", "notes": "Direct chassis mount with stock bolts", "sku": "HRZ-CG-HIM450" },
+  { "id": "cmp-7", "productId": "crash-guard-steelmoto", "bikeId": "bike-re-him-450-sum", "fitType": "OEM Fit", "notes": "Direct chassis mount with stock bolts", "sku": "HRZ-CG-HIM450" },
+  { "id": "cmp-8", "productId": "crash-guard-steelmoto", "bikeId": "bike-baj-dom-400", "fitType": "OEM Fit", "notes": "Custom bracket kit included for Dominar frame", "sku": "HRZ-CG-DOM400" },
+  { "id": "cmp-9", "productId": "crash-guard-steelmoto", "bikeId": "bike-ktm-adv-390-ral", "fitType": "OEM Fit", "notes": "Mounts to lower cradle engine mounts", "sku": "HRZ-CG-KTM390" },
+  
+  { "id": "cmp-10", "productId": "fog-lights-led", "bikeId": "bike-re-him-450-adv", "fitType": "Universal", "notes": "Mounts on crash guard tube (22mm-28mm)", "sku": "HRZ-FL-60W" },
+  { "id": "cmp-11", "productId": "fog-lights-led", "bikeId": "bike-ktm-adv-390-ral", "fitType": "Universal", "notes": "Mounts on crash guard tube", "sku": "HRZ-FL-60W" },
+  { "id": "cmp-12", "productId": "fog-lights-led", "bikeId": "bike-bmw-g310-gs", "fitType": "Universal", "notes": "Mounts on crash guard or auxiliary light bar", "sku": "HRZ-FL-60W" },
+  { "id": "cmp-13", "productId": "fog-lights-led", "bikeId": "bike-tvs-apc-rr310", "fitType": "Requires Bracket", "notes": "Requires auxiliary fork light mount bracket", "sku": "HRZ-FL-60W-BRK" },
+  
+  { "id": "cmp-14", "productId": "saddlebags-touring", "bikeId": "bike-re-him-450-adv", "fitType": "OEM Fit", "notes": "Straps over pillion seat; stays clear of high exhaust", "sku": "HRZ-LU-40L" },
+  { "id": "cmp-15", "productId": "saddlebags-touring", "bikeId": "bike-bmw-g310-gs", "fitType": "OEM Fit", "notes": "Fits with OEM rear rack", "sku": "HRZ-LU-40L" },
+  { "id": "cmp-16", "productId": "saddlebags-touring", "bikeId": "bike-baj-dom-400", "fitType": "OEM Fit", "notes": "Fits factory touring rear stays", "sku": "HRZ-LU-40L" },
+  
+  { "id": "cmp-17", "productId": "brake-pads-ceramic", "bikeId": "bike-ktm-duke-390-g3", "fitType": "OEM Fit", "notes": "Front caliper replacement for ByBre 4-piston", "sku": "HRZ-BP-KTM390" },
+  { "id": "cmp-18", "productId": "brake-pads-ceramic", "bikeId": "bike-tri-spd-400", "fitType": "OEM Fit", "notes": "Front caliper replacement for ByBre 300mm", "sku": "HRZ-BP-TRI400" },
+  { "id": "cmp-19", "productId": "brake-pads-ceramic", "bikeId": "bike-re-him-450-adv", "fitType": "OEM Fit", "notes": "Front ByBre 320mm disc caliper pad", "sku": "HRZ-BP-RE450" },
+  
+  { "id": "cmp-20", "productId": "windshield-adventure", "bikeId": "bike-re-him-450-adv", "fitType": "OEM Fit", "notes": "Replaces OEM short visor using stock screws", "sku": "HRZ-WS-HIM450" },
+  { "id": "cmp-21", "productId": "windshield-adventure", "bikeId": "bike-bmw-g310-gs", "fitType": "OEM Fit", "notes": "Mounts on OEM windscreen stay", "sku": "HRZ-WS-G310GS" }
+]

@@ -1,11 +1,27 @@
 /* =============================================
    HRz PITSTOP – Auth Module
    Demo Google Login + Login Popup Gate
+   + Admin PIN gate (see Admin PIN section below)
+
+   HONEST SECURITY NOTE — READ BEFORE RELYING ON THIS:
+   This is a static site with no backend, so the admin PIN gate in
+   this file is a DETERRENT, not real security. The PIN is stored
+   only as a SHA-256 hash in this browser's localStorage, and the
+   "unlocked" flag lives in sessionStorage. Anyone with access to
+   this browser (DevTools -> Application -> Local Storage) can read
+   or delete those keys and bypass the gate entirely. Never treat
+   this as protection for sensitive data, and never hardcode a
+   default PIN or password anywhere in this file.
    ============================================= */
 
 window.HRz = window.HRz || {};
 
 const AUTH_KEY = "hrz_auth_user_v1";
+// Admin PIN: only a hash is stored, never the PIN itself, and never
+// a default value. First admin visit (no hash stored) sets the PIN;
+// later visits must match it. See Admin PIN section below.
+const ADMIN_PIN_HASH_KEY = "hrz_admin_pin_hash_v1";
+const ADMIN_UNLOCK_KEY = "hrz_admin_unlocked_v1";
 
 const DEMO_GOOGLE_ACCOUNTS = [
   { id: "g_001", name: "Rahul Sharma", email: "rahul.sharma@gmail.com", avatar: "RS" },
@@ -30,8 +46,82 @@ class AuthService {
 
   static logout() {
     sessionStorage.removeItem(AUTH_KEY);
+    sessionStorage.removeItem(ADMIN_UNLOCK_KEY);
     this._refreshHeaderAvatar();
     window.HRz.Utils.showToast("Signed out successfully", "info");
+  }
+
+  /* ------ Admin PIN gate (client-side deterrent only — see header) ------
+     Used ONLY by js/admin.js. The customer login popup and "Continue
+     as Guest" flow below are untouched: guest sign-in deliberately
+     does NOT satisfy the admin gate (isLoggedIn() stays false for
+     guests), so a guest can never open #admin through this path. */
+  static hasAdminPin() {
+    try { return !!localStorage.getItem(ADMIN_PIN_HASH_KEY); } catch { return false; }
+  }
+
+  static isAdminUnlocked() {
+    try { return sessionStorage.getItem(ADMIN_UNLOCK_KEY) === "1"; } catch { return false; }
+  }
+
+  static lockAdmin() {
+    try { sessionStorage.removeItem(ADMIN_UNLOCK_KEY); } catch {}
+  }
+
+  static _hashPin(pin) {
+    // SHA-256 when available (secure contexts). Fallback is a plain
+    // non-cryptographic hash used only as obfuscation — it does not
+    // make the gate secure; see the header note.
+    const subtle = (window.crypto && window.crypto.subtle)
+      || (typeof crypto !== "undefined" && crypto.subtle);
+    if (subtle && subtle.digest) {
+      const data = new TextEncoder().encode("hrz-admin-pin:" + pin);
+      return subtle.digest("SHA-256", data).then(buf =>
+        Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("")
+      );
+    }
+    let h = 2166136261;
+    const s = "hrz-admin-pin:" + pin;
+    for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+    return Promise.resolve("weak-" + (h >>> 0).toString(16));
+  }
+
+  static _isValidPinFormat(pin) { return /^\d{4,8}$/.test(pin || ""); }
+
+  // Sets the PIN on first admin visit. Returns { ok, error }.
+  static setAdminPin(pin, confirmPin) {
+    if (!this._isValidPinFormat(pin)) {
+      return Promise.resolve({ ok: false, error: "PIN must be 4–8 digits." });
+    }
+    if (pin !== confirmPin) {
+      return Promise.resolve({ ok: false, error: "PINs do not match." });
+    }
+    if (this.hasAdminPin()) {
+      return Promise.resolve({ ok: false, error: "An admin PIN is already set. Enter it instead." });
+    }
+    return this._hashPin(pin).then(hash => {
+      try {
+        localStorage.setItem(ADMIN_PIN_HASH_KEY, hash);
+        sessionStorage.setItem(ADMIN_UNLOCK_KEY, "1");
+      } catch { return { ok: false, error: "Could not save the PIN in this browser." }; }
+      return { ok: true };
+    });
+  }
+
+  // Verifies a PIN on later visits. Returns a Promise<boolean>.
+  // A wrong PIN never unlocks and never renders any admin UI.
+  static verifyAdminPin(pin) {
+    if (!this._isValidPinFormat(pin)) return Promise.resolve(false);
+    let stored = null;
+    try { stored = localStorage.getItem(ADMIN_PIN_HASH_KEY); } catch {}
+    if (!stored) return Promise.resolve(false);
+    return this._hashPin(pin).then(hash => {
+      if (hash === stored) {
+        try { sessionStorage.setItem(ADMIN_UNLOCK_KEY, "1"); } catch {}
+        return true;
+      }
+      return false;
+    });
   }
 
   /* ------ Login Popup ------ */

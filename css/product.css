@@ -33,7 +33,7 @@
   gap: 10px;
   margin-bottom: 24px;
   overflow-x: auto;
-  padding: 0 7vw 4px;
+  padding-bottom: 4px;
 }
 .filter-pill {
   background: var(--charcoal);
@@ -154,9 +154,6 @@
   object-fit: cover;
   mix-blend-mode: multiply;
   transition: .4s;
-  clip-path: inset(0.5px);
-  -webkit-clip-path: inset(0.5px);
-  transform: translate3d(0, 0, 0);
 }
 .product-card:hover .product-card-media img,
 .product-card:hover .product-image img {
@@ -166,8 +163,8 @@
 /* Dark theme product images */
 .view:not(#home) .product-card-media,
 .view:not(#home) .product-image {
-  background: linear-gradient(145deg, #1c1f26, #0e1017);
-  box-shadow: inset 0 2px 10px rgba(255,255,255,0.03);
+  background: #ffffff;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
   height: auto;
   aspect-ratio: 1 / 1;
   display: flex;
@@ -181,8 +178,6 @@
   padding: 0;
   width: 100%;
   height: 100%;
-  clip-path: inset(0.5px);
-  -webkit-clip-path: inset(0.5px);
   transform: translate3d(0, 0, 0);
 }
 
@@ -413,29 +408,20 @@ blockquote {
   margin-top: 20px;
   padding: 0 7vw 80px;
 }
-.product-detail-gallery, .product-detail-specs {
-  min-width: 0; /* Prevents grid blowout from large child elements */
-}
 .main-image-frame {
-  background: linear-gradient(145deg, #1c1f26, #0e1017);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #0e1017;
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
-  box-shadow: inset 0 2px 10px rgba(255,255,255,0.03), 0 12px 30px rgba(0,0,0,0.5);
-  padding: 0;
+  padding: 24px;
   text-align: center;
   position: relative;
   overflow: hidden;
   cursor: zoom-in;
   touch-action: pan-y;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1 / 1;
 }
 .main-image-frame img {
-  width: 100%;
-  height: 100%;
-  display: block;
+  max-height: 380px;
+  margin: 0 auto;
   object-fit: contain;
   transform-origin: var(--zoom-x, 50%) var(--zoom-y, 50%);
   transition: transform 0.28s ease;
@@ -469,107 +455,20 @@ blockquote {
   padding-bottom: 8px;
   scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.thumbnail-strip::-webkit-scrollbar {
-  display: none;
 }
 .thumb-btn {
   background: var(--charcoal);
-  border: 2px solid transparent;
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 0;
-  width: 72px; height: 72px;
+  padding: 6px;
+  width: 64px; height: 64px;
   flex: 0 0 auto;
   scroll-snap-align: start;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: pointer;
-  opacity: 0.6;
-  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
 }
-.thumb-btn:hover { 
-  transform: translateY(-4px); 
-  opacity: 1;
-  background: #15181f;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.thumb-btn.active { 
-  border-color: var(--red); 
-  opacity: 1;
-  background: #15181f;
-  box-shadow: 0 0 15px rgba(225, 59, 49, 0.3); 
-}
-.thumb-btn img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
-.thumb-btn:hover img { transform: scale(1.05); }
-
-/* Mobile Swipe Carousel Fix */
-.mobile-swipe-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  background: #0e1017;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--border);
-  margin-bottom: 14px;
-}
-.mobile-swipe-carousel::-webkit-scrollbar { display: none; } /* Hide scrollbar */
-.carousel-image {
-  flex: 0 0 100%;
-  width: 100%;
-  height: auto;
-  max-height: 380px;
-  object-fit: contain;
-  scroll-snap-align: center;
-  padding: 24px;
-}
-
-/* Color Selector */
-.product-variants-section {
-  margin: 16px 0;
-}
-.product-variants-section h4 {
-  font-size: 13px;
-  color: var(--mute);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.color-selector-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.color-btn {
-  background: var(--charcoal);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 6px 12px 6px 6px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--mute);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.color-btn-img {
-  width: 28px;
-  height: 28px;
-  border-radius: 4px;
-  object-fit: contain;
-  background: #0e1017;
-}
-.color-btn:hover {
-  background: var(--steel);
-  color: #fff;
-}
-.color-btn.active {
-  background: rgba(225, 59, 49, 0.1);
-  border-color: var(--red);
-  color: #fff;
-}
+.thumb-btn:hover { transform: translateY(-2px); }
+.thumb-btn.active { border-color: var(--red); box-shadow: 0 0 0 2px rgba(225, 59, 49, 0.15); }
+.thumb-btn img { width: 100%; height: 100%; object-fit: contain; }
 
 .fitment-guarantee-banner {
   background: rgba(16, 185, 129, 0.1);
@@ -607,8 +506,15 @@ blockquote {
 }
 .purchase-actions-row {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   margin: 20px 0;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(16, 17, 20, 0.72);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 .rider-proof-section {
   margin-top: 48px;
@@ -682,7 +588,7 @@ blockquote {
   object-fit: contain;
   box-shadow: var(--shadow-xl);
   border-radius: 18px;
-  }  background: #0e1017;
+  background: #0e1017;
 }
 .gallery-viewer-close,
 .gallery-viewer-nav {
@@ -951,17 +857,16 @@ body.gallery-viewer-open {
 }
 
 @media (max-width: 768px) {
+  /* Purchase row is back in normal flow: the old fixed bottom bar sat over
+     page content and intercepted taps meant for products below it. The
+     scroll-aware sticky bar (below) is the only floating buy control now. */
   .purchase-actions-row {
-    position: fixed;
-    bottom: 0 !important;
-    left: 0;
-    right: 0;
-    z-index: 90 !important; /* Above mobile dock (z-index 40), below cart drawer (z-index 101) */
-    background: #111;
-    margin: 0 !important; /* Remove bottom margin to fix bottom gap */
-    padding: 12px 16px 12px !important; /* Sitting at absolute bottom */
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.6);
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    position: static;
+    margin: 20px 0;
+    padding: 6px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 32px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
   }
   .purchase-actions-row .add-to-bag-hero-btn,
   .purchase-actions-row .buy-now-btn {
@@ -979,21 +884,519 @@ body.gallery-viewer-open {
     padding: 12px 16px;
     margin: 12px 0 16px;
   }
-  .product-variants-section {
-    margin: 20px 0;
-  }
-  .color-selector-grid {
-    gap: 10px;
-  }
-  .color-btn {
-    padding: 8px 14px 8px 8px;
-    font-size: 13px;
-  }
-  .color-btn-img {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 
+/* Color Selector Grid */
+.product-variants-section {
+  margin: 16px 0;
+}
+.product-variants-section h4 {
+  font-size: 13px;
+  color: var(--mute);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.color-selector-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.color-btn {
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px 12px 6px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mute);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.color-btn-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: contain;
+  background: #0e1017;
+}
+.color-btn:hover {
+  background: var(--steel);
+  color: #fff;
+}
+.color-btn.active {
+  background: rgba(225, 59, 49, 0.1);
+  border-color: var(--red);
+  color: #fff;
+}
 
+/* ---- UI-worker: liquid-glass cards, reserved image space, 2-col mobile grid ---- */
+.product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; min-width: 0; }
+.product-card {
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 8px 24px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s var(--spring), box-shadow 0.3s ease, border-color 0.3s ease;
+  min-width: 0; overflow: hidden;
+}
+.product-card:hover { transform: translateY(-3px); }
+.product-card:active { transform: scale(0.98); }
+/* Reserve the media box: no layout shift while images load or are missing. */
+.product-card-media, .product-image { aspect-ratio: 1 / 1; width: 100%; height: auto; overflow: hidden; background: rgba(255, 255, 255, 0.06); }
+.product-card-media img, .product-image img { aspect-ratio: 1 / 1; width: 100%; height: 100%; object-fit: cover; }
+.product-card-content, .product-info { min-width: 0; }
+.product-title, .product-info h3 { overflow-wrap: break-word; }
+.filters button { min-height: 44px; padding: 10px 14px; transition: transform 0.35s var(--spring), background 0.3s ease; }
+.filters button:active { transform: scale(0.95); }
+.product-card .add-to-cart-btn, .product-card .quick-button, .wishlist-toggle-btn { min-height: 44px; }
+.wishlist-toggle-btn { min-width: 44px; }
+.quick-view {
+  background: rgba(22, 23, 28, 0.9);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), var(--shadow-xl);
+  transition: transform 0.35s var(--spring), opacity 0.3s ease;
+}
+.quick-view, .filter-drawer { max-width: calc(100vw - 32px); }
+@media (min-width: 769px) {
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+}
+@media (min-width: 1100px) {
+  .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Card quantity stepper (- qty +): replaces + Bag once an item is in the bag. */
+.card-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 44px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.card-qty-stepper .qty-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--red, #e53935);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.card-qty-stepper .qty-btn:active { transform: scale(0.92); }
+.card-qty-stepper .qty-num {
+  min-width: 28px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  padding: 0 4px;
+}
+
+/* Discount badge next to the strikethrough price. */
+.discount-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(67, 160, 71, 0.18);
+  border: 1px solid rgba(67, 160, 71, 0.45);
+  color: #7ed47f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+/* Product-page quantity selector + share + delivery estimate. */
+.detail-qty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 16px 0 4px;
+}
+.detail-qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.detail-qty-stepper .qty-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.detail-qty-stepper .qty-btn:active { transform: scale(0.92); }
+.detail-qty-stepper .qty-num {
+  min-width: 32px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+.detail-qty-label { font-size: 13px; opacity: 0.75; }
+.share-btn {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.delivery-estimate {
+  margin: 14px 0 4px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--mute, #9aa0a6);
+}
+.delivery-estimate strong { color: #fff; }
+
+/* Sticky mobile buy bar on product pages (sits above the capsule dock). */
+.sticky-buy-bar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .sticky-buy-bar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    width: calc(100vw - 24px);
+    max-width: 520px;
+    z-index: 39;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 20px;
+    background: rgba(16, 17, 20, 0.88);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+  .sticky-buy-bar .sticky-price {
+    font-weight: 800;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .sticky-buy-bar .sticky-name {
+    flex: 1;
+    min-width: 0;
+    font-size: 12.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.8;
+  }
+  .sticky-buy-bar .accent-button,
+  .sticky-buy-bar .buy-now-btn {
+    min-height: 44px;
+    padding: 0 16px;
+    white-space: nowrap;
+  }
+}
+
+/* ---- v5: compact card actions + scroll-aware sticky bar + detail bag stepper ---- */
+/* Card + Bag was 44px tall on a narrow mobile card and dominated the tap
+   area. Compact pill actions leave most of the card for opening the product. */
+.product-card .add-to-cart-btn {
+  min-height: 36px !important;
+  padding: 6px 14px !important;
+  font-size: 12px !important;
+  border-radius: 999px !important;
+}
+.product-card .card-qty-stepper {
+  min-height: 36px;
+  padding: 2px;
+}
+.product-card .card-qty-stepper .qty-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+}
+.product-card .card-qty-stepper .qty-num {
+  min-width: 22px;
+  font-size: 13px;
+}
+
+/* Buy capsule: the home dock's exact capsule, pinned above the dock, and
+   the ONLY buy control on mobile. The in-flow row is hidden on mobile so
+   the two never duplicate. No scroll gating: pinned means pinned. */
+@media (max-width: 768px) {
+  .sticky-buy-bar {
+    /* Dock recipe, copied: floating centred glass pill, not full-width. */
+    background: rgba(16, 17, 20, 0.72);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 12px 32px rgba(0, 0, 0, 0.45);
+    padding: 6px 10px;
+    width: calc(100vw - 24px);
+    max-width: 520px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* The dock's own spot: the dock is hidden on product pages, so the
+       capsule takes its place instead of stacking above it. */
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sticky-buy-bar .capsule-add-btn,
+  .sticky-buy-bar .capsule-buy-btn {
+    flex: 1;
+    min-height: 48px;
+    padding: 10px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 999px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .sticky-buy-bar .capsule-add-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+  }
+  .sticky-buy-bar .capsule-buy-btn {
+    background: var(--red, #d92525);
+    border: 1px solid var(--red, #d92525);
+    color: #fff;
+  }
+  /* Stepper sits directly on the capsule glass: no nested pill, no red
+     buttons — ghost circles, so BUY NOW stays the single red accent and
+     the stepper stops looking like a grey blob inside the capsule. */
+  .sticky-buy-bar .card-qty-stepper {
+    flex: 1;
+    min-height: 48px;
+    padding: 0 2px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    gap: 6px;
+  }
+  .sticky-buy-bar .card-qty-stepper .qty-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+  }
+  .sticky-buy-bar .card-qty-stepper .qty-btn:active {
+    transform: scale(0.92);
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .sticky-buy-bar .card-qty-stepper .qty-num {
+    min-width: 28px;
+    font-size: 17px;
+    font-weight: 800;
+  }
+  /* In-flow row is desktop-only now; the capsule owns mobile buying. */
+  .purchase-actions-row {
+    display: none;
+  }
+}
+
+/* Title row: share lives here now that the quantity row is gone. */
+.detail-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.detail-title-row .product-detail-title {
+  flex: 1;
+  min-width: 0;
+}
+.share-btn-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Detail-page bag stepper: replaces Add to Bag once the item is in the bag. */
+.detail-bag-stepper {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-height: 48px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+.detail-bag-stepper .qty-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--red, #e53935);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+.detail-bag-stepper .qty-btn:active { transform: scale(0.92); }
+.detail-bag-stepper .qty-num {
+  min-width: 32px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* Glass treatment for the detail qty selector + share, matching the dock. */
+.detail-qty-stepper {
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+.share-btn {
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+/* Product pages own the bottom of the screen: the buy capsule sits where
+   the dock sits, so the dock itself is hidden there (toggled in app.js). */
+body.is-product-page .mobile-dock {
+  display: none !important;
+}
+
+/* ---- Product Size Selector & Strikethrough ---- */
+.product-size-section {
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+}
+.size-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.size-heading {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+.size-heading strong {
+  color: var(--red);
+  margin-left: 4px;
+}
+.size-guide-hint {
+  font-size: 11px;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.size-pills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.size-pill-btn {
+  min-width: 48px;
+  height: 40px;
+  padding: 0 14px;
+  background: #141416;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.size-pill-btn:hover:not(.disabled) {
+  border-color: #666;
+  background: #1f2024;
+}
+.size-pill-btn.active {
+  background: #2a0b0b !important;
+  border-color: var(--red) !important;
+  color: #fff !important;
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.35);
+}
+.size-pill-btn.disabled {
+  background: #0d0e10 !important;
+  border: 1px dashed #242528 !important;
+  color: #555 !important;
+  cursor: not-allowed !important;
+  opacity: 0.45;
+  position: relative;
+}
+.size-strike-text {
+  text-decoration: line-through;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 2px;
+}
+
+/* Card size chip preview */
+.card-size-preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin: 6px 0 8px;
+}
+.card-size-chip {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  background: #dedcd4;
+  border: 1px solid #c8c6be;
+  border-radius: 3px;
+  color: #333;
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "HRZ-ORD-98421",
+    "date": "2026-07-20",
+    "bike": "Royal Enfield Himalayan 450 Adventure (2024)",
+    "status": "In Transit",
+    "trackingId": "DTDC-IN-889123",
+    "items": [
+      { "productId": "crash-guard-steelmoto", "name": "HRz Expedition Heavy Engine Crash Guard", "price": 3899, "quantity": 1 }
+    ],
+    "total": 3899,
+    "paymentMethod": "UPI GPay",
+    "shippingAddress": "Plot 42, HSR Layout, Sector 3, Bengaluru, Karnataka - 560102"
+  },
+  {
+    "id": "HRZ-ORD-97104",
+    "date": "2026-06-10",
+    "bike": "KTM Duke 390 Gen-3 (2024)",
+    "status": "Delivered",
+    "trackingId": "DELHIVERY-9921",
+    "items": [
+      { "productId": "axor-helmet", "name": "Axor Apex Carbon Full Face Helmet", "price": 4999, "quantity": 1 }
+    ],
+    "total": 4999,
+    "paymentMethod": "Credit Card",
+    "shippingAddress": "Flat 204, Seawoods Palm Beach, Navi Mumbai, Maharashtra - 400706"
+  }
+]

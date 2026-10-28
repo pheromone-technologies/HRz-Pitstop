@@ -302,3 +302,80 @@
 
 .full-width-btn { width: 100%; margin-top: 12px; }
 .place-order-btn { font-size: 16px; padding: 16px; }
+
+/* ---- UI-worker: liquid-glass cart drawer + single-column mobile checkout ---- */
+.drawer {
+  background: rgba(240, 239, 234, 0.94);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.4), -16px 0 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.35s var(--spring);
+  max-width: 100vw;
+}
+.close-drawer { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.35s var(--spring); }
+.close-drawer:active { transform: scale(0.9); }
+.cart-summary .button, .place-order-btn { min-height: 48px; width: 100%; justify-content: center; }
+/* Checkout form: single column at mobile widths (base rule; desktop grid in cart.css keeps 2-col above 768px via the media block below). */
+.checkout-layout { min-width: 0; }
+.form-grid { display: grid; grid-template-columns: 1fr; gap: 12px; min-width: 0; }
+.form-group { min-width: 0; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; min-height: 44px; box-sizing: border-box; }
+.payment-options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.payment-option-card { min-height: 44px; transition: transform 0.35s var(--spring), border-color 0.3s ease; }
+.payment-option-card:active { transform: scale(0.98); }
+.form-section-card, .summary-card {
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  min-width: 0;
+}
+@media (min-width: 769px) {
+  .form-grid { grid-template-columns: 1fr 1fr; }
+  .form-group.full-width { grid-column: span 2; }
+  .payment-options-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Cart drawer footer actions: clear bag / continue shopping. */
+.cart-drawer-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cart-drawer-actions .text-button {
+  background: none;
+  border: 0;
+  color: var(--mute, #9aa0a6);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  min-height: 44px;
+  padding: 0 8px;
+}
+.cart-drawer-actions .cart-continue-btn { color: #fff; margin-left: auto; }
+
+/* Size badge in cart drawer & checkout */
+.cart-item-size-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  background: #1c1d22;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 2px 7px;
+  margin-top: 4px;
+  color: #e5e5e5;
+  letter-spacing: 0.3px;
+}
+.checkout-size-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-right: 6px;
+}

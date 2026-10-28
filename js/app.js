@@ -83,6 +83,20 @@ class App {
     // Sync mobile cart count
     this.syncMobileCartCount();
 
+    // Sync wishlist dock badge, live. Wrap Storage.toggleWishlist once so
+    // every toggle (cards, product page) refreshes the dock badge.
+    this.syncWishlistBadge();
+    if (window.HRz.Storage && typeof window.HRz.Storage.toggleWishlist === "function" && !window.HRz.Storage.__hrzWishlistSyncWrapped) {
+      const origToggle = window.HRz.Storage.toggleWishlist;
+      window.HRz.Storage.toggleWishlist = function (...args) {
+        const result = origToggle.apply(this, args);
+        App.syncWishlistBadge();
+        return result;
+      };
+      window.HRz.Storage.__hrzWishlistSyncWrapped = true;
+    }
+    window.addEventListener("storage", () => this.syncWishlistBadge());
+
     // Scroll action for mobile dock
     let lastScrollY = window.scrollY;
     const dock = document.querySelector(".mobile-dock");
@@ -172,6 +186,83 @@ class App {
     }
   }
 
+  // Shared home sorter (UI worker). Prefer the logic worker's shared
+  // sorter window.HRz.Catalog.sortProducts(products, sortBy) when present;
+  // otherwise use this local copy of the same comparators. FLAG FOR MERGE:
+  // coordinator must verify window.HRz.Catalog.sortProducts exists at merge
+  // time and that the home sort then routes through it, not this fallback.
+  static homeSortProducts(products, sortBy) {
+    const list = [...(products || [])];
+    const shared = window.HRz && window.HRz.Catalog &&
+      typeof window.HRz.Catalog.sortProducts === "function"
+      ? window.HRz.Catalog.sortProducts : null;
+    if (shared) {
+      try {
+        const out = shared([...list], sortBy);
+        if (Array.isArray(out)) return out;
+      } catch (e) { /* fall through to local comparators */ }
+    }
+    const price = (p) => { const n = Number(p && p.price); return Number.isFinite(n) ? n : 0; };
+    const rating = (p) => { const n = Number(p && p.rating); return Number.isFinite(n) ? n : 0; };
+    const name = (p) => String((p && p.name) || "");
+    if (sortBy === "price-low") return list.sort((a, b) => price(a) - price(b) || name(a).localeCompare(name(b)));
+    if (sortBy === "price-high") return list.sort((a, b) => price(b) - price(a) || name(a).localeCompare(name(b)));
+    if (sortBy === "rating") return list.sort((a, b) => rating(b) - rating(a) || ((b.reviewCount || 0) - (a.reviewCount || 0)) || name(a).localeCompare(name(b)));
+    if (sortBy === "name") return list.sort((a, b) => name(a).localeCompare(name(b)));
+    const isAcc = (p) => (window.HRz && window.HRz.Utils && window.HRz.Utils.isAccessoryProduct) ? (window.HRz.Utils.isAccessoryProduct(p) ? 1 : 0) : 0;
+    return list.map((p, i) => ({ p, i, acc: isAcc(p) })).sort((a, b) => (a.acc - b.acc) || (a.i - b.i)).map(d => d.p);
+  }
+
+  // Home filter without the app.js:588 crash. If Catalog.getDepartment()
+  // exists (logic worker), use it; otherwise fall back to the existing
+  // Catalog.isProductInDepartment(), and finally to a plain category match.
+  // Prioritises primary core products first before slicing to top 8.
+  static getHomeFilteredProducts(filter, activeBike, db) {
+    if (!filter || filter === "all") {
+      return db.getRecommendedProducts(activeBike, null, 8);
+    }
+    const base = (db.getProductsForBike ? db.getProductsForBike(activeBike) : []) || [];
+    const C = window.HRz.Catalog;
+    // "Fog Lights" is a subcategory, not a department: match Fog & Aux Lights
+    // only. The old path resolved "Lights" to the whole Lighting department,
+    // which also swallowed the Electronics category (intercoms, GPS mounts).
+    let matched = [];
+    if (filter === "Lights") {
+      matched = base.filter(p => {
+        try {
+          const sub = (C && typeof C.getProductSubcategory === "function") ? C.getProductSubcategory(p) : (p.subcategory || "");
+          return sub === "Fog & Aux Lights";
+        } catch (e) { return false; }
+      });
+    } else {
+      let dept = null;
+      try { dept = (C && typeof C.getDepartment === "function") ? C.getDepartment(filter) : null; } catch (e) { dept = null; }
+      if (dept && typeof dept.matches === "function") {
+        matched = base.filter(p => { try { return dept.matches(p); } catch (e) { return false; } });
+      } else if (typeof dept === "string" && C && typeof C.isProductInDepartment === "function") {
+        matched = base.filter(p => C.isProductInDepartment(p, dept));
+      } else if (C && typeof C.isProductInDepartment === "function") {
+        matched = base.filter(p => C.isProductInDepartment(p, filter));
+      } else {
+        matched = base.filter(p => (p.category || "") === filter);
+      }
+    }
+    const sorted = App.homeSortProducts(matched, "featured");
+    return sorted.slice(0, 8);
+  }
+
+  // Live wishlist count for the dock badge. Called on route changes and
+  // whenever the wishlist changes (wrapped toggle + storage events).
+  static syncWishlistBadge() {
+    try {
+      const list = window.HRz.Storage ? window.HRz.Storage.getWishlist() : [];
+      const count = Array.isArray(list) ? list.length : 0;
+      document.querySelectorAll("#mobileWishlistCount, #wishlistCount").forEach(el => {
+        el.textContent = String(count);
+      });
+    } catch (e) { /* badge is cosmetic; never break routing */ }
+  }
+
   static syncDataLoadBanner() {
     const loadError = window.HRz.DB.loadError;
     const existing = document.getElementById("dataLoadErrorBanner");
@@ -219,13 +310,34 @@ class App {
     document.querySelectorAll(".main-nav .nav-link").forEach(link => {
       link.classList.toggle("active", link.dataset.view === route);
     });
+    // Dock mapping: product/checkout/tracking have no own dock item, so they
+    // highlight the nearest one (Shop for product, Bag for checkout/tracking).
+    // Garage has no dock item (it lives in the header/menu), so no dock
+    // item is highlighted on the garage view.
+    const dockMap = {
+      home: "home", catalog: "catalog", models: "catalog", product: "catalog",
+      helmets: "catalog", "riding-gears": "catalog", "riding-gear": "catalog",
+      jackets: "catalog", protection: "catalog", "crash-guards": "catalog",
+      luggage: "catalog", lights: "catalog", lighting: "catalog",
+      performance: "catalog", maintenance: "catalog",
+      wishlist: "wishlist", checkout: "bag", tracking: "bag"
+    };
+    const dockKey = dockMap[route] || null;
     document.querySelectorAll(".mobile-dock .dock-item").forEach(item => {
-      item.classList.toggle("active", item.dataset.dock === route);
+      item.classList.toggle("active", !!dockKey && item.dataset.dock === dockKey);
     });
+    // Product pages own the bottom of the screen: the buy capsule sits
+    // where the dock sits, so the dock itself is hidden there.
+    document.body.classList.toggle("is-product-page", route === "product");
+    this.syncWishlistBadge();
+
+    const deptRoutes = ["helmets", "riding-gears", "riding-gear", "jackets", "protection", "crash-guards", "luggage", "lights", "lighting", "electronics", "performance", "maintenance"];
+    const isDeptRoute = deptRoutes.includes(route);
+    const viewId = isDeptRoute ? "catalog" : route;
 
     // Switch views
     document.querySelectorAll("#app .view").forEach(v => v.classList.remove("active"));
-    const activeViewEl = document.getElementById(route) || document.getElementById("home");
+    const activeViewEl = document.getElementById(viewId) || document.getElementById("home");
     if (activeViewEl) {
       activeViewEl.classList.add("active");
       window.scrollTo(0, 0);
@@ -248,9 +360,70 @@ class App {
       case "models":
         this.renderModelsView(activeViewEl, params.get("brand"));
         break;
+      case "helmets":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Helmets",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "riding-gears":
+      case "riding-gear":
+      case "jackets":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Riding Gears",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "protection":
+      case "crash-guards":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Protection",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "luggage":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Luggage",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "lights":
+      case "lighting":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Lights",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "electronics":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Electronics",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "performance":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Performance",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
+      case "maintenance":
+        window.HRz.Catalog.render(activeViewEl, {
+          category: "Maintenance",
+          subcategory: params.get("subcategory") || "All",
+          search: params.get("search") || ""
+        });
+        break;
       case "catalog":
         window.HRz.Catalog.render(activeViewEl, {
           category: params.get("category") || "All",
+          subcategory: params.get("subcategory") || "All",
           search: params.get("search") || ""
         });
         break;
@@ -324,6 +497,11 @@ class App {
       Luggage: "images/category_luggage.webp"
     };
 
+    // Recently Viewed: only genuine history. Previously the section fell
+    // back to bestsellers when empty, which mislabels them as viewed.
+    const recentIds = window.HRz.Storage.getRecentlyViewed();
+    const recentProducts = recentIds.map(id => window.HRz.DB.getProductById(id)).filter(p => p).slice(0, 4);
+
     container.innerHTML = `
       <!-- Hero -->
       <section class="hero">
@@ -349,16 +527,15 @@ class App {
               return [1, 2, 3].map(set => brands.map((brand, idx) => {
                 const brandModels = window.HRz.Menu.menuData.shopByBike[brand];
                 const firstModel = brandModels && brandModels.length > 0 ? brandModels[0] : null;
-                const imgUrl = (firstModel && window.HRzImageMap && window.HRzImageMap[firstModel]) 
-                  ? window.HRzImageMap[firstModel].replace('.jpg', '_transparent.png') 
-                  : `images/bike_t_${(idx % 7) + 1}.webp`;
+                const imgUrl = (window.HRzImageMap && (window.HRzImageMap[brand] || (firstModel && window.HRzImageMap[firstModel]))) 
+                  || `images/verified bikes/bike_images/${brand}.png`;
                 const uid = `brand-img-${set}-${idx}`;
                 return `
-                <div class="bike-item" style="cursor:pointer;" onclick="window.location.hash='#models?brand=' + encodeURIComponent('${brand}')">
-                  <div class="bike-img-wrap"><img id="${uid}" src="${imgUrl}" alt="${brand}" style="object-fit: contain; padding: 10px;" onerror="this.src='images/bike_t_${(idx % 7) + 1}.webp'" /></div>
-                  <div class="bike-info"><h3>${brand}</h3></div>
+                <div class="bike-item" data-brand="${escapeHTML(brand)}" data-set="${set}" data-index="${idx}" role="button" tabindex="0" aria-label="${escapeHTML(brand)}">
+                  <div class="bike-img-wrap"><img id="${uid}" src="${imgUrl}" alt="${escapeHTML(brand)}" style="object-fit: contain; padding: 10px;" onerror="this.onerror=null; this.src=window.HRzPlaceholderImage;" loading="lazy" /></div>
+                  <div class="bike-info"><h3>${escapeHTML(brand)}</h3></div>
                 </div>
-              `}).join('')).join('');
+              `;}).join('')).join('');
             })()}
           </div>
         </div>
@@ -371,22 +548,22 @@ class App {
           <a href="#catalog" class="text-link">View all gear <span>→</span></a>
         </div>
         <div class="category-grid">
-          <div class="category large" onclick="window.location.hash='catalog?category=Protection'">
+          <div class="category large" onclick="window.location.hash='#protection'">
             <video src="images/cat_vid_crash.mp4" autoplay loop muted playsinline class="category-vid"></video>
             
             <span><small>01</small> Crash Guards <b>→</b></span>
           </div>
-          <div class="category" onclick="window.location.hash='catalog?category=Helmets'">
+          <div class="category" onclick="window.location.hash='#helmets'">
             <video src="images/cat_vid_helmet.mp4" autoplay loop muted playsinline class="category-vid"></video>
             
             <span><small>02</small> Helmets <b>→</b></span>
           </div>
-          <div class="category" onclick="window.location.hash='catalog?category=Lights'">
+          <div class="category" onclick="window.location.hash='#lights'">
             <video src="images/cat_vid_fog.mp4" autoplay loop muted playsinline class="category-vid"></video>
             
             <span><small>03</small> Fog Lights <b>→</b></span>
           </div>
-          <div class="category" onclick="window.location.hash='catalog?category=Luggage'">
+          <div class="category" onclick="window.location.hash='#luggage'">
             <video src="images/cat_vid_luggage.mp4" autoplay loop muted playsinline class="category-vid"></video>
             
             <span><small>04</small> Luggage <b>→</b></span>
@@ -399,9 +576,12 @@ class App {
         <div class="section-head">
           <div><p class="eyebrow red">Rider approved</p><h2>THE <em>BESTSELLERS</em></h2></div>
           <div class="filters">
-            <button class="active" data-filter="all">All gear</button>
-            <button data-filter="Protection">Protection</button>
-          <button data-filter="Lights">Performance</button>
+            <button class="active" data-filter="all">All Gear</button>
+            <button data-filter="Helmets">Helmets</button>
+            <button data-filter="Protection">Crash Guards</button>
+            <button data-filter="Riding Gears">Riding Gear</button>
+            <button data-filter="Lights">Fog Lights</button>
+            <button data-filter="Luggage">Luggage</button>
           </div>
         </div>
         <div class="shop-toolbar">
@@ -409,8 +589,10 @@ class App {
           <div>
             <label>Sort <select id="home-sort-select">
               <option value="featured">Featured</option>
-              <option value="low">Price: low to high</option>
-              <option value="high">Price: high to low</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="rating">Customer rating</option>
+              <option value="name">Name A to Z</option>
             </select></label>
           </div>
         </div>
@@ -462,7 +644,7 @@ class App {
             <div>
               <span class="drop-tag">NEW / HELMETS</span>
               <h3>Premium Series</h3>
-              <a href="#catalog?category=Helmets">Explore now →</a>
+              <a href="#helmets">Explore now →</a>
             </div>
           </article>
           <article class="drop-card">
@@ -470,7 +652,7 @@ class App {
             <div>
               <span class="drop-tag">NEW / PROTECTION</span>
               <h3>Guard Series</h3>
-              <a href="#catalog?category=Bike%20Protection">Explore now →</a>
+              <a href="#protection">Explore now →</a>
             </div>
           </article>
         </div>
@@ -504,47 +686,56 @@ class App {
         <details><summary>Can I return gear?</summary><p>Yes. Unused gear can be returned within 7 days with a simple online return request. Fitment-related returns are always free.</p></details>
       </section>
 
+      ${recentProducts.length ? `
       <!-- Recently Viewed -->
       <section class="recent section">
         <div class="section-head">
           <div><p class="eyebrow red">Keep exploring</p><h2>RECENTLY <em>VIEWED</em></h2></div>
         </div>
         <div class="product-grid" id="recent-product-grid">
-          ${(() => { const recentIds = window.HRz.Storage.getRecentlyViewed(); let recentProducts = recentIds.map(id => window.HRz.DB.getProductById(id)).filter(p => p); if (recentProducts.length === 0) recentProducts = featuredProducts.slice(0, 4); return recentProducts.slice(0, 4).map(p => catalog.renderProductCard(p, activeBike, wishlist)).join(""); })()}
+          ${recentProducts.map(p => catalog.renderProductCard(p, activeBike, wishlist)).join("")}
         </div>
       </section>
+      ` : ""}
     `;
 
     // Bind events
     catalog.bindCardEvents(container);
 
-    // Filter buttons
+    // Home filter + sort state: the sort now applies to the currently
+    // filtered set (previously it re-fetched the unfiltered 8 and
+    // discarded the active filter).
+    let currentHomeFilter = "all";
+    let currentHomeSort = "featured";
+    const renderHomeGrid = () => {
+      const filtered = App.getHomeFilteredProducts(currentHomeFilter, activeBike, db);
+      const sorted = App.homeSortProducts(filtered, currentHomeSort);
+      const grid = container.querySelector("#home-product-grid");
+      const count = container.querySelector("#product-count");
+      if (grid) grid.innerHTML = sorted.map(p => catalog.renderProductCard(p, activeBike, wishlist)).join("");
+      if (count) count.textContent = `${sorted.length} products`;
+      catalog.bindCardEvents(container);
+      App.syncWishlistBadge();
+    };
+
+    // Filter buttons (guarded: a missing Catalog.getDepartment no longer throws)
     container.querySelectorAll(".filters button").forEach(b => {
       b.onclick = () => {
         container.querySelector(".filters .active")?.classList.remove("active");
         b.classList.add("active");
-        const filter = b.dataset.filter;
-        let filtered = filter === "all"
-          ? db.getRecommendedProducts(activeBike, null, 8)
-          : db.getProductsForBike(activeBike).filter(p => p.category === filter);
-        const grid = container.querySelector("#home-product-grid");
-        const count = container.querySelector("#product-count");
-        if (grid) grid.innerHTML = filtered.map(p => catalog.renderProductCard(p, activeBike, wishlist)).join("");
-        if (count) count.textContent = `${filtered.length} products`;
-        catalog.bindCardEvents(container);
+        currentHomeFilter = b.dataset.filter || "all";
+        renderHomeGrid();
       };
     });
 
-    // Sort
+    // Sort via the shared sorter (window.HRz.Catalog.sortProducts when
+    // present, local fallback comparators otherwise), applied to the
+    // currently filtered home set.
     const sortSelect = container.querySelector("#home-sort-select");
     if (sortSelect) {
       sortSelect.onchange = () => {
-        let items = [...db.getRecommendedProducts(activeBike, null, 8)];
-        if (sortSelect.value === "low") items.sort((a, b) => a.price - b.price);
-        if (sortSelect.value === "high") items.sort((a, b) => b.price - a.price);
-        const grid = container.querySelector("#home-product-grid");
-        if (grid) grid.innerHTML = items.map(p => catalog.renderProductCard(p, activeBike, wishlist)).join("");
-        catalog.bindCardEvents(container);
+        currentHomeSort = sortSelect.value || "featured";
+        renderHomeGrid();
       };
     }
 
@@ -578,47 +769,54 @@ class App {
     const bikeItems       = container.querySelectorAll(".bike-item");
 
     if (sliderContainer && bikeItems.length > 0) {
-      const NUM_BIKES = 7;
+      const brands = Object.keys(window.HRz.Menu.menuData.shopByBike);
+      const NUM_BIKES = brands.length; // Dynamic: 13 brands in catalog
       let filterTimer = null;
-      let scrollStopTimer = null;
+      let settleTimer = null;
       let lastActive = null;
+      let rafScrollId = null;
+      let autoScrollAnimId = null;
 
-      const inferBikeCategory = (brand, model) => {
-        const brandKey = String(brand || "").toLowerCase();
-        const modelKey = String(model || "").toLowerCase();
-
-        if (modelKey.includes("classic")) return "Classic";
-        if (modelKey.includes("himalayan") || modelKey.includes("tiger") || modelKey.includes("gs")) return "Adventure";
-        if (modelKey.includes("duke") || modelKey.includes("mt-15")) return "Naked";
-        if (modelKey.includes("ninja") || modelKey.includes("r15") || modelKey.includes("panigale")) return "Supersport";
-        if (brandKey.includes("royal enfield") && modelKey.includes("hunter")) return "Roadster";
-        return "Tourer";
-      };
-
-      // ─── helpers ──────────────────────────────────────────────────
+      // ─── Helpers ──────────────────────────────────────────────────
       const getScrollCenter = () => sliderContainer.scrollLeft + sliderContainer.clientWidth / 2;
       const getMid = (el) => el.offsetLeft + el.clientWidth / 2;
 
       const getClosestItem = () => {
         const center = getScrollCenter();
         let best = null, bestDist = Infinity;
-        bikeItems.forEach(el => {
+        for (let i = 0; i < bikeItems.length; i++) {
+          const el = bikeItems[i];
           const dist = Math.abs(getMid(el) - center);
-          if (dist < bestDist) { bestDist = dist; best = el; }
-        });
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = el;
+          }
+        }
         return best;
       };
 
-      const activateBike = (el, saveToStorage = true) => {
-        if (el === lastActive) return;
+      const inferBikeCategory = (brand, model) => {
+        const modelKey = String(model || "").toLowerCase();
+        if (modelKey.includes("classic")) return "Classic";
+        if (modelKey.includes("himalayan") || modelKey.includes("tiger") || modelKey.includes("gs")) return "Adventure";
+        if (modelKey.includes("duke") || modelKey.includes("mt-15")) return "Naked";
+        if (modelKey.includes("ninja") || modelKey.includes("r15") || modelKey.includes("panigale")) return "Supersport";
+        return "Roadster";
+      };
+
+      const activateBike = (el, updateProducts = true) => {
+        if (!el || el === lastActive) return;
         lastActive = el;
         bikeItems.forEach(i => i.classList.remove("active"));
         el.classList.add("active");
 
-        const { brand, model, variant, year } = el.dataset;
-        if (!brand || !model) return;
-        const bikeObj = { brand, model, variant, year, category: inferBikeCategory(brand, model) };
-        if (saveToStorage) window.HRz.Storage.setActiveBike(bikeObj);
+        if (!updateProducts) return;
+
+        const brand = el.dataset.brand || el.querySelector("h3")?.innerText?.trim();
+        if (!brand) return;
+        const brandModels = window.HRz.Menu.menuData.shopByBike[brand] || [];
+        const model = brandModels[0] || brand;
+        const bikeObj = { brand, model, category: inferBikeCategory(brand, model) };
 
         clearTimeout(filterTimer);
         filterTimer = setTimeout(() => {
@@ -631,141 +829,231 @@ class App {
           if (grid)  grid.innerHTML = items.map(p => catalog.renderProductCard(p, bikeObj, wishlist)).join("");
           if (count) count.textContent = `${items.length} products`;
           catalog.bindCardEvents(container);
-        }, 350);
+        }, 300);
       };
 
-      // ─── native scroll handling ───────────────────────────────────
-      sliderContainer.addEventListener("scroll", () => {
-        if (sliderContainer.dataset.isAutoScrolling === "true") return;
-        
-        const closest = getClosestItem();
-        if (closest) activateBike(closest, false);
-
-        // When scrolling stops completely
-        clearTimeout(scrollStopTimer);
-        scrollStopTimer = setTimeout(() => {
-          const currentClosest = getClosestItem();
-          const idx = Array.from(bikeItems).indexOf(currentClosest);
-          
-          // If we settled outside the middle set, teleport invisibly to the middle set
-          if (idx !== -1 && (idx < NUM_BIKES || idx >= NUM_BIKES * 2)) {
-            const middleIdx = (idx % NUM_BIKES) + NUM_BIKES; // map to middle set (7-13)
-            const targetEl = bikeItems[middleIdx];
-            
-            // Disable snapping temporarily for the jump
-            sliderContainer.style.scrollSnapType = "none";
-            const targetPos = getMid(targetEl) - sliderContainer.clientWidth / 2;
-            sliderContainer.scrollTo({ left: targetPos, behavior: "instant" });
-            
-            // Re-enable snapping in next frame
-            requestAnimationFrame(() => {
-              sliderContainer.style.scrollSnapType = ""; // restores to CSS default
-            });
-          }
-        }, 150);
-      }, { passive: true });
-
-      // ─── desktop drag support ─────────────────────────────────────
+      // ─── Interaction & Intro Control ──────────────────────────────
+      let isUserInteracting = false;
       let isDragging = false;
       let startX = 0, scrollLeftStart = 0, hasMoved = false;
 
-      sliderContainer.addEventListener("mousedown", e => {
+      const cancelIntroAnimation = () => {
+        if (sliderContainer.dataset.isAutoScrolling === "true") {
+          if (autoScrollAnimId) {
+            cancelAnimationFrame(autoScrollAnimId);
+            autoScrollAnimId = null;
+          }
+          sliderContainer.dataset.isAutoScrolling = "false";
+          sliderContainer.style.scrollSnapType = "";
+          sliderContainer.style.pointerEvents = "";
+        }
+      };
+
+      // ─── Touch Swiping Support ────────────────────────────────────
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      sliderContainer.addEventListener("touchstart", (e) => {
+        cancelIntroAnimation();
+        clearTimeout(settleTimer);
+        isUserInteracting = true;
+        hasMoved = false;
+        if (e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      sliderContainer.addEventListener("touchmove", (e) => {
+        cancelIntroAnimation();
+        if (e.touches.length > 0) {
+          const dx = Math.abs(e.touches[0].clientX - touchStartX);
+          if (dx > 8) hasMoved = true;
+        }
+      }, { passive: true });
+
+      const onTouchEnd = () => {
+        isUserInteracting = false;
+        scheduleSettleCheck();
+      };
+      sliderContainer.addEventListener("touchend", onTouchEnd, { passive: true });
+      sliderContainer.addEventListener("touchcancel", onTouchEnd, { passive: true });
+
+      // ─── Wheel & Trackpad Support ─────────────────────────────────
+      sliderContainer.addEventListener("wheel", () => {
+        cancelIntroAnimation();
+        scheduleSettleCheck();
+      }, { passive: true });
+
+      // ─── Desktop Drag Support ─────────────────────────────────────
+      sliderContainer.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        cancelIntroAnimation();
+        clearTimeout(settleTimer);
         isDragging = true;
+        isUserInteracting = true;
         hasMoved = false;
         startX = e.clientX;
         scrollLeftStart = sliderContainer.scrollLeft;
-        sliderContainer.style.scrollSnapType = "none"; // Disable snap while dragging
+        sliderContainer.style.scrollSnapType = "none";
         sliderContainer.style.cursor = "grabbing";
       });
 
-      window.addEventListener("mousemove", e => {
+      window.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-        e.preventDefault();
-        const walk = (e.clientX - startX) * 1.5;
-        if (Math.abs(walk) > 5) hasMoved = true;
+        const walk = (e.clientX - startX) * 1.0;
+        if (Math.abs(walk) > 8) hasMoved = true;
         sliderContainer.scrollLeft = scrollLeftStart - walk;
       });
 
-      window.addEventListener("mouseup", e => {
+      const onMouseUp = () => {
         if (!isDragging) return;
         isDragging = false;
+        isUserInteracting = false;
         sliderContainer.style.cursor = "grab";
-        sliderContainer.style.scrollSnapType = ""; // Re-enable snap
-      });
-      
-      sliderContainer.addEventListener("click", e => {
+        sliderContainer.style.scrollSnapType = "";
+        scheduleSettleCheck();
+      };
+      window.addEventListener("mouseup", onMouseUp);
+
+      // ─── Click / Tap Handling ─────────────────────────────────────
+      sliderContainer.addEventListener("click", (e) => {
         if (hasMoved) {
           e.preventDefault();
-          return; // It was a drag, ignore click
+          e.stopPropagation();
+          return; // Was a swipe/drag, do not navigate
         }
-        
         const clicked = e.target.closest(".bike-item");
-        if (clicked) {
-          const brandName = clicked.querySelector("h3").innerText;
-          if (clicked.classList.contains("active")) {
-            setTimeout(() => { window.location.hash = "#models?brand=" + encodeURIComponent(brandName); }, 150);
-          } else {
-            // Not active -> smoothly scroll it to the center
-            const targetPos = getMid(clicked) - sliderContainer.clientWidth / 2;
-            sliderContainer.scrollTo({ left: targetPos, behavior: "smooth" });
-            
-            // Add active class to clicked, remove from others
-            bikeItems.forEach(b => b.classList.remove("active"));
-            clicked.classList.add("active");
-            
-            setTimeout(() => { window.location.hash = "#models?brand=" + encodeURIComponent(brandName); }, 450);
-          }
+        if (!clicked) return;
+        const brandName = clicked.dataset.brand || clicked.querySelector("h3")?.innerText?.trim();
+        if (!brandName) return;
+
+        if (clicked.classList.contains("active")) {
+          window.location.hash = "#models?brand=" + encodeURIComponent(brandName);
+        } else {
+          const targetPos = getMid(clicked) - sliderContainer.clientWidth / 2;
+          sliderContainer.scrollTo({ left: targetPos, behavior: "smooth" });
+          activateBike(clicked);
         }
       });
-      
-      sliderContainer.addEventListener("dragstart", e => e.preventDefault());
+      sliderContainer.addEventListener("dragstart", (e) => e.preventDefault());
 
-      // ─── initial position & auto-scroll (BMW to Triumph) ────────
-      const startEl = bikeItems[NUM_BIKES + 2]; // BMW
-      const endEl = bikeItems[NUM_BIKES + 6];   // Triumph
-      
-      if (startEl && endEl) {
-        sliderContainer.dataset.isAutoScrolling = "true";
-        requestAnimationFrame(() => {
-          sliderContainer.scrollLeft = getMid(startEl) - sliderContainer.clientWidth / 2;
-          sliderContainer.dataset.isAutoScrolling = "false";
-        });
-        
+      // ─── Active Card Sync on Scroll (RAF-throttled) ────────────────
+      sliderContainer.addEventListener("scroll", () => {
+        if (sliderContainer.dataset.isAutoScrolling === "true") return;
+
+        if (!rafScrollId) {
+          rafScrollId = requestAnimationFrame(() => {
+            rafScrollId = null;
+            const closest = getClosestItem();
+            if (closest && closest !== lastActive) {
+              activateBike(closest);
+            }
+          });
+        }
+
+        scheduleSettleCheck();
+      }, { passive: true });
+
+      // ─── Glitch-Free Infinite Normalization ────────────────────────
+      const checkAndNormalizeLoop = () => {
+        // Never jump or normalize while user is actively touching or dragging!
+        if (isUserInteracting || isDragging || sliderContainer.dataset.isAutoScrolling === "true") {
+          return;
+        }
+
+        const currentClosest = getClosestItem();
+        if (!currentClosest) return;
+        const idx = Array.from(bikeItems).indexOf(currentClosest);
+        if (idx === -1) return;
+
+        // Middle set is [NUM_BIKES ... 2 * NUM_BIKES - 1] (indices 13 to 25)
+        if (idx < NUM_BIKES || idx >= NUM_BIKES * 2) {
+          const middleIdx = (idx % NUM_BIKES) + NUM_BIKES;
+          const targetEl = bikeItems[middleIdx];
+          if (!targetEl) return;
+
+          const targetPos = getMid(targetEl) - sliderContainer.clientWidth / 2;
+
+          // Seamless instant reposition
+          sliderContainer.style.scrollSnapType = "none";
+          sliderContainer.scrollLeft = targetPos;
+
+          lastActive = targetEl;
+          bikeItems.forEach(i => i.classList.remove("active"));
+          targetEl.classList.add("active");
+
+          requestAnimationFrame(() => {
+            sliderContainer.style.scrollSnapType = "";
+          });
+        }
+      };
+
+      const scheduleSettleCheck = () => {
+        clearTimeout(settleTimer);
+        // If native scrollend is supported, let it handle the settle check reliably
+        // Otherwise fallback to 400ms idle timer to avoid interrupting momentum scroll
+        if (!("onscrollend" in window)) {
+          settleTimer = setTimeout(checkAndNormalizeLoop, 400);
+        }
+      };
+
+      if ("onscrollend" in window) {
+        sliderContainer.addEventListener("scrollend", checkAndNormalizeLoop, { passive: true });
+      }
+
+      // ─── Initial Center & Intro Showcase Animation ────────────────
+      const middleStartEl = bikeItems[NUM_BIKES]; // Royal Enfield (start of middle set)
+      const middleEndEl = bikeItems[NUM_BIKES + 3]; // Triumph (3 brands ahead in middle set)
+
+      if (middleStartEl) {
+        // Position immediately at the canonical middle set
+        sliderContainer.scrollLeft = getMid(middleStartEl) - sliderContainer.clientWidth / 2;
+        activateBike(middleStartEl, false);
+      }
+
+      if (middleStartEl && middleEndEl) {
         const observer = new IntersectionObserver((entries) => {
           if (entries[0].isIntersecting) {
             observer.disconnect();
+            if (isUserInteracting || hasMoved) return;
+
             sliderContainer.dataset.isAutoScrolling = "true";
             sliderContainer.style.scrollSnapType = "none";
-            sliderContainer.style.pointerEvents = "none";
-            
-            const duration = 2000;
+
+            const duration = 1800;
             const startTime = performance.now();
-            
+            const startPos = getMid(middleStartEl) - sliderContainer.clientWidth / 2;
+            const endPos = getMid(middleEndEl) - sliderContainer.clientWidth / 2;
+
             const animateScroll = (time) => {
+              if (sliderContainer.dataset.isAutoScrolling !== "true") return; // User touched or swiped!
               const elapsed = time - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              const easeProgress = progress < 0.5 
-                ? 4 * progress * progress * progress 
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-              
-              const startPos = getMid(startEl) - sliderContainer.clientWidth / 2;
-              const endPos = getMid(endEl) - sliderContainer.clientWidth / 2;
-              
-              sliderContainer.scrollLeft = startPos + (endPos - startPos) * easeProgress;
-              
+              // Smooth cubic ease-out
+              const ease = 1 - Math.pow(1 - progress, 3);
+              sliderContainer.scrollLeft = startPos + (endPos - startPos) * ease;
+
+              const current = getClosestItem();
+              if (current && current !== lastActive) {
+                lastActive = current;
+                bikeItems.forEach(b => b.classList.remove("active"));
+                current.classList.add("active");
+              }
+
               if (progress < 1) {
-                requestAnimationFrame(animateScroll);
+                autoScrollAnimId = requestAnimationFrame(animateScroll);
               } else {
-                sliderContainer.style.scrollSnapType = "";
-                sliderContainer.style.pointerEvents = "";
                 sliderContainer.dataset.isAutoScrolling = "false";
-                activateBike(endEl, false);
+                sliderContainer.style.scrollSnapType = "";
+                activateBike(middleEndEl);
               }
             };
-            requestAnimationFrame(animateScroll);
+
+            autoScrollAnimId = requestAnimationFrame(animateScroll);
           }
         }, { threshold: 0.3 });
-        
+
         observer.observe(sliderContainer);
       }
     }
@@ -837,12 +1125,18 @@ class App {
       `}
     `;
     catalog.bindCardEvents(container);
+    this.syncWishlistBadge();
   }
 
   static getOrderStatusClass(status) {
     if (!status) return "";
     const lower = status.toLowerCase();
     if (lower.includes("placed")) return "placed";
+    // "Pending WhatsApp Confirmation" is an order received but not yet
+    // confirmed — it sits at the Ordered step (0% progress).
+    if (lower.includes("pending")) return "placed";
+    // "Confirmed" means processing has started.
+    if (lower.includes("confirm")) return "processing";
     if (lower.includes("processing")) return "processing";
     if (lower.includes("shipped") || lower.includes("transit")) return "shipped";
     if (lower.includes("delivered")) return "delivered";
@@ -1316,17 +1610,15 @@ class App {
       </div>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 24px; padding: 40px 4vw;">
         ${models.map((model, idx) => {
-          const fallbackUrl = `images/bike_t_${(idx % 7) + 1}.webp`;
-          const imgUrl = (window.HRzImageMap && window.HRzImageMap[model]) 
-            ? window.HRzImageMap[model].replace('.jpg', '_transparent.png') 
-            : fallbackUrl;
+          const fallbackUrl = (window.HRzImageMap && window.HRzImageMap[brand]) || `images/verified bikes/bike_images/${brand}.png`;
+          const imgUrl = (window.HRzImageMap && window.HRzImageMap[model]) || fallbackUrl;
           return `
           <div style="cursor:pointer; background: #111215; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); transition: transform 0.3s ease, box-shadow 0.3s ease;" 
                onclick="window.location.hash='#catalog?search=' + encodeURIComponent('${model}')"
                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.4)'"
                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
             <div style="padding: 20px; background: transparent; display: flex; align-items: center; justify-content: center; height: 180px;">
-              <img src="${imgUrl}" alt="${model}" style="max-height: 120%; max-width: 120%; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));" onerror="this.src='${fallbackUrl}'" />
+              <img src="${imgUrl}" alt="${model}" style="max-height: 120%; max-width: 120%; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));" onerror="this.onerror=null; this.src='${fallbackUrl}'" />
             </div>
             <div style="padding: 16px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
               <h3 style="margin: 0; font-size: 16px; color: #ffffff; font-weight: 700; text-transform: uppercase;">${model}</h3>

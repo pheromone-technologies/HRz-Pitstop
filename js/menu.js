@@ -91,42 +91,82 @@ class Menu {
     ridingGears: {
       sidebar: ["Rider Protection", "Casuals", "Rainwear & Visibility"],
       cards: [
-        { name: "Riding Jackets", image: "images/jacket.webp", search: "Riding Jackets" },
-        { name: "Gloves", image: "images/gloves.webp", search: "Gloves" },
-        { name: "Riding Pants", image: "images/hero-rider.webp", search: "Riding Pants" },
-        { name: "Boots", image: "images/boot.webp", search: "Boots" },
-        { name: "Protective Armour", image: "images/category_protection.webp", search: "Protective Armour" },
-        { name: "Riding Suits", image: "images/crash_guard_product.webp", search: "Riding Suits" }
+        { name: "Riding Jackets", image: "images/jacket.webp", link: "#catalog?category=Riding%20Jackets%20%26%20Apparel&subcategory=Jackets" },
+        { name: "Gloves", image: "images/gloves.webp", link: "#catalog?category=Gloves&subcategory=Riding%20Gloves" },
+        { name: "Riding Pants", image: "images/hero-rider.webp", link: "#catalog?category=Riding%20Pants&subcategory=Riding%20Pants" },
+        { name: "Boots", image: "images/boot.webp", link: "#catalog?category=Boots%20%26%20Footwear&subcategory=Boots%20%26%20Footwear" },
+        { name: "Protective Armour", image: "images/category_protection.webp", link: "#riding-gears?subcategory=Apparel" },
+        { name: "Riding Suits", image: "images/crash_guard_product.webp", link: "#riding-gears" }
       ]
     },
     luggageTouring: {
       sidebar: ["Bags And Backpacks", "Luggage Accessories", "Carriers and Backrest", "Touring Accessories"],
       cards: [
-        { name: "Saddle Bags", image: "images/saddlebags_product.webp", search: "Saddle Bags" },
-        { name: "Panniers", image: "images/category_luggage.webp", search: "Panniers" },
-        { name: "Top Boxes", image: "images/saddlebags.webp", search: "Top Boxes" },
-        { name: "Tank Bags", image: "images/category_luggage.webp", search: "Tank Bags" },
-        { name: "Luggage Racks", image: "images/phone_mount_product.webp", search: "Luggage Racks" },
-        { name: "Saddle Stays", image: "images/bash_plate_product.webp", search: "Saddle Stays" },
-        { name: "Touring Accessories", image: "images/fog_lights_product.webp", search: "Touring Accessories" }
+        { name: "Saddle Bags", image: "images/saddlebags_product.webp", link: "#catalog?category=Luggage%20%26%20Storage&subcategory=Touring%20Bags" },
+        { name: "Top Boxes", image: "images/saddlebags.webp", link: "#catalog?category=Luggage%20%26%20Storage&subcategory=Top%20Boxes" },
+        { name: "Tank Bags", image: "images/category_luggage.webp", link: "#catalog?category=Luggage%20%26%20Storage&subcategory=Tank%20Bags" },
+        { name: "Luggage Racks", image: "images/phone_mount_product.webp", link: "#catalog?category=Luggage%20%26%20Storage&subcategory=Luggage%20Racks%20%26%20Stays" },
+        { name: "Saddle Stays", image: "images/bash_plate_product.webp", link: "#catalog?category=Luggage%20%26%20Storage&subcategory=Luggage%20Racks%20%26%20Stays" },
+        { name: "Touring Accessories", image: "images/fog_lights_product.webp", link: "#luggage" }
       ]
     },
     helmetsAccessories: {
       sidebar: ["Helmets", "Accessories", "Rider Tech"],
       cards: [
-        { name: "Open-Face Helmet", image: "images/category_helmets.webp", search: "Open-Face Helmet" },
-        { name: "Full-Face Helmet", image: "images/helmet_product.webp", search: "Full-Face Helmet" },
-        { name: "Modular Helmet", image: "images/helmet.webp", search: "Modular Helmet" },
-        { name: "Helmet Visor", image: "images/helmet.webp", search: "Helmet Visor" },
-        { name: "Helmet Accessories", image: "images/intercom_product.webp", search: "Helmet Accessories" }
+        { name: "Full-Face Helmet", image: "images/helmet_product.webp", link: "#catalog?category=Helmets&subcategory=Full%20Face" },
+        { name: "Open-Face Helmet", image: "images/category_helmets.webp", link: "#catalog?category=Helmets&subcategory=Open%20Face" },
+        { name: "Modular Helmet", image: "images/helmet.webp", link: "#catalog?category=Helmets&subcategory=Modular" },
+        { name: "Helmet Visor", image: "images/helmet.webp", link: "#catalog?category=Helmets&subcategory=Visors%20%26%20Spoilers" },
+        { name: "Helmet Accessories", image: "images/intercom_product.webp", link: "#catalog?category=Helmets&subcategory=Helmet%20Accessories" }
       ]
     },
+    // Canonical exact brand values from products.json (verified counts:
+    // Moto Torque 169, AXOR 60, Legundary 5, Scala Gears 5, STUDDS 33,
+    // VEGA 63, RAIDA 82). "100%" is NOT a brand value in the data — it
+    // appears in product names, so brandLink() below keeps it as a
+    // keyword search instead of an empty ?brand= link.
     brands: [
-      "100%", "Axor Helmets", "Cramster", "DSG", "KYT", "Legundary Customs", 
-      "Lone Ranger", "MotoTorque", "Motul", "Raida", "Royal Enfield", "Scala", 
-      "SMK", "Steelbird", "Studds", "Vega"
+      "100%", "AXOR", "Cramster", "DSG", "KYT", "Legundary",
+      "Lone Ranger", "Moto Torque", "Motul", "RAIDA", "Royal Enfield", "Scala Gears",
+      "SMK", "Steelbird", "STUDDS", "VEGA"
     ]
   };
+
+  // Canonical-brand resolution for menu links. A label is canonical if
+  // it is an exact brand value in products.json, or matches one after
+  // normalisation (spaces/case stripped, e.g. an old "MotoTorque" label).
+  // Returns null when no real brand matches (e.g. "100%").
+  static canonicalBrand(label) {
+    const products = (window.HRz.DB && window.HRz.DB.products) || [];
+    if (!label) return null;
+    if (products.length) {
+      const exact = products.find(p => p.brand === label);
+      if (exact) return exact.brand;
+      const key = String(label).toLowerCase().replace(/[^a-z0-9]/g, "");
+      const matches = products.filter(p => p.brand && String(p.brand).toLowerCase().replace(/[^a-z0-9]/g, "") === key);
+      if (matches.length) {
+        // Most frequent casing wins; the catalog brand filter is
+        // normalised anyway, so all casings of the brand match.
+        const counts = {};
+        matches.forEach(p => { counts[p.brand] = (counts[p.brand] || 0) + 1; });
+        return Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0];
+      }
+      return null;
+    }
+    return label;
+  }
+
+  // Brand links emit the canonical exact name as ?brand= (the catalog
+  // resolves it, normalised). Labels with no real brand fall back to a
+  // keyword ?search= link so they never land on an empty brand filter.
+  static brandLink(label) {
+    const canonical = this.canonicalBrand(label);
+    if (canonical && canonical !== "100%") {
+      return `#catalog?brand=${encodeURIComponent(canonical)}`;
+    }
+    if (!canonical) return `#catalog?search=${encodeURIComponent(label)}`;
+    return `#catalog?search=${encodeURIComponent(label)}`;
+  }
 
   static init() {
     console.log("Initializing HRz Pitstop Optimized Navigation & Menu Module...");
@@ -300,16 +340,16 @@ class Menu {
             </div>
             <div class="sidebar-card-grid-layout">
               <div class="mega-sidebar-nav">
-                ${ridingGears.sidebar.map((item, idx) => `
-                  <button class="sidebar-btn ${idx === 0 ? 'active' : ''}">
+                ${ridingGears.sidebar.map(item => `
+                  <a class="sidebar-btn" href="#catalog?category=Riding%20Gears&subcategory=${encodeURIComponent(item)}" onclick="window.HRz.Menu.closeAll()">
                     <span>${escapeHTML(item)}</span>
                     <i>›</i>
-                  </button>
+                  </a>
                 `).join("")}
               </div>
               <div class="mega-card-grid cols-4">
                 ${ridingGears.cards.map(c => `
-                  <a class="product-menu-card" href="#catalog?search=${encodeURIComponent(c.search || c.name)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="product-menu-card" href="${c.link || ('#catalog?search=' + encodeURIComponent(c.search || c.name))}" onclick="window.HRz.Menu.closeAll()">
                     <div class="card-img-box">
                       <img src="${c.image}" alt="${escapeHTML(c.name)}" />
                       <span class="plus-badge">+</span>
@@ -331,16 +371,16 @@ class Menu {
             </div>
             <div class="sidebar-card-grid-layout">
               <div class="mega-sidebar-nav">
-                ${luggageTouring.sidebar.map((item, idx) => `
-                  <button class="sidebar-btn ${idx === 0 ? 'active' : ''}">
+                ${luggageTouring.sidebar.map(item => `
+                  <a class="sidebar-btn" href="#catalog?category=Luggage%20%26%20Touring&subcategory=${encodeURIComponent(item)}" onclick="window.HRz.Menu.closeAll()">
                     <span>${escapeHTML(item)}</span>
                     <i>›</i>
-                  </button>
+                  </a>
                 `).join("")}
               </div>
               <div class="mega-card-grid cols-4">
                 ${luggageTouring.cards.map(c => `
-                  <a class="product-menu-card" href="#catalog?search=${encodeURIComponent(c.search)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="product-menu-card" href="${c.link || ('#catalog?search=' + encodeURIComponent(c.search || c.name))}" onclick="window.HRz.Menu.closeAll()">
                     <div class="card-img-box">
                       <img src="${c.image}" alt="${escapeHTML(c.name)}" />
                       <span class="plus-badge">+</span>
@@ -362,16 +402,23 @@ class Menu {
             </div>
             <div class="sidebar-card-grid-layout">
               <div class="mega-sidebar-nav">
-                ${helmetsAccessories.sidebar.map((item, idx) => `
-                  <button class="sidebar-btn ${idx === 0 ? 'active' : ''}">
-                    <span>${escapeHTML(item)}</span>
-                    <i>›</i>
-                  </button>
-                `).join("")}
+                ${helmetsAccessories.sidebar.map(item => {
+                  let subHref = item === "Helmets" 
+                    ? "#catalog?category=Helmets%20%26%20Accessories" 
+                    : (item === "Accessories" 
+                      ? "#catalog?category=Helmets%20%26%20Accessories&subcategory=Helmet%20Accessories" 
+                      : `#catalog?category=Helmets%20%26%20Accessories&subcategory=${encodeURIComponent(item)}`);
+                  return `
+                    <a class="sidebar-btn" href="${subHref}" onclick="window.HRz.Menu.closeAll()">
+                      <span>${escapeHTML(item)}</span>
+                      <i>›</i>
+                    </a>
+                  `;
+                }).join("")}
               </div>
               <div class="mega-card-grid cols-3">
                 ${helmetsAccessories.cards.map(c => `
-                  <a class="product-menu-card large-card" href="#catalog?search=${encodeURIComponent(c.search)}" onclick="window.HRz.Menu.closeAll()">
+                  <a class="product-menu-card large-card" href="${c.link || ('#catalog?search=' + encodeURIComponent(c.search || c.name))}" onclick="window.HRz.Menu.closeAll()">
                     <div class="card-img-box">
                       <img src="${c.image}" alt="${escapeHTML(c.name)}" />
                       <span class="plus-badge">+</span>
@@ -393,7 +440,7 @@ class Menu {
             </div>
             <div class="mega-brand-box-grid">
               ${brands.map(b => `
-                <a class="brand-box" href="#catalog?search=${encodeURIComponent(b)}" onclick="window.HRz.Menu.closeAll()">
+                <a class="brand-box" href="${this.brandLink(b)}" onclick="window.HRz.Menu.closeAll()">
                   <div class="brand-logo-text">${escapeHTML(b)}</div>
                 </a>
               `).join("")}
@@ -405,11 +452,11 @@ class Menu {
       <!-- ROW 2 -->
       <div class="mega-nav-bar-row row-2">
         <div class="mega-nav-item direct-link">
-          <a class="mega-title" href="#catalog?search=Performance" onclick="window.HRz.Menu.closeAll()">PERFORMANCE ACCESSORIES</a>
+          <a class="mega-title" href="#catalog?category=Performance" onclick="window.HRz.Menu.closeAll()">PERFORMANCE ACCESSORIES</a>
         </div>
         
         <div class="mega-nav-item direct-link">
-          <a class="mega-title" href="#catalog?search=Lighting" onclick="window.HRz.Menu.closeAll()">LIGHTING</a>
+          <a class="mega-title" href="#catalog?category=Lighting%20%26%20Electrical" onclick="window.HRz.Menu.closeAll()">LIGHTING</a>
         </div>
 
         <div class="mega-nav-item direct-link">
@@ -468,13 +515,10 @@ class Menu {
       }
     });
 
-    navContainer.querySelectorAll(".mega-sidebar-nav .sidebar-btn").forEach(btn => {
-      btn.onclick = (e) => {
-        e.stopPropagation();
-        const parentNav = btn.parentElement;
-        parentNav.querySelectorAll(".sidebar-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-      };
+    navContainer.querySelectorAll(".mega-dropdown a").forEach(link => {
+      link.addEventListener("click", () => {
+        window.HRz.Menu.closeAll();
+      });
     });
   }
 
@@ -610,7 +654,7 @@ class Menu {
                 }).join("")}
               </div>
               <div class="mobile-view-all-wrap">
-                <a class="mobile-view-all-btn" href="#catalog?category=Protection">VIEW ALL ACCESSORIES &rarr;</a>
+                <a class="mobile-view-all-btn" href="#catalog?category=Crash%20Protection">VIEW ALL ACCESSORIES &rarr;</a>
               </div>
             </div>
           </div>
@@ -623,7 +667,7 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
-                <a class="mobile-list-btn" href="#catalog?search=Performance">
+                <a class="mobile-list-btn" href="#catalog?category=Performance">
                   <span>All Performance Accessories</span>
                   <i>&rarr;</i>
                 </a>
@@ -645,7 +689,7 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
-                <a class="mobile-list-btn" href="#catalog?category=Lights">
+                <a class="mobile-list-btn" href="#catalog?category=Lighting%20%26%20Electrical">
                   <span>All Lighting</span>
                   <i>&rarr;</i>
                 </a>
@@ -667,12 +711,12 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
-                <a class="mobile-list-btn" href="#catalog?category=Riding%20Gears">
+                <a class="mobile-list-btn" href="#catalog?category=Riding%20Gear">
                   <span>All Riding Gears</span>
                   <i>&rarr;</i>
                 </a>
                 ${ridingGears.cards.map(c => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(c.search || c.name)}">
+                  <a class="mobile-list-btn" href="${c.link || ('#catalog?search=' + encodeURIComponent(c.search || c.name))}">
                     <span>${escapeHTML(c.name)}</span>
                     <i>&rarr;</i>
                   </a>
@@ -689,12 +733,12 @@ class Menu {
             </button>
             <div class="accordion-body">
               <div class="mobile-list-vertical">
-                <a class="mobile-list-btn" href="#catalog?category=Luggage">
+                <a class="mobile-list-btn" href="#catalog?category=Luggage%20%26%20Storage">
                   <span>All Luggage & Touring</span>
                   <i>&rarr;</i>
                 </a>
                 ${luggageTouring.cards.map(l => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(l.search || l.name)}">
+                  <a class="mobile-list-btn" href="${l.link || ('#catalog?search=' + encodeURIComponent(l.search || l.name))}">
                     <span>${escapeHTML(l.name)}</span>
                     <i>&rarr;</i>
                   </a>
@@ -716,7 +760,7 @@ class Menu {
                   <i>&rarr;</i>
                 </a>
                 ${helmetsAccessories.cards.map(h => `
-                  <a class="mobile-list-btn" href="#catalog?search=${encodeURIComponent(h.search || h.name)}">
+                  <a class="mobile-list-btn" href="${h.link || ('#catalog?search=' + encodeURIComponent(h.search || h.name))}">
                     <span>${escapeHTML(h.name)}</span>
                     <i>&rarr;</i>
                   </a>
@@ -734,7 +778,7 @@ class Menu {
             <div class="accordion-body">
               <div class="mobile-brands-grid">
                 ${brands.map(b => `
-                  <a class="mobile-brand-chip" href="#catalog?search=${encodeURIComponent(b)}">${escapeHTML(b)}</a>
+                  <a class="mobile-brand-chip" href="${this.brandLink(b)}">${escapeHTML(b)}</a>
                 `).join("")}
               </div>
             </div>

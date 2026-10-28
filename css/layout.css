@@ -143,10 +143,13 @@
 .bike-slider-container {
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   padding: 50px 0;
   box-sizing: border-box;
   scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y;
   scrollbar-width: none;
   cursor: grab;
   user-select: none;
@@ -159,9 +162,12 @@
   gap: 30px;
   align-items: center;
   padding: 0 calc(50% - 100px);
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 .bike-item {
   scroll-snap-align: center;
+  scroll-snap-stop: normal;
   flex: 0 0 200px;
   width: 200px;
   transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1), filter 0.45s ease, opacity 0.45s ease, background 0.45s ease;
@@ -176,7 +182,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  will-change: transform, filter, opacity;
+  will-change: transform, opacity;
   -webkit-transform: translateZ(0) scale(0.72) rotateY(18deg);
 }
 .bike-item.active {
@@ -801,6 +807,135 @@
 .catalog-container { display: block; max-width: 1440px; margin: 0 auto; }
 .catalog-sidebar { display: none; } /* Hide the old static sidebar */
 
+/* ---- Catalog Category & Subcategory Slider Bars ---- */
+.catalog-nav-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.scrollable-nav-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.scroll-arrow-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(18, 24, 30, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 3;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.45);
+}
+.scroll-arrow-btn:hover {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  transform: scale(1.08);
+}
+.scroll-arrow-btn:active {
+  transform: scale(0.95);
+}
+.scroll-arrow-btn.prev {
+  margin-right: 8px;
+}
+.scroll-arrow-btn.next {
+  margin-left: 8px;
+}
+
+.catalog-slider-track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+  align-items: center;
+  padding: 4px 2px;
+  flex: 1;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+.catalog-slider-track::-webkit-scrollbar {
+  display: none;
+}
+.catalog-slider-track:active {
+  cursor: grabbing;
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #c9d1d9;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+  flex-shrink: 0;
+}
+.nav-pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+.nav-pill.active {
+  background: var(--red) !important;
+  border-color: var(--red) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(229, 57, 53, 0.35);
+}
+.nav-pill .pill-count {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #8b949e;
+  transition: all 0.2s ease;
+}
+.nav-pill.active .pill-count {
+  background: rgba(0, 0, 0, 0.25) !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 768px) {
+  .scroll-arrow-btn {
+    width: 28px;
+    height: 28px;
+  }
+  .scroll-arrow-btn.prev {
+    margin-right: 4px;
+  }
+  .scroll-arrow-btn.next {
+    margin-left: 4px;
+  }
+  .nav-pill {
+    padding: 6px 13px;
+    font-size: 12.5px;
+  }
+}
+
+
 /* ---- Premium Filter Drawer Overrides ---- */
 
 .filter-drawer-head {
@@ -962,7 +1097,28 @@
 
 .cat-watermark { position: absolute; bottom: 16px; right: 16px; height: clamp(24px, 6vw, 32px); width: auto; opacity: 0.9; z-index: 2; object-fit: contain; }
 
-
-
-
-
+/* ---- UI-worker: liquid-glass surfaces, no layout shift, 375px-safe ---- */
+.hero-bike-action-card, .category, .drop-card, .review-card {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.35s var(--spring), box-shadow 0.3s ease;
+}
+.category:active, .drop-card:active { transform: scale(0.98); }
+.bike-item {
+  background: rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+/* Reserve media space so a missing/slow image never shifts the layout. */
+.hero > img, .statement-image img, .drop-card img { aspect-ratio: 4 / 3; width: 100%; height: auto; object-fit: cover; }
+.hero > img { aspect-ratio: auto; height: 100%; }
+.category { overflow: hidden; }
+.category .category-vid { width: 100%; height: 100%; object-fit: cover; }
+/* Mobile-first guardrails (base = 375px): never let a row force sideways scroll. */
+.section, .section-head, .category-grid, .drop-grid, .service-strip, .bike-slider-container {
+  max-width: 100%; min-width: 0;
+}
+.section-head { flex-wrap: wrap; }
+.section-head h2 { overflow-wrap: break-word; }

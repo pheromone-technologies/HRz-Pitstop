@@ -69,7 +69,7 @@ class GarageManager {
           <button type="button" class="close-btn" id="closeBikeModalBtn" aria-label="Close modal">✕</button>
         </div>
         <div class="modal-body">
-          <p class="modal-subtitle">Choose your exact make and variant to see guaranteed fitment parts only.</p>
+          <p class="modal-subtitle">Choose your exact make and variant.</p>
           
           <form id="bikeSelectForm" class="bike-select-form">
             <div class="form-group">
@@ -243,7 +243,22 @@ class GarageManager {
     const catalog = window.HRz.Catalog;
     const garage = window.HRz.Storage.getGarage();
     const activeBike = window.HRz.Storage.getActiveBike();
-    const recommendedProducts = db.getRecommendedProducts(activeBike, null, 10);
+    let recommendedProducts = db.getRecommendedProducts(activeBike, null, 10);
+    // No fitment data exists for real products (no bike_compatibility
+    // field; checkFitment returns null — or {supported: false} under the
+    // logic worker's shape — for every real product), so a bike-filtered
+    // list is empty. Never render empty: show all gear with a clear
+    // note instead. Never invent fitment.
+    let fitmentDataUnavailable = false;
+    if (activeBike && (!recommendedProducts || recommendedProducts.length === 0)) {
+      fitmentDataUnavailable = true;
+      try {
+        const all = db.getProducts ? db.getProducts() : (db.products || []);
+        recommendedProducts = Array.isArray(all) ? all.slice(0, 10) : [];
+      } catch (e) {
+        recommendedProducts = [];
+      }
+    }
     const escapeHTML = window.HRz.Utils.escapeHTML;
 
     container.innerHTML = `
@@ -264,7 +279,7 @@ class GarageManager {
             <p class="eyebrow red">Choose your ride</p>
             <h2>${activeBike ? `${escapeHTML(activeBike.brand)} ${escapeHTML(activeBike.model)}` : "Pick a Bike"}</h2>
           </div>
-          <p style="max-width: 620px; color: var(--mute);">Select a bike below to view guaranteed fitment parts for your motorcycle.</p>
+          <p style="max-width: 620px; color: var(--mute);">Select a bike below to view parts for your motorcycle.</p>
         </div>
 
         <div class="garage-chip-row" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:16px;">
@@ -274,14 +289,15 @@ class GarageManager {
               <small>${escapeHTML(activeBike.variant || "")} (${escapeHTML(activeBike.year || "")})</small>
             ` : `
               <strong>Select Your Bike</strong>
-              <small>to filter the demo catalog</small>
+              <small>to see parts for your bike</small>
             `}
           </div>
           
         </div>
 
+        ${fitmentDataUnavailable ? `<div class="fitment-note-banner" style="padding: 12px 16px; border: 1px solid #333; border-radius: 12px; margin-bottom: 16px; color: var(--mute);">Fitment data not available for this bike yet — showing all gear</div>` : ""}
         <div class="product-grid inner-section" id="garageRecommendationGrid">
-          ${recommendedProducts.length ? recommendedProducts.map(p => catalog.renderProductCard(p, activeBike, window.HRz.Storage.getWishlist())).join("") : `<div class="empty-state-card"><p>No matches yet. Pick a bike to see related demo products.</p></div>`}
+          ${recommendedProducts.length ? recommendedProducts.map(p => catalog.renderProductCard(p, activeBike, window.HRz.Storage.getWishlist())).join("") : `<div class="empty-state-card"><p>No products available right now.</p></div>`}
         </div>
       </section>
 

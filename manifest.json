@@ -1,0 +1,19 @@
+{
+  "name": "HRz Pitstop",
+  "short_name": "HRz",
+  "description": "India's motorcycle accessories and riding gear store. Crash guards, helmets, LED fog lights, luggage and verified bike fitment.",
+  "start_url": "./index.html#home",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d0e10",
+  "theme_color": "#0d0e10",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23e13b31'/><text x='50' y='68' font-size='52' font-weight='900' text-anchor='middle' fill='white' font-family='sans-serif'>HRz</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

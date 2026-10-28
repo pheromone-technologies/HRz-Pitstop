@@ -5,13 +5,15 @@
 
 window.HRz = window.HRz || {};
 
+const CACHE_VERSION = "v47";
 const CACHE_KEYS = {
-  BIKES: "hrz_db_bikes_v20",
-  PRODUCTS: "hrz_db_products_v20",
-  COMPATIBILITY: "hrz_db_compatibility_v20",
-  REVIEWS: "hrz_db_reviews_v20",
-  ORDERS: "hrz_db_orders_v20",
-  BUNDLES: "hrz_db_bundles_v20"
+  VERSION: "hrz_db_version_v47",
+  BIKES: "hrz_db_bikes_v47",
+  PRODUCTS: "hrz_db_products_v47",
+  COMPATIBILITY: "hrz_db_compatibility_v47",
+  REVIEWS: "hrz_db_reviews_v47",
+  ORDERS: "hrz_db_orders_v47",
+  BUNDLES: "hrz_db_bundles_v47"
 };
 
 const DEFAULT_BIKES = [
@@ -279,29 +281,55 @@ class DBService {
   static bundles = [];
   static initialized = false;
   static loadError = null;
+  static lastFitmentStatus = null;
+  static lastFitmentCheck = null;
 
   static async init() {
     if (this.initialized) return;
 
     try {
       if (window.HRz.Storage?.cleanupLegacyKeys) {
-        window.HRz.Storage.cleanupLegacyKeys([...Object.values(CACHE_KEYS), "hrz_db_bikes_v16", "hrz_db_products_v16", "hrz_db_compatibility_v16", "hrz_db_reviews_v16", "hrz_db_orders_v16", "hrz_db_bundles_v16", "hrz-pitstop-state-v6", "hrz_db_bikes_v7", "hrz_db_products_v7", "hrz_db_compatibility_v7", "hrz_db_reviews_v7", "hrz_db_orders_v7", "hrz_db_bundles_v7"]);
+        window.HRz.Storage.cleanupLegacyKeys([...Object.values(CACHE_KEYS)]);
       }
 
-      const cachedBikes = localStorage.getItem(CACHE_KEYS.BIKES);
-      const cachedProducts = localStorage.getItem(CACHE_KEYS.PRODUCTS);
-      const cachedComp = localStorage.getItem(CACHE_KEYS.COMPATIBILITY);
-      const cachedReviews = localStorage.getItem(CACHE_KEYS.REVIEWS);
-      const cachedOrders = localStorage.getItem(CACHE_KEYS.ORDERS);
-      const cachedBundles = localStorage.getItem(CACHE_KEYS.BUNDLES);
+      const readCache = (key) => {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      };
+      const parseCache = (raw, fallback) => {
+        if (!raw) return fallback;
+        try {
+          const parsed = JSON.parse(raw);
+          return parsed === null || parsed === undefined ? fallback : parsed;
+        } catch (e) {
+          console.warn("Ignoring corrupt DB cache entry:", e);
+          return fallback;
+        }
+      };
+      // Version guard: a cache written by an older build (or a partial
+      // write) must not be trusted — fall through to the JSON fetch.
+      const cachedVersion = readCache(CACHE_KEYS.VERSION);
+      const cacheVersionOk = cachedVersion === CACHE_VERSION;
+      const cachedBikes = readCache(CACHE_KEYS.BIKES);
+      const cachedProducts = readCache(CACHE_KEYS.PRODUCTS);
+      const cachedComp = readCache(CACHE_KEYS.COMPATIBILITY);
+      const cachedReviews = readCache(CACHE_KEYS.REVIEWS);
+      const cachedOrders = readCache(CACHE_KEYS.ORDERS);
+      const cachedBundles = readCache(CACHE_KEYS.BUNDLES);
+      const parsedProducts = cacheVersionOk ? parseCache(cachedProducts, null) : null;
+      const parsedBikes = cacheVersionOk ? parseCache(cachedBikes, null) : null;
+      const parsedComp = cacheVersionOk ? parseCache(cachedComp, null) : null;
+      const cacheUsable = cacheVersionOk && Array.isArray(parsedProducts)
+        && Array.isArray(parsedBikes) && Array.isArray(parsedComp);
 
-      if (cachedBikes && cachedProducts && cachedComp) {
-        this.bikes = JSON.parse(cachedBikes);
-        this.products = JSON.parse(cachedProducts);
-        this.compatibility = JSON.parse(cachedComp);
-        this.reviews = cachedReviews ? JSON.parse(cachedReviews) : DEFAULT_REVIEWS;
-        this.orders = cachedOrders ? JSON.parse(cachedOrders) : DEFAULT_ORDERS;
-        this.bundles = cachedBundles ? JSON.parse(cachedBundles) : DEFAULT_BUNDLES;
+      if (cacheUsable) {
+        // Cache wins: this is what lets admin edits and checkout orders
+        // survive a reload instead of being overwritten by the JSON files.
+        this.bikes = parsedBikes;
+        this.products = parsedProducts;
+        this.compatibility = parsedComp;
+        this.reviews = parseCache(cachedReviews, DEFAULT_REVIEWS);
+        this.orders = parseCache(cachedOrders, DEFAULT_ORDERS);
+        this.bundles = parseCache(cachedBundles, DEFAULT_BUNDLES);
       } else {
         try {
           const [bRes, pRes, cRes, rRes, oRes, bdRes] = await Promise.all([
@@ -321,6 +349,25 @@ class DBService {
           this.bundles = bdRes;
           this.loadError = null;
         } catch (fetchErr) {
+          // Fetch failed (e.g. file://): fall back to any parseable cache
+          // rather than zeroing the catalogue, if one exists.
+          const fallbackProducts = parseCache(cachedProducts, null);
+          const fallbackBikes = parseCache(cachedBikes, null);
+          if (Array.isArray(fallbackProducts) && fallbackProducts.length) {
+            this.products = fallbackProducts;
+            this.bikes = Array.isArray(fallbackBikes) ? fallbackBikes : [];
+            this.compatibility = parseCache(cachedComp, []);
+            this.reviews = parseCache(cachedReviews, DEFAULT_REVIEWS);
+            this.orders = parseCache(cachedOrders, DEFAULT_ORDERS);
+            this.bundles = parseCache(cachedBundles, DEFAULT_BUNDLES);
+            this.loadError = {
+              message: "Live product files could not be fetched; showing the last saved catalogue instead.",
+              details: fetchErr
+            };
+            this._persist();
+            this.initialized = true;
+            return;
+          }
           this.loadError = {
             message: "Unable to load the dataset. Serve this site over http://localhost instead of opening index.html with file://.",
             details: fetchErr
@@ -362,15 +409,32 @@ class DBService {
   }
 
   static _persist() {
-    try {
-      localStorage.setItem(CACHE_KEYS.BIKES, JSON.stringify(this.bikes));
-      // PRODUCTS array is too large (~11MB), do not save to localStorage
-      localStorage.setItem(CACHE_KEYS.COMPATIBILITY, JSON.stringify(this.compatibility));
-      localStorage.setItem(CACHE_KEYS.REVIEWS, JSON.stringify(this.reviews));
-      localStorage.setItem(CACHE_KEYS.ORDERS, JSON.stringify(this.orders));
-      localStorage.setItem(CACHE_KEYS.BUNDLES, JSON.stringify(this.bundles));
-    } catch (e) {
-      console.warn("LocalStorage persist error:", e);
+    // Previously this never wrote PRODUCTS, yet init() required the
+    // products cache key — so every reload re-fetched the JSON files and
+    // wiped admin edits and checkout orders. The products file is ~1.5 MB
+    // as JSON (not ~11 MB), so it is written like everything else.
+    // Each key is written independently: if the quota rejects the large
+    // products write, the smaller collections (orders, compatibility,
+    // reviews) are still saved instead of losing everything.
+    const entries = [
+      [CACHE_KEYS.VERSION, CACHE_VERSION],
+      [CACHE_KEYS.BIKES, this.bikes],
+      [CACHE_KEYS.PRODUCTS, this.products],
+      [CACHE_KEYS.COMPATIBILITY, this.compatibility],
+      [CACHE_KEYS.REVIEWS, this.reviews],
+      [CACHE_KEYS.ORDERS, this.orders],
+      [CACHE_KEYS.BUNDLES, this.bundles]
+    ];
+    const failed = [];
+    for (const [key, value] of entries) {
+      try {
+        localStorage.setItem(key, typeof value === "string" ? value : JSON.stringify(value));
+      } catch (e) {
+        failed.push(key);
+        console.warn("LocalStorage persist failed for", key, e);
+      }
+    }
+    if (failed.length) {
       window.HRz?.Utils?.showToast("Could not save the database cache. The browser storage quota may be full.", "error");
     }
   }
@@ -389,7 +453,58 @@ class DBService {
     return Array.from(cats).sort();
   }
 
+  // Whether any fitment data exists for the REAL catalogue at all:
+  // a product bike_compatibility field, or a compatibility.json row whose
+  // productId is a real product id. On the current data both are absent
+  // (compatibility.json references only 6 demo ids), so this is false and
+  // no fitment can honestly be claimed for any bike.
+  static hasFitmentData() {
+    const productIds = new Set(this.products.map(prod => prod.id));
+    if (this.products.some(prod => Array.isArray(prod.bike_compatibility) && prod.bike_compatibility.length > 0)) return true;
+    return this.compatibility.some(c => productIds.has(c.productId));
+  }
+
+  // Marked fitment status for one product/bike. This is the
+  // clearly-marked empty-with-reason result: { supported, reason,
+  // isCompatible, fitment }. Reasons: "no-bike-selected",
+  // "no-fitment-data" (no data exists for any real product — never invent
+  // a mapping), "not-compatible" (data exists but this product does not
+  // match), or null when compatible. checkFitment() below still returns
+  // the fitment object or null for backward compatibility, because
+  // callers (product page, smartSearch, getProductsForBike) treat a
+  // truthy value as "compatible" — returning a truthy no-data object
+  // there would wrongly mark every product compatible.
+  static getFitmentStatus(productId, activeBike) {
+    if (!activeBike) {
+      return { supported: false, reason: "no-bike-selected", isCompatible: false, fitment: null };
+    }
+    const fitment = this._checkFitmentInternal(productId, activeBike);
+    if (fitment) {
+      return { supported: true, reason: null, isCompatible: true, fitment };
+    }
+    if (!this.hasFitmentData()) {
+      return { supported: false, reason: "no-fitment-data", isCompatible: false, fitment: null };
+    }
+    return { supported: true, reason: "not-compatible", isCompatible: false, fitment: null };
+  }
+
   static checkFitment(productId, activeBike) {
+    if (!activeBike) {
+      this.lastFitmentStatus = { supported: false, reason: "no-bike-selected", isCompatible: false, fitment: null };
+      return null;
+    }
+    const fitment = this._checkFitmentInternal(productId, activeBike);
+    this.lastFitmentStatus = fitment
+      ? { supported: true, reason: null, isCompatible: true, fitment }
+      : (this.hasFitmentData()
+        ? { supported: true, reason: "not-compatible", isCompatible: false, fitment: null }
+        : { supported: false, reason: "no-fitment-data", isCompatible: false, fitment: null });
+    // Alias so callers can read the reason without a second call.
+    this.lastFitmentCheck = this.lastFitmentStatus;
+    return fitment;
+  }
+
+  static _checkFitmentInternal(productId, activeBike) {
     if (!activeBike) return null;
 
     const product = this.getProductById(productId);
@@ -475,8 +590,24 @@ class DBService {
 
   static getProductsForBike(activeBike) {
     const visibleProducts = this.products.filter(p => p.isVisible !== false);
-    if (!activeBike) return visibleProducts;
-    return visibleProducts.filter(p => this.checkFitment(p.id, activeBike) !== null);
+    if (!activeBike) {
+      const all = [...visibleProducts];
+      all.supported = true;
+      all.reason = null;
+      all.fitmentStatus = { supported: true, reason: null };
+      return all;
+    }
+    const matched = visibleProducts.filter(p => this.checkFitment(p.id, activeBike) !== null);
+    // Array (so .filter/.map/.slice callers keep working) carrying the
+    // marked empty-with-reason result instead of a bare empty list when
+    // no fitment data exists: matched.supported === false and
+    // matched.reason === "no-fitment-data". Callers degrade gracefully
+    // by checking those properties before rendering an empty grid.
+    matched.supported = this.hasFitmentData();
+    matched.reason = this.hasFitmentData() ? null : "no-fitment-data";
+    matched.fitmentStatus = { supported: matched.supported, reason: matched.reason };
+    matched.noFitmentData = !this.hasFitmentData();
+    return matched;
   }
 
   static getRecommendedProducts(activeBike, excludeId = null, limit = 10) {
@@ -510,7 +641,14 @@ class DBService {
       }
       list = curated;
     }
-    return list.slice(0, limit);
+    const result = list.slice(0, limit);
+    if (activeBike && list && typeof list.supported !== "undefined") {
+      result.supported = list.supported;
+      result.reason = list.reason;
+      result.fitmentStatus = list.fitmentStatus;
+      result.noFitmentData = list.noFitmentData;
+    }
+    return result;
   }
 
   static getCompatibleBikesForProduct(productId) {
@@ -552,10 +690,16 @@ class DBService {
     };
     this.products.unshift(newProduct);
     this._persist();
-    this.markCatalogUnsaved();
     if (window.HRz?.Storage) {
       window.HRz.Storage.addAuditLog(`Added new product "${newProduct.name}" (SKU: ${newProduct.sku})`);
     }
+    try {
+      fetch('/api/update-product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: newId, updates: newProduct })
+      }).catch(() => {});
+    } catch (e) {}
     return newProduct;
   }
 
@@ -564,10 +708,16 @@ class DBService {
     if (!p) return null;
     Object.assign(p, updates);
     this._persist();
-    this.markCatalogUnsaved();
     if (window.HRz?.Storage) {
       window.HRz.Storage.addAuditLog(`Updated product "${p.name}" details/price (₹${p.price})`);
     }
+    try {
+      fetch('/api/update-product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, updates })
+      }).catch(() => {});
+    } catch (e) {}
     return p;
   }
 
@@ -576,10 +726,16 @@ class DBService {
     this.products = this.products.filter(item => item.id !== id);
     this.compatibility = this.compatibility.filter(c => c.productId !== id);
     this._persist();
-    this.markCatalogUnsaved();
     if (p && window.HRz?.Storage) {
       window.HRz.Storage.addAuditLog(`Deleted product "${p.name}"`);
     }
+    try {
+      fetch('/api/save-products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.products)
+      }).catch(() => {});
+    } catch (e) {}
   }
 
   static addCompatibilityRule(productId, bikeId, fitType = "OEM Fit", notes = "") {

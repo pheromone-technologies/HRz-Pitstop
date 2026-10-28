@@ -423,3 +423,131 @@
 @media (max-width: 768px) {
   .admin-tab-btn { flex: 1 1 100%; }
 }
+
+/* ---- Admin gate (added: #admin login + PIN lock screen) ---- */
+.admin-gate-wrap {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 32px 16px;
+  background: #090a0c;
+  color: #fff;
+}
+.admin-gate-card {
+  width: min(460px, 100%);
+  background: #131417;
+  border: 1px solid #232528;
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+.admin-gate-card h1 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; margin: 8px 0 12px; }
+.admin-gate-card .eyebrow { color: var(--mute); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin: 0; }
+.admin-gate-text { font-size: 14px; line-height: 1.6; color: #dfdfe0; }
+.admin-gate-text.small { font-size: 12px; color: var(--mute); }
+.admin-gate-form { display: flex; flex-direction: column; gap: 8px; margin: 16px 0; }
+.admin-gate-form label { font-size: 13px; color: #b0b1b3; font-weight: 500; }
+.admin-gate-form input[type="password"] {
+  width: 100%; min-height: 44px; background: #1c1e22; border: 1px solid #333;
+  color: #fff; padding: 12px 14px; border-radius: 6px; font-size: 16px;
+}
+.admin-gate-form input[type="password"]:focus { border-color: var(--red); outline: none; }
+.admin-gate-error { color: #ef4444; font-size: 13px; font-weight: 600; margin: 4px 0; min-height: 1em; }
+.admin-gate-error:empty { display: none; }
+.admin-gate-btn { min-height: 44px; width: 100%; margin: 4px 0; }
+button.admin-gate-btn.small-action-btn { width: 100%; }
+.admin-gate-notice {
+  font-size: 12px; line-height: 1.6; color: var(--mute);
+  border: 1px solid #333; border-radius: 8px; padding: 12px; background: #1a1c1e;
+}
+.admin-gate-card a { color: #fff; }
+.admin-topbar-user { font-size: 12px; color: var(--mute); margin: 4px 0 0; }
+.admin-lock-btn { min-height: 44px; flex-shrink: 0; }
+
+/* ---- Quick edit + search row (added) ---- */
+.admin-search-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 12px; }
+.admin-search-row input[type="search"] {
+  flex: 1 1 240px; min-width: 0; min-height: 44px; padding: 10px 12px; border-radius: 6px;
+  background: #1c1e22; border: 1px solid #333; color: #fff; font-size: 14px;
+}
+.admin-search-row select {
+  min-height: 44px; background: #1c1e22; border: 1px solid #333; color: #fff;
+  padding: 10px 12px; border-radius: 6px; font-size: 14px;
+}
+.admin-search-label { font-size: 13px; color: #b0b1b3; }
+.admin-result-count { font-size: 13px; color: var(--mute); margin: 0 0 16px; line-height: 1.5; }
+.admin-toolbar-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.admin-toolbar-actions .accent-button, .admin-toolbar-actions .small-action-btn { min-height: 44px; }
+.admin-reset-btn { min-height: 44px; }
+.admin-inline-price {
+  width: 110px; min-height: 44px; background: #1c1e22; border: 1px solid #333;
+  color: #fff; padding: 10px; border-radius: 6px; font-size: 14px;
+}
+.admin-inline-stock {
+  min-height: 44px; background: #1c1e22; border: 1px solid #333; color: #fff;
+  padding: 10px; border-radius: 6px; font-size: 13px;
+}
+.order-status-select { min-height: 44px; }
+.admin-saved-badge {
+  display: inline-block; color: #4ade80; font-size: 12px; font-weight: 700;
+  margin-left: 8px; white-space: nowrap;
+}
+.admin-saved-badge:empty { display: none; }
+
+/* ---- Touch targets + 375px overflow (added) ---- */
+.admin-tab-btn { min-height: 44px; }
+.small-action-btn { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.filter-pill.admin-cat-filter { min-height: 44px; }
+.admin-dashboard-layout { max-width: 100vw; }
+.admin-main, .admin-tab-content, .admin-panel-card { min-width: 0; }
+@media (max-width: 400px) {
+  .admin-gate-wrap { padding: 16px 12px; }
+  .admin-gate-card { padding: 20px 16px; }
+  .admin-panel-card { padding: 16px 12px; }
+  .admin-topbar { padding: 16px 12px; }
+  .admin-search-row { flex-direction: column; align-items: stretch; }
+  .admin-search-row select { width: 100%; }
+  .admin-inline-price { width: 100px; }
+  .admin-table td { white-space: normal; }
+}
+
+/* Admin size checkbox grid */
+.admin-sizes-checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: #141518;
+  border: 1px solid #2a2c30;
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+.admin-size-checkbox-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #1c1e22;
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.admin-size-checkbox-item:hover {
+  border-color: #555;
+  background: #25282e;
+}
+.admin-size-checkbox-item:has(input:checked) {
+  border-color: var(--red);
+  background: #2c0e0e;
+  color: #fff;
+}
+.admin-size-checkbox-item input {
+  accent-color: var(--red);
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}

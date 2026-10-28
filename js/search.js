@@ -6,6 +6,10 @@
 window.HRz = window.HRz || {};
 
 class SearchEngine {
+  static searchFallback = false;
+  static noFitmentData = false;
+  static lastSearchQuery = "";
+
   static init() {
     const input = document.getElementById("globalSearch");
     const popover = document.getElementById("searchAutocomplete");
@@ -22,10 +26,22 @@ class SearchEngine {
 
       const activeBike = window.HRz.Storage.getActiveBike();
       const allProducts = window.HRz.DB.products;
-      const bikeProducts = window.HRz.DB.getProductsForBike(activeBike);
-      const bikeProductIds = new Set(bikeProducts.map(p => p.id));
-
-      const matches = window.HRz.Utils.smartSearch(q, allProducts, activeBike).slice(0, 5);
+      // NOTE: suggestions are intentionally NOT filtered by the active
+      // bike. There is no fitment data for any real product (no
+      // bike_compatibility field; compatibility.json references only demo
+      // ids), so filtering by bike would empty the suggestions. The old
+      // bikeProducts/bikeProductIds computation was dead code and is
+      // removed. smartSearch still adds a fitment bonus when a product
+      // genuinely matches, via DB.checkFitment.
+      const allMatches = window.HRz.Utils.smartSearch(q, allProducts, activeBike);
+      // Capture the fallback flag BEFORE slice(5), which strips it.
+      // UI reads SearchEngine.searchFallback to show the "no exact
+      // fitment data for this bike" note; the matches themselves are
+      // closest-name matches, never invented fitment.
+      SearchEngine.searchFallback = !!(allMatches && (allMatches.isFallback || allMatches.searchFallback || allMatches.noFitmentData));
+      SearchEngine.noFitmentData = !!(allMatches && allMatches.noFitmentData);
+      SearchEngine.lastSearchQuery = q;
+      const matches = allMatches.slice(0, 5);
 
       if (matches.length === 0) {
         popover.innerHTML = `<p style="padding:14px;color:#666;">No gear found. Try crash guard or helmet.</p>`;

@@ -4,6 +4,11 @@
 
 window.HRz = window.HRz || {};
 
+// Store WhatsApp number in ONE place so it is easy to change. This is the
+// number from the live site's floating WhatsApp button: India country
+// code 91 + 7019348327. No payment gateway exists; orders go via WhatsApp.
+const WHATSAPP_NUMBER = "917019348327";
+
 class CheckoutView {
   static render(container) {
     const cart = window.HRz.Storage.getCart();
@@ -26,6 +31,9 @@ class CheckoutView {
     const subtotal = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
     const shippingFee = subtotal >= 2999 ? 0 : 199;
     const grandTotal = subtotal + shippingFee;
+    // Total units, not distinct lines: the old header said "N items" while
+    // counting cart.length (lines), which disagreed with the Qty totals.
+    const totalQty = cart.reduce((sum, i) => sum + (Number(i.quantity) || 0), 0);
 
     container.innerHTML = `
       <div class="breadcrumb-trail">
@@ -41,7 +49,7 @@ class CheckoutView {
               <span>🏍️</span>
               <div>
                 <strong>Active Motorcycle: ${activeBike ? escapeHTML(activeBike.brand) + " " + escapeHTML(activeBike.model) + " (" + escapeHTML(activeBike.variant) + ")" : "Universal"}</strong>
-                <p>All ${cart.length} items in your order are covered by our 7-Day Fitment Guarantee.</p>
+                <p>All ${totalQty} item${totalQty === 1 ? "" : "s"} in your order are covered by our 7-Day Fitment Guarantee.</p>
               </div>
             </div>
           </div>
@@ -78,8 +86,8 @@ class CheckoutView {
             </div>
 
             <div class="form-section-card">
-              <h3>3. Payment Method</h3>
-              <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">Payment will be securely processed via WhatsApp after confirming your order details.</p>
+              <h3>3. How you'll pay</h3>
+              <p style="font-size: 0.9em; color: #666; margin-bottom: 12px;">No online payment here — you confirm and pay with us on WhatsApp. Pick how you'd like to pay so we can confirm it with you there.</p>
               <div class="payment-options-grid">
                 <label class="payment-option-card active">
                   <input type="radio" name="payMethod" value="UPI GPay" checked />
@@ -106,7 +114,7 @@ class CheckoutView {
             </div>
 
             <button type="submit" class="accent-button full-width-btn place-order-btn">
-              Place Order (${utils.formatCurrency(grandTotal)})
+              Order on WhatsApp (${utils.formatCurrency(grandTotal)})
             </button>
           </form>
         </div>
@@ -114,13 +122,14 @@ class CheckoutView {
         <!-- Summary Column -->
         <div class="checkout-summary-column">
           <div class="summary-card">
-            <h3>Order Summary (${cart.length} items)</h3>
+            <h3>Order Summary (${totalQty} item${totalQty === 1 ? "" : "s"})</h3>
             <div class="summary-items-list">
               ${cart.map(item => `
                 <div class="summary-item-row">
-                  <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" />
+                  <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.onerror=null;this.src=window.HRzPlaceholderImage" />
                   <div class="info">
                     <strong>${escapeHTML(item.name)}</strong>
+                    ${item.selectedSize ? `<span class="checkout-size-tag" style="display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; background:rgba(255,255,255,0.08); color:var(--text); margin:2px 0;">Size: <strong>${escapeHTML(item.selectedSize)}</strong></span><br/>` : ''}
                     <small>Qty: ${item.quantity}</small>
                   </div>
                   <span class="price">${utils.formatCurrency(item.price * item.quantity)}</span>
@@ -182,37 +191,54 @@ class CheckoutView {
         waText += `*Bike Fitment:* ${bikeStr}\n\n`;
         waText += `*Order Details:*\n`;
         cart.forEach((item, index) => {
-          waText += `${index + 1}. ${item.name} (Qty: ${item.quantity}) - ${utils.formatCurrency(item.price * item.quantity)}\n`;
+          waText += `${index + 1}. ${item.name}${item.selectedSize ? ` [Size: ${item.selectedSize}]` : ''} (Qty: ${item.quantity}) - ${utils.formatCurrency(item.price * item.quantity)}\n`;
           if (item.sku) waText += `   SKU: ${item.sku}\n`;
         });
         waText += `\n*Grand Total:* ${utils.formatCurrency(grandTotal)}`;
 
-        const waUrl = `https://wa.me/7019348327?text=${encodeURIComponent(waText)}`;
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
 
-        // Attempt to open WhatsApp first
-        const popup = window.open(waUrl, "_blank");
-
-        // Regardless of popup success, save the order locally and clear cart
-        window.HRz.Storage.setCart([]);
-        if (window.HRz.Cart && typeof window.HRz.Cart.updateCartBadge === 'function') {
-          window.HRz.Cart.updateCartBadge();
-        }
-        const db = window.HRz.DB;
-        db.orders.unshift(newOrder);
-        db._persist();
-
-        if (popup) {
+        // Finalize: clear the bag, record the order, show success. Used
+        // both when the WhatsApp popup opens AND when the user taps the
+        // manual button after a blocked popup — tapping that button IS the
+        // handoff, so the bag must not stay full afterwards.
+        const finalizeOrder = () => {
+          window.HRz.Storage.setCart([]);
+          if (window.HRz.Cart && typeof window.HRz.Cart.updateCartBadge === 'function') {
+            window.HRz.Cart.updateCartBadge();
+          }
+          const db = window.HRz.DB;
+          if (db && Array.isArray(db.orders)) {
+            db.orders.unshift(newOrder);
+            if (typeof db._persist === "function") db._persist();
+          }
           utils.showToast("Redirecting to WhatsApp to finalize your order...", "success");
           this.renderSuccessView(container, newOrder);
+        };
+
+        // Attempt to open WhatsApp first. The cart is cleared and the
+        // order saved ONLY once a handoff happens: a blocked popup must not
+        // wipe the bag while the user believes the order did not go out.
+        const popup = window.open(waUrl, "_blank");
+
+        if (popup) {
+          finalizeOrder();
         } else {
           utils.showToast("Popup blocked! Please click the button to continue to WhatsApp.", "error");
           container.innerHTML = `
             <div class="order-success-card">
               <h2>Complete Your Order via WhatsApp</h2>
-              <p>Your browser blocked the automatic redirect. Please click the button below to send your order details to us on WhatsApp.</p>
-              <a href="${waUrl}" target="_blank" class="accent-button" style="display:inline-block; margin-top:20px; text-decoration:none;">Open WhatsApp</a>
+              <p>Your browser blocked the automatic redirect. Tap the button below to open WhatsApp with your order — tapping it records the order here and clears your bag.</p>
+              <button id="manualWaBtn" class="accent-button" style="display:inline-block; margin-top:20px;">Open WhatsApp</button>
             </div>
           `;
+          const manualBtn = container.querySelector("#manualWaBtn");
+          if (manualBtn) {
+            manualBtn.onclick = () => {
+              window.open(waUrl, "_blank");
+              finalizeOrder();
+            };
+          }
         }
       };
     }

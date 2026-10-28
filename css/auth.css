@@ -264,3 +264,11 @@
 .skeleton-line.price { height: 22px; width: 40%; }
 
 
+
+/* ---- Admin-gate touch targets (added: keep auth popup usable on phones) ---- */
+.login-popup-close { min-width: 44px; min-height: 44px; padding: 10px; display: flex; align-items: center; justify-content: center; }
+.login-google-btn, .login-guest-btn { min-height: 44px; }
+.user-menu-item { min-height: 44px; display: flex; align-items: center; }
+@media (max-width: 400px) {
+  .login-popup-card { padding: 28px 20px 24px; max-height: calc(100dvh - 32px); overflow-y: auto; }
+}
