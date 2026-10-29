@@ -520,24 +520,32 @@ class App {
         <div class="section-head">
           <div><p class="eyebrow red">Select your machine</p><h2>CHOOSE YOUR <em>BRAND</em></h2></div>
         </div>
-        <div class="bike-slider-container">
-          <div class="bike-slider">
-            ${(() => {
-              const brands = Object.keys(window.HRz.Menu.menuData.shopByBike);
-              return [1, 2, 3].map(set => brands.map((brand, idx) => {
-                const brandModels = window.HRz.Menu.menuData.shopByBike[brand];
-                const firstModel = brandModels && brandModels.length > 0 ? brandModels[0] : null;
-                const imgUrl = (window.HRzImageMap && (window.HRzImageMap[brand] || (firstModel && window.HRzImageMap[firstModel]))) 
-                  || `images/verified bikes/bike_images/${brand}.png`;
-                const uid = `brand-img-${set}-${idx}`;
-                return `
-                <div class="bike-item" data-brand="${escapeHTML(brand)}" data-set="${set}" data-index="${idx}" role="button" tabindex="0" aria-label="${escapeHTML(brand)}">
-                  <div class="bike-img-wrap"><img id="${uid}" src="${imgUrl}" alt="${escapeHTML(brand)}" style="object-fit: contain; padding: 10px;" onerror="this.onerror=null; this.src=window.HRzPlaceholderImage;" loading="lazy" /></div>
-                  <div class="bike-info"><h3>${escapeHTML(brand)}</h3></div>
-                </div>
-              `;}).join('')).join('');
-            })()}
+        <div class="bike-slider-wrapper">
+          <button class="bike-slider-nav prev" id="bikeSliderPrev" aria-label="Previous Brand">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <div class="bike-slider-container">
+            <div class="bike-slider">
+              ${(() => {
+                const brands = Object.keys(window.HRz.Menu.menuData.shopByBike);
+                return [1, 2, 3].map(set => brands.map((brand, idx) => {
+                  const brandModels = window.HRz.Menu.menuData.shopByBike[brand];
+                  const firstModel = brandModels && brandModels.length > 0 ? brandModels[0] : null;
+                  const imgUrl = (window.HRzImageMap && (window.HRzImageMap[brand] || (firstModel && window.HRzImageMap[firstModel]))) 
+                    || `images/verified bikes/bike_images/${brand}.png`;
+                  const uid = `brand-img-${set}-${idx}`;
+                  return `
+                  <div class="bike-item" data-brand="${escapeHTML(brand)}" data-set="${set}" data-index="${idx}" role="button" tabindex="0" aria-label="${escapeHTML(brand)}">
+                    <div class="bike-img-wrap"><img id="${uid}" src="${imgUrl}" alt="${escapeHTML(brand)}" style="object-fit: contain; padding: 10px;" onerror="this.onerror=null; this.src=window.HRzPlaceholderImage;" loading="lazy" /></div>
+                    <div class="bike-info"><h3>${escapeHTML(brand)}</h3></div>
+                  </div>
+                `;}).join('')).join('');
+              })()}
+            </div>
           </div>
+          <button class="bike-slider-nav next" id="bikeSliderNext" aria-label="Next Brand">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
         </div>
       </section>
 
@@ -852,6 +860,7 @@ class App {
       // ─── Touch Swiping Support ────────────────────────────────────
       let touchStartX = 0;
       let touchStartY = 0;
+      let touchScrollStart = 0;
 
       sliderContainer.addEventListener("touchstart", (e) => {
         cancelIntroAnimation();
@@ -861,19 +870,27 @@ class App {
         if (e.touches.length > 0) {
           touchStartX = e.touches[0].clientX;
           touchStartY = e.touches[0].clientY;
+          touchScrollStart = sliderContainer.scrollLeft;
         }
       }, { passive: true });
 
       sliderContainer.addEventListener("touchmove", (e) => {
         cancelIntroAnimation();
         if (e.touches.length > 0) {
-          const dx = Math.abs(e.touches[0].clientX - touchStartX);
-          if (dx > 8) hasMoved = true;
+          const dx = e.touches[0].clientX - touchStartX;
+          const dy = e.touches[0].clientY - touchStartY;
+          // When gesture is horizontal, track finger 1:1 and disable snap during drag
+          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
+            hasMoved = true;
+            sliderContainer.style.scrollSnapType = "none";
+            sliderContainer.scrollLeft = touchScrollStart - dx;
+          }
         }
       }, { passive: true });
 
       const onTouchEnd = () => {
         isUserInteracting = false;
+        sliderContainer.style.scrollSnapType = "";
         scheduleSettleCheck();
       };
       sliderContainer.addEventListener("touchend", onTouchEnd, { passive: true });
@@ -1055,6 +1072,26 @@ class App {
         }, { threshold: 0.3 });
 
         observer.observe(sliderContainer);
+      }
+
+      // ─── Prev / Next Button Navigation ────────────────────────────
+      const prevBtn = container.querySelector("#bikeSliderPrev");
+      const nextBtn = container.querySelector("#bikeSliderNext");
+      if (prevBtn) {
+        prevBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          cancelIntroAnimation();
+          const cardWidth = bikeItems[0]?.offsetWidth || 180;
+          sliderContainer.scrollBy({ left: -(cardWidth + 30), behavior: "smooth" });
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          cancelIntroAnimation();
+          const cardWidth = bikeItems[0]?.offsetWidth || 180;
+          sliderContainer.scrollBy({ left: (cardWidth + 30), behavior: "smooth" });
+        });
       }
     }
     // ═══════════════════════════════════════════════════════════════
