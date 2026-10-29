@@ -844,13 +844,18 @@ class App {
       let isUserInteracting = false;
       let isDragging = false;
       let startX = 0, scrollLeftStart = 0, hasMoved = false;
+      let glideAnimId = null;
 
       const cancelIntroAnimation = () => {
+        if (autoScrollAnimId) {
+          cancelAnimationFrame(autoScrollAnimId);
+          autoScrollAnimId = null;
+        }
+        if (glideAnimId) {
+          cancelAnimationFrame(glideAnimId);
+          glideAnimId = null;
+        }
         if (sliderContainer.dataset.isAutoScrolling === "true") {
-          if (autoScrollAnimId) {
-            cancelAnimationFrame(autoScrollAnimId);
-            autoScrollAnimId = null;
-          }
           sliderContainer.dataset.isAutoScrolling = "false";
           sliderContainer.style.scrollSnapType = "";
           sliderContainer.style.pointerEvents = "";
@@ -933,6 +938,53 @@ class App {
       };
       window.addEventListener("mouseup", onMouseUp);
 
+      // ─── Silky Smooth Programmatic Gliding (Click / Buttons) ──────
+      const smoothGlideTo = (targetPos, duration = 750) => {
+        cancelIntroAnimation();
+        sliderContainer.dataset.isAutoScrolling = "true";
+        sliderContainer.style.scrollSnapType = "none";
+
+        const startPos = sliderContainer.scrollLeft;
+        const distance = targetPos - startPos;
+        if (Math.abs(distance) < 2) {
+          sliderContainer.dataset.isAutoScrolling = "false";
+          sliderContainer.style.scrollSnapType = "";
+          return;
+        }
+
+        const startTime = performance.now();
+        const glide = (now) => {
+          if (isUserInteracting || isDragging || sliderContainer.dataset.isAutoScrolling !== "true") {
+            sliderContainer.style.scrollSnapType = "";
+            return;
+          }
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Buttery smooth quartic ease-out
+          const ease = 1 - Math.pow(1 - progress, 4);
+          sliderContainer.scrollLeft = startPos + distance * ease;
+
+          const current = getClosestItem();
+          if (current && current !== lastActive) {
+            lastActive = current;
+            bikeItems.forEach(b => b.classList.remove("active"));
+            current.classList.add("active");
+          }
+
+          if (progress < 1) {
+            glideAnimId = requestAnimationFrame(glide);
+          } else {
+            glideAnimId = null;
+            sliderContainer.dataset.isAutoScrolling = "false";
+            sliderContainer.style.scrollSnapType = "";
+            const settled = getClosestItem();
+            if (settled) activateBike(settled);
+            scheduleSettleCheck();
+          }
+        };
+        glideAnimId = requestAnimationFrame(glide);
+      };
+
       // ─── Click / Tap Handling ─────────────────────────────────────
       sliderContainer.addEventListener("click", (e) => {
         if (hasMoved) {
@@ -949,8 +1001,7 @@ class App {
           window.location.hash = "#models?brand=" + encodeURIComponent(brandName);
         } else {
           const targetPos = getMid(clicked) - sliderContainer.clientWidth / 2;
-          sliderContainer.scrollTo({ left: targetPos, behavior: "smooth" });
-          activateBike(clicked);
+          smoothGlideTo(targetPos, 700);
         }
       });
       sliderContainer.addEventListener("dragstart", (e) => e.preventDefault());
@@ -1038,7 +1089,8 @@ class App {
             sliderContainer.dataset.isAutoScrolling = "true";
             sliderContainer.style.scrollSnapType = "none";
 
-            const duration = 1800;
+            // Slower, silky smooth cinematic showcase glide across brand cards
+            const duration = 3800;
             const startTime = performance.now();
             const startPos = getMid(middleStartEl) - sliderContainer.clientWidth / 2;
             const endPos = getMid(middleEndEl) - sliderContainer.clientWidth / 2;
@@ -1047,8 +1099,8 @@ class App {
               if (sliderContainer.dataset.isAutoScrolling !== "true") return; // User touched or swiped!
               const elapsed = time - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              // Smooth cubic ease-out
-              const ease = 1 - Math.pow(1 - progress, 3);
+              // Ultra-smooth sinusoidal ease-in-out: starts gently, glides like silk, settles gracefully
+              const ease = 0.5 * (1 - Math.cos(Math.PI * progress));
               sliderContainer.scrollLeft = startPos + (endPos - startPos) * ease;
 
               const current = getClosestItem();
@@ -1074,23 +1126,33 @@ class App {
         observer.observe(sliderContainer);
       }
 
-      // ─── Prev / Next Button Navigation ────────────────────────────
+      // ─── Prev / Next Button Navigation (Accurate Smooth Glide) ────
       const prevBtn = container.querySelector("#bikeSliderPrev");
       const nextBtn = container.querySelector("#bikeSliderNext");
       if (prevBtn) {
         prevBtn.addEventListener("click", (e) => {
           e.preventDefault();
           cancelIntroAnimation();
-          const cardWidth = bikeItems[0]?.offsetWidth || 180;
-          sliderContainer.scrollBy({ left: -(cardWidth + 30), behavior: "smooth" });
+          const current = getClosestItem();
+          const idx = Array.from(bikeItems).indexOf(current);
+          const targetItem = bikeItems[idx - 1] || bikeItems[0];
+          if (targetItem) {
+            const targetPos = getMid(targetItem) - sliderContainer.clientWidth / 2;
+            smoothGlideTo(targetPos, 700);
+          }
         });
       }
       if (nextBtn) {
         nextBtn.addEventListener("click", (e) => {
           e.preventDefault();
           cancelIntroAnimation();
-          const cardWidth = bikeItems[0]?.offsetWidth || 180;
-          sliderContainer.scrollBy({ left: (cardWidth + 30), behavior: "smooth" });
+          const current = getClosestItem();
+          const idx = Array.from(bikeItems).indexOf(current);
+          const targetItem = bikeItems[idx + 1] || bikeItems[bikeItems.length - 1];
+          if (targetItem) {
+            const targetPos = getMid(targetItem) - sliderContainer.clientWidth / 2;
+            smoothGlideTo(targetPos, 700);
+          }
         });
       }
     }
