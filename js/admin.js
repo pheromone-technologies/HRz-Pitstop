@@ -89,6 +89,8 @@ class AdminCMS {
     const orders = db.getOrders();
     const auditLogs = storage.getAuditLogs();
     const heroBanner = storage.getHeroBanner();
+    const searchAnalytics = storage.getSearchAnalytics ? storage.getSearchAnalytics() : { summary: {}, recent: [] };
+    const searchTermsCount = Object.keys(searchAnalytics.summary || {}).length;
 
     const pendingReviews = reviews.filter(r => r.status === 'pending').length;
 
@@ -109,6 +111,9 @@ class AdminCMS {
             </button>
             <button class="admin-tab-btn ${this.activeTab === "compatibility" ? "active" : ""}" data-tab="compatibility">
               🏍️ Compatibility Matrix <span class="badge">${compatibility.length}</span>
+            </button>
+            <button class="admin-tab-btn ${this.activeTab === "searches" ? "active" : ""}" data-tab="searches">
+              🔍 Search Analytics <span class="badge" style="background:var(--red); color:#fff;">${searchTermsCount}</span>
             </button>
             <button class="admin-tab-btn ${this.activeTab === "reviews" ? "active" : ""}" data-tab="reviews">
               ⭐ Moderation Queue ${pendingReviews > 0 ? `<span class="badge" style="background:var(--gold);color:#000;">${pendingReviews}</span>` : ""}
@@ -138,7 +143,7 @@ class AdminCMS {
 
           <!-- Tab Content -->
           <div class="admin-tab-content">
-            ${this.renderTabContent(this.activeTab, { products, compatibility, bikes, reviews, orders, auditLogs, heroBanner })}
+            ${this.renderTabContent(this.activeTab, { products, compatibility, bikes, reviews, orders, auditLogs, heroBanner, searchAnalytics })}
           </div>
         </main>
       </div>
@@ -271,6 +276,7 @@ class AdminCMS {
       hero: "Hero Promotional Banner",
       catalog: "Product Catalog Management",
       compatibility: "Bike Compatibility Matrix",
+      searches: "Customer Search Intelligence & Top Searched Products",
       reviews: "Review Moderation Queue",
       orders: "Customer Orders",
       csv: "Bulk Data Tools",
@@ -611,6 +617,228 @@ class AdminCMS {
       `;
     }
 
+    if (tab === "searches") {
+      const analytics = data.searchAnalytics || (window.HRz.Storage ? window.HRz.Storage.getSearchAnalytics() : { summary: {}, recent: [] });
+      const summaryList = Object.values(analytics.summary || {});
+      summaryList.sort((a, b) => (b.count || 0) - (a.count || 0));
+      
+      const totalSearches = summaryList.reduce((sum, item) => sum + (Number(item.count) || 0), 0);
+      const totalUnique = summaryList.length;
+      const topItem = summaryList[0] || null;
+      const zeroResults = summaryList.filter(item => Number(item.resultsCount) === 0);
+      const recentList = Array.isArray(analytics.recent) ? analytics.recent.slice(0, 30) : [];
+
+      return `
+        <div class="admin-panel-card">
+          <div class="cms-toolbar" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:24px;">
+            <div>
+              <h2 style="font-size:22px; margin:0 0 6px 0; font-family:'Barlow Condensed', sans-serif; letter-spacing:0.5px;">Customer Search Intelligence & Top Products</h2>
+              <p style="color:var(--mute); font-size:13px; margin:0;">Real-time tracking of what riders are searching for across your storefront.</p>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button class="small-action-btn" id="refreshSearchesBtn" title="Reload search analytics">🔄 Refresh</button>
+              <button class="small-action-btn" id="exportSearchesCsvBtn" title="Export to CSV">📥 Export CSV</button>
+              <button class="small-action-btn danger" id="clearSearchesBtn" title="Reset search logs" style="border-color:#552222; color:#ff6b6b;">🗑️ Clear Logs</button>
+            </div>
+          </div>
+
+          <!-- KPI Metric Cards Grid -->
+          <div class="search-kpi-grid">
+            <div class="search-kpi-card">
+              <div class="kpi-icon-wrap">🔍</div>
+              <div class="kpi-content">
+                <span class="kpi-label">TOTAL SEARCHES LOGGED</span>
+                <span class="kpi-value">${totalSearches}</span>
+                <span class="kpi-sub">All-time visitor product queries</span>
+              </div>
+            </div>
+
+            <div class="search-kpi-card">
+              <div class="kpi-icon-wrap">🏷️</div>
+              <div class="kpi-content">
+                <span class="kpi-label">UNIQUE KEYWORDS</span>
+                <span class="kpi-value">${totalUnique}</span>
+                <span class="kpi-sub">Distinct searched terms & parts</span>
+              </div>
+            </div>
+
+            <div class="search-kpi-card highlight-card">
+              <div class="kpi-icon-wrap">🏆</div>
+              <div class="kpi-content">
+                <span class="kpi-label">#1 MOST SEARCHED</span>
+                <span class="kpi-value" style="font-size:18px; line-height:1.2; text-transform:uppercase;">${topItem ? escapeHTML(topItem.query) : "None"}</span>
+                <span class="kpi-sub">${topItem ? `${topItem.count} searches (${totalSearches > 0 ? Math.round((topItem.count / totalSearches) * 100) : 0}% share)` : "No searches yet"}</span>
+              </div>
+            </div>
+
+            <div class="search-kpi-card ${zeroResults.length > 0 ? 'demand-card' : ''}">
+              <div class="kpi-icon-wrap">💡</div>
+              <div class="kpi-content">
+                <span class="kpi-label">UNMET SEARCH DEMAND</span>
+                <span class="kpi-value" style="color:${zeroResults.length > 0 ? 'var(--gold)' : 'var(--text)'};">${zeroResults.length}</span>
+                <span class="kpi-sub">Searches with 0 stock results</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter & Search Bar for Table -->
+          <div class="search-table-filter-bar">
+            <div style="position:relative; flex:1; max-width:420px;">
+              <input type="text" id="adminSearchQueryFilter" placeholder="Filter queries or matched products..." style="width:100%; background:#161920; border:1px solid #333; color:#fff; padding:10px 14px 10px 36px; border-radius:8px; font-size:13px;" />
+              <span style="position:absolute; left:12px; top:50%; transform:translateY(-50%); color:#777; font-size:14px;">🔍</span>
+            </div>
+            <div style="font-size:12px; color:var(--mute);">
+              Showing <strong id="searchesCountText" style="color:#fff;">${summaryList.length}</strong> tracked keywords
+            </div>
+          </div>
+
+          <!-- Main Most Searched Products Table -->
+          <div class="search-analytics-table-wrap">
+            <table class="search-analytics-table" id="searchLeaderboardTable">
+              <thead>
+                <tr>
+                  <th style="width:50px; text-align:center;">#</th>
+                  <th>Customer Search Term</th>
+                  <th>Top Matched Product in Store</th>
+                  <th style="width:180px;">Search Volume & Share</th>
+                  <th style="width:130px; text-align:center;">Results Found</th>
+                  <th style="width:140px;">Last Searched</th>
+                  <th style="width:110px; text-align:right;">Storefront</th>
+                </tr>
+              </thead>
+              <tbody id="searchAnalyticsTbody">
+                ${summaryList.length === 0 ? `
+                  <tr>
+                    <td colspan="7" style="text-align:center; padding:32px; color:var(--mute);">
+                      No search activity recorded yet. As visitors search on the storefront, their queries will appear here live.
+                    </td>
+                  </tr>
+                ` : summaryList.map((item, idx) => {
+                  const sharePct = totalSearches > 0 ? Math.round((item.count / totalSearches) * 100) : 0;
+                  const isZero = Number(item.resultsCount) === 0;
+                  const rankClass = idx === 0 ? "rank-gold" : (idx === 1 ? "rank-silver" : (idx === 2 ? "rank-bronze" : ""));
+                  let timeStr = "Recent";
+                  if (item.lastSearched) {
+                    try {
+                      const dt = new Date(item.lastSearched);
+                      timeStr = dt.toLocaleDateString([], { month: "short", day: "numeric" }) + " " + dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+                    } catch (e) {}
+                  }
+                  return `
+                    <tr class="search-row ${isZero ? 'zero-match-row' : ''}" data-query="${escapeHTML(item.query)}" data-prod="${escapeHTML(item.topProduct || '')}">
+                      <td style="text-align:center;">
+                        <span class="rank-badge ${rankClass}">${idx + 1}</span>
+                      </td>
+                      <td>
+                        <strong class="query-keyword">${escapeHTML(item.query)}</strong>
+                        ${isZero ? `<span class="zero-demand-pill">⚠️ 0 Found</span>` : ''}
+                      </td>
+                      <td>
+                        ${item.topProduct ? `
+                          <div class="matched-prod-cell">
+                            <span class="matched-prod-name">${escapeHTML(item.topProduct)}</span>
+                          </div>
+                        ` : `<span style="color:#666; font-style:italic;">No matching part in catalogue</span>`}
+                      </td>
+                      <td>
+                        <div class="volume-lockup">
+                          <div class="volume-header">
+                            <strong>${item.count} searches</strong>
+                            <small>${sharePct}%</small>
+                          </div>
+                          <div class="volume-bar-track">
+                            <div class="volume-bar-fill" style="width:${Math.max(6, Math.min(100, sharePct * 2))}%;"></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="text-align:center;">
+                        <span class="result-badge ${isZero ? 'badge-zero' : 'badge-ok'}">
+                          ${item.resultsCount} ${item.resultsCount === 1 ? 'part' : 'parts'}
+                        </span>
+                      </td>
+                      <td style="font-size:12px; color:var(--mute);">
+                        ${escapeHTML(timeStr)}
+                      </td>
+                      <td style="text-align:right;">
+                        <a href="#catalog?search=${encodeURIComponent(item.query)}" class="small-action-btn view-search-btn" title="View search results in catalog">
+                          Test ↗
+                        </a>
+                      </td>
+                    </tr>
+                  `;
+                }).join("")}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Secondary Grid: Zero-Result Unmet Demand & Live Recent Search Stream -->
+          <div class="search-secondary-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:28px;">
+            <!-- Unmet Demand Card -->
+            <div class="admin-panel-card" style="margin:0; background:#12141a; border:1px solid #ffffff12;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <h4 style="margin:0; font-size:15px; display:flex; align-items:center; gap:8px;">
+                  <span>💡</span> Unmet Customer Demand (0 Results Found)
+                </h4>
+                <span class="badge" style="background:rgba(255,180,0,0.2); color:#ffb400; border:1px solid rgba(255,180,0,0.4);">${zeroResults.length} Queries</span>
+              </div>
+              <p style="color:var(--mute); font-size:12px; margin-bottom:14px;">
+                These are items visitors searched for that returned 0 results. Consider adding these items or brands to your inventory:
+              </p>
+              ${zeroResults.length === 0 ? `
+                <p style="color:#55c57a; font-size:13px; font-weight:600;">✨ Great news! Every search query currently matches at least one product in your inventory.</p>
+              ` : `
+                <div class="zero-demand-list" style="display:flex; flex-direction:column; gap:8px;">
+                  ${zeroResults.map(z => `
+                    <div class="zero-demand-item" style="display:flex; justify-content:space-between; align-items:center; background:#181b22; padding:10px 14px; border-radius:6px; border:1px solid #292d38;">
+                      <div>
+                        <strong style="color:#fff; text-transform:uppercase; font-size:13px;">${escapeHTML(z.query)}</strong>
+                        <div style="font-size:11px; color:var(--mute); margin-top:2px;">Riders searched ${z.count} time${z.count === 1 ? '' : 's'}</div>
+                      </div>
+                      <span style="font-size:11px; background:rgba(255,60,60,0.15); color:#ff6666; padding:3px 8px; border-radius:4px; font-weight:600;">Needs Stock</span>
+                    </div>
+                  `).join("")}
+                </div>
+              `}
+            </div>
+
+            <!-- Recent Searches Activity Feed -->
+            <div class="admin-panel-card" style="margin:0; background:#12141a; border:1px solid #ffffff12;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <h4 style="margin:0; font-size:15px; display:flex; align-items:center; gap:8px;">
+                  <span>⚡</span> Live Recent Search Feed
+                </h4>
+                <span class="badge">${recentList.length} Latest</span>
+              </div>
+              <p style="color:var(--mute); font-size:12px; margin-bottom:14px;">
+                Stream of real-time queries executed by customers browsing the shop:
+              </p>
+              <div class="recent-search-stream" style="max-height:280px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;">
+                ${recentList.length === 0 ? `
+                  <p style="color:var(--mute); font-size:13px;">No recent searches yet.</p>
+                ` : recentList.map(r => {
+                  let rTime = "";
+                  try {
+                    const dt = new Date(r.timestamp);
+                    rTime = dt.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+                  } catch (e) {}
+                  return `
+                    <div class="recent-stream-row" style="display:flex; justify-content:space-between; align-items:center; background:#181b22; padding:8px 12px; border-radius:6px; font-size:12px;">
+                      <div style="display:flex; align-items:center; gap:8px;">
+                        <span style="color:#888;">🔎</span>
+                        <span style="color:#fff; font-weight:600;">"${escapeHTML(r.query)}"</span>
+                        <span style="font-size:11px; color:var(--mute);">(${r.resultsCount || 0} found)</span>
+                      </div>
+                      <span style="color:#666; font-size:11px;">${escapeHTML(rTime)}</span>
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
     if (tab === "logs") {
       return `
         <div class="admin-panel-card">
@@ -918,6 +1146,73 @@ class AdminCMS {
           reader.readAsText(file);
         }
       };
+    }
+
+    // Search Analytics Events
+    const refreshSearchesBtn = container.querySelector("#refreshSearchesBtn");
+    if (refreshSearchesBtn) {
+      refreshSearchesBtn.onclick = () => {
+        this.render(container);
+        utils.showToast("Search analytics refreshed", "info");
+      };
+    }
+
+    const clearSearchesBtn = container.querySelector("#clearSearchesBtn");
+    if (clearSearchesBtn) {
+      clearSearchesBtn.onclick = () => {
+        if (confirm("Are you sure you want to clear all recorded search queries and analytics?")) {
+          if (window.HRz.Storage && typeof window.HRz.Storage.clearSearchAnalytics === "function") {
+            window.HRz.Storage.clearSearchAnalytics();
+          }
+          utils.showToast("Customer search logs have been cleared.", "success");
+          this.render(container);
+        }
+      };
+    }
+
+    const exportSearchesCsvBtn = container.querySelector("#exportSearchesCsvBtn");
+    if (exportSearchesCsvBtn) {
+      exportSearchesCsvBtn.onclick = () => {
+        const analytics = window.HRz.Storage ? window.HRz.Storage.getSearchAnalytics() : { summary: {} };
+        const items = Object.values(analytics.summary || {});
+        items.sort((a, b) => (b.count || 0) - (a.count || 0));
+        
+        let csv = "Rank,Search Query,Search Count,Results Found,Top Matched Product,Last Searched\n";
+        items.forEach((item, index) => {
+          const q = `"${(item.query || '').replace(/"/g, '""')}"`;
+          const count = item.count || 0;
+          const found = item.resultsCount || 0;
+          const prod = `"${(item.topProduct || '').replace(/"/g, '""')}"`;
+          const last = `"${(item.lastSearched || '').replace(/"/g, '""')}"`;
+          csv += `${index + 1},${q},${count},${found},${prod},${last}\n`;
+        });
+
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `HRz_Customer_Search_Analytics_${Date.now()}.csv`;
+        a.click();
+        utils.showToast("Search analytics CSV exported successfully", "success");
+      };
+    }
+
+    const queryFilterInput = container.querySelector("#adminSearchQueryFilter");
+    if (queryFilterInput) {
+      queryFilterInput.addEventListener("input", () => {
+        const term = queryFilterInput.value.trim().toLowerCase();
+        const rows = container.querySelectorAll(".search-row");
+        let visibleCount = 0;
+        rows.forEach(row => {
+          const q = (row.dataset.query || "").toLowerCase();
+          const p = (row.dataset.prod || "").toLowerCase();
+          const match = !term || q.includes(term) || p.includes(term);
+          row.style.display = match ? "" : "none";
+          if (match) visibleCount++;
+        });
+        const countText = container.querySelector("#searchesCountText");
+        if (countText) countText.textContent = String(visibleCount);
+      });
     }
   }
 

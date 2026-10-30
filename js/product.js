@@ -321,7 +321,11 @@ class ProductDetailView {
     let defaultVariantIdx = 0;
     if (product.variants && product.variants.length > 0) {
       if (initialColor) {
-        const foundIdx = product.variants.findIndex(v => (v.color || v.name || "").toLowerCase().includes(initialColor.toLowerCase()));
+        const target = initialColor.trim().toLowerCase();
+        const foundIdx = product.variants.findIndex(v => {
+          const col = (v.color || v.name || "").trim().toLowerCase();
+          return col === target || col.includes(target) || target.includes(col);
+        });
         if (foundIdx !== -1) defaultVariantIdx = foundIdx;
       } else {
         const idIdx = product.variants.findIndex(v => v.id === product.id);
@@ -420,10 +424,15 @@ class ProductDetailView {
 
           ${product.variants && product.variants.length > 1 ? `
             <div class="product-variants-section">
-              <h4>Select Color</h4>
+              <div class="variant-header-row" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span class="variant-heading" style="font-size:13px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase;">
+                  SELECT COLOR: <strong id="selectedColorDisplay" style="color:var(--red, #e50914);">${escapeHTML(displayVariant ? (displayVariant.color || displayVariant.name || "") : "")}</strong>
+                </span>
+                <span class="variant-count" style="font-size:12px; color:var(--mute);">${product.variants.length} colors available</span>
+              </div>
               <div class="color-selector-grid">
                 ${product.variants.map((v, idx) => `
-                  <button class="color-btn ${idx === defaultVariantIdx ? 'active' : ''}" data-index="${idx}" title="${escapeHTML(v.color || v.name)}">
+                  <button type="button" class="color-btn ${idx === defaultVariantIdx ? 'active' : ''}" data-index="${idx}" title="${escapeHTML(v.color || v.name)}">
                     ${v.image ? `<img class="color-btn-img" src="${escapeHTML(v.image)}" alt="${escapeHTML(v.color || v.name)}" loading="lazy" onerror="this.onerror=null;this.src=window.HRzPlaceholderImage" />` : ''}
                     <span class="color-btn-text">${escapeHTML(v.color || v.name)}</span>
                   </button>
@@ -639,21 +648,29 @@ class ProductDetailView {
     const buildBuyCopy = () => {
       let pCopy = { ...product };
       const activeColorBtn = container.querySelector(".color-btn.active");
-      if (activeColorBtn && product.variants) {
-        const v = product.variants[activeColorBtn.dataset.index];
+      if (activeColorBtn && product.variants && product.variants.length > 0) {
+        const v = product.variants[Number(activeColorBtn.dataset.index)];
         if (v) {
           pCopy.image = v.image || pCopy.image;
           pCopy.price = v.price || pCopy.price;
           pCopy.color = v.color || v.name || pCopy.color;
-          // The base id IS the default variant: a card add (base id) and a
-          // product-page add for the default variant are the same bag
-          // entry, so quantities never disagree between card and page.
-          // Only non-default variants get a suffixed id.
-          const activeIdx = Number(activeColorBtn.dataset.index);
-          const isDefault = (typeof defaultVariantIdx === "number" && activeIdx === defaultVariantIdx);
-          if (!isDefault) {
-            pCopy.id = pCopy.id + "-" + (v.color || v.name || "").toLowerCase().replace(/[^a-z0-9]/g, '-');
+          if (v.sku) pCopy.sku = v.sku;
+          if (v.id) {
+            pCopy.id = v.id;
+          } else {
+            const activeIdx = Number(activeColorBtn.dataset.index);
+            const isDefault = (typeof defaultVariantIdx === "number" && activeIdx === defaultVariantIdx);
+            if (!isDefault) {
+              pCopy.id = pCopy.id + "-" + (v.color || v.name || "").toLowerCase().replace(/[^a-z0-9]/g, '-');
+            }
           }
+        }
+      }
+      if (!pCopy.color && product.variants && product.variants.length > 0) {
+        const defV = product.variants[typeof defaultVariantIdx === "number" ? defaultVariantIdx : 0];
+        if (defV) {
+          pCopy.color = defV.color || defV.name || "";
+          if (defV.sku && !pCopy.sku) pCopy.sku = defV.sku;
         }
       }
 
@@ -689,7 +706,19 @@ class ProductDetailView {
       try {
         const copy = buildBuyCopy();
         const cart = (window.HRz.Storage && typeof window.HRz.Storage.getCart === "function") ? window.HRz.Storage.getCart() : [];
-        const item = cart.find(i => i.id === copy.id || (i.name === copy.name && i.selectedSize === copy.selectedSize));
+        const copyKey = window.HRz.Cart && typeof window.HRz.Cart._cartItemKey === "function" ? window.HRz.Cart._cartItemKey(copy) : null;
+        const item = cart.find(i => {
+          if (i.id === copy.id) return true;
+          if (copyKey && window.HRz.Cart && window.HRz.Cart._cartItemKey(i) === copyKey) return true;
+          if (i.name === copy.name) {
+            const iColor = (i.color || "").trim().toLowerCase();
+            const copyColor = (copy.color || "").trim().toLowerCase();
+            const iSize = (i.selectedSize || "").trim().toLowerCase();
+            const copySize = (copy.selectedSize || "").trim().toLowerCase();
+            if (iColor === copyColor && iSize === copySize) return true;
+          }
+          return false;
+        });
         return { qty: item ? (Number(item.quantity) || 0) : 0, id: item ? item.id : copy.id };
       } catch (e) { return { qty: 0, id: null }; }
     };
@@ -868,14 +897,20 @@ class ProductDetailView {
     const origPriceDisplay = root.querySelector(".detail-original-price");
     const skuBadge = root.querySelector(".sku-category-badge strong");
     const countChip = root.querySelector(".gallery-count-chip");
+    const selectedColorDisplay = root.querySelector("#selectedColorDisplay");
 
     colorBtns.forEach(btn => {
       btn.addEventListener("click", () => {
         colorBtns.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
         
-        const v = product.variants[btn.dataset.index];
+        const v = product.variants[Number(btn.dataset.index)];
         if (!v) return;
+
+        const colorName = v.color || v.name || "";
+        if (selectedColorDisplay) {
+          selectedColorDisplay.textContent = colorName;
+        }
         
         if (priceDisplay && v.price) priceDisplay.textContent = window.HRz.Utils.formatCurrency(v.price);
         if (origPriceDisplay && v.price) origPriceDisplay.textContent = window.HRz.Utils.formatCurrency(Math.round(v.price * 1.15));
@@ -904,6 +939,12 @@ class ProductDetailView {
         
         if (container) {
           this.bindGalleryInteractions(container, variantGallery);
+        }
+
+        // Keep URL hash updated with selected color
+        if (colorName && window.history && typeof window.history.replaceState === "function") {
+          const newHash = `#product?id=${encodeURIComponent(product.id)}&color=${encodeURIComponent(colorName)}`;
+          window.history.replaceState(null, "", newHash);
         }
       });
     });

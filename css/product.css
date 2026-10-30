@@ -929,9 +929,10 @@ body.gallery-viewer-open {
   color: #fff;
 }
 .color-btn.active {
-  background: rgba(225, 59, 49, 0.1);
+  background: rgba(225, 59, 49, 0.16);
   border-color: var(--red);
   color: #fff;
+  box-shadow: 0 0 0 1px var(--red), 0 2px 8px rgba(225, 59, 49, 0.25);
 }
 
 /* ---- UI-worker: liquid-glass cards, reserved image space, 2-col mobile grid ---- */

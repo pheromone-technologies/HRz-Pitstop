@@ -5,6 +5,7 @@
 window.HRz = window.HRz || {};
 
 const STORAGE_KEY = "hrz_pitstop_app_state_v10";
+const SEARCHES_STORAGE_KEY = "hrz_search_analytics_v1";
 
 const defaultState = {
   recentlyViewed: [],
@@ -36,7 +37,7 @@ const defaultState = {
 class StorageService {
   static cleanupLegacyKeys(keepKeys = []) {
     try {
-      const protectedKeys = new Set([STORAGE_KEY, ...keepKeys]);
+      const protectedKeys = new Set([STORAGE_KEY, SEARCHES_STORAGE_KEY, ...keepKeys]);
       const keys = [];
 
       for (let i = 0; i < localStorage.length; i++) {
@@ -185,8 +186,114 @@ class StorageService {
   static getAuditLogs() {
     return this.loadState().auditLogs || [];
   }
+
+  /* ---- Search Analytics & Trending Search Queries ---- */
+  static getSearchAnalytics() {
+    try {
+      const raw = localStorage.getItem(SEARCHES_STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") {
+          return {
+            summary: parsed.summary || {},
+            recent: Array.isArray(parsed.recent) ? parsed.recent : []
+          };
+        }
+      }
+    } catch (e) {
+      console.warn("Failed to read search analytics from storage:", e);
+    }
+    return { summary: {}, recent: [] };
+  }
+
+  static saveSearchAnalytics(data) {
+    try {
+      localStorage.setItem(SEARCHES_STORAGE_KEY, JSON.stringify(data));
+    } catch (e) {
+      console.warn("Failed to persist search analytics:", e);
+    }
+  }
+
+  static recordSearch(rawQuery, resultsCount = 0, topProduct = "") {
+    if (!rawQuery || typeof rawQuery !== "string") return;
+    const query = rawQuery.trim().toLowerCase();
+    if (query.length < 2) return;
+
+    const data = this.getSearchAnalytics();
+    const timestamp = new Date().toISOString();
+
+    const existing = data.summary[query] || {
+      query,
+      count: 0,
+      resultsCount,
+      topProduct: topProduct || "",
+      lastSearched: timestamp
+    };
+
+    existing.count = (existing.count || 0) + 1;
+    existing.lastSearched = timestamp;
+    if (resultsCount !== undefined && resultsCount !== null) {
+      existing.resultsCount = resultsCount;
+    }
+    if (topProduct) {
+      existing.topProduct = topProduct;
+    }
+    data.summary[query] = existing;
+
+    // Prepend to recent list
+    data.recent.unshift({
+      query,
+      resultsCount: resultsCount || 0,
+      topProduct: topProduct || "",
+      timestamp
+    });
+    if (data.recent.length > 200) data.recent = data.recent.slice(0, 200);
+
+    this.saveSearchAnalytics(data);
+
+    // Sync with backend API asynchronously
+    try {
+      fetch("/api/log-search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query, resultsCount, topProduct, timestamp })
+      }).catch(() => {});
+    } catch (e) {}
+
+    window.dispatchEvent(new CustomEvent("hrz:search-recorded", { detail: { query, resultsCount, topProduct } }));
+  }
+
+  static clearSearchAnalytics() {
+    const empty = { summary: {}, recent: [] };
+    this.saveSearchAnalytics(empty);
+    try {
+      fetch("/api/clear-searches", { method: "POST" }).catch(() => {});
+    } catch (e) {}
+    window.dispatchEvent(new CustomEvent("hrz:search-cleared"));
+  }
+
+  static async initSearchAnalytics() {
+    // If local storage is empty, populate from data/searches.json
+    const current = this.getSearchAnalytics();
+    if (Object.keys(current.summary).length === 0) {
+      try {
+        const res = await fetch("/data/searches.json");
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.summary) {
+            this.saveSearchAnalytics(json);
+          }
+        }
+      } catch (e) {
+        // Fallback or static
+      }
+    }
+  }
 }
 
 window.HRz.Storage = StorageService;
+if (typeof window !== "undefined") {
+  setTimeout(() => StorageService.initSearchAnalytics(), 500);
+}
 
 

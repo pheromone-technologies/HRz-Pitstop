@@ -612,6 +612,10 @@ class DBService {
 
   static getRecommendedProducts(activeBike, excludeId = null, limit = 10) {
     let list = this.getProductsForBike(activeBike);
+    // If specific bike returned empty list, gracefully fall back to full catalog
+    if (!list || list.length === 0) {
+      list = this.getProductsForBike(null);
+    }
     if (excludeId) {
       const excludedProduct = this.getProductById(excludeId);
       list = list.filter(p => p.id !== excludeId);
@@ -621,23 +625,31 @@ class DBService {
         const otherCategory = list.filter(p => p.category !== excludedProduct.category);
         list = [...sameCategory, ...otherCategory];
       }
-    } else if (!activeBike) {
-      // On homepage with no bike: show curated selection across categories
+    } else if (!activeBike || list.length === 0 || list.length <= limit) {
+      // On homepage: show diverse curated bestseller selection across categories
+      const allVisible = (list && list.length > 0) ? list : this.products.filter(p => p.isVisible !== false);
       const byCategory = {};
-      list.forEach(p => {
+      allVisible.forEach(p => {
+        if (!p.category) return;
         if (!byCategory[p.category]) byCategory[p.category] = [];
         byCategory[p.category].push(p);
       });
       const curated = [];
-      const cats = Object.keys(byCategory);
+      const cats = Object.keys(byCategory).filter(c => byCategory[c] && byCategory[c].length > 0);
       let idx = 0;
-      while (curated.length < limit && idx < 100) {
+      while (curated.length < limit && cats.length > 0 && idx < 200) {
         const cat = cats[idx % cats.length];
         const catItems = byCategory[cat];
-        const pick = catItems.shift();
-        if (pick) curated.push(pick);
+        if (catItems && catItems.length > 0) {
+          curated.push(catItems.shift());
+        }
         idx++;
-        if (cats.every(c => byCategory[c].length === 0)) break;
+        if (cats.every(c => !byCategory[c] || byCategory[c].length === 0)) break;
+      }
+      if (curated.length < limit) {
+        const remaining = allVisible.filter(p => !curated.some(c => c.id === p.id));
+        remaining.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        curated.push(...remaining.slice(0, limit - curated.length));
       }
       list = curated;
     }

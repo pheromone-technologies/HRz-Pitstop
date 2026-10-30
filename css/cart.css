@@ -368,8 +368,18 @@
   border: 1px solid #333;
   border-radius: 4px;
   padding: 2px 7px;
-  margin-top: 4px;
   color: #e5e5e5;
+  letter-spacing: 0.3px;
+}
+.cart-item-color-pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(225, 59, 49, 0.12);
+  border: 1px solid rgba(225, 59, 49, 0.35);
+  border-radius: 4px;
+  padding: 2px 7px;
+  color: var(--red, #e50914);
   letter-spacing: 0.3px;
 }
 .checkout-size-tag {
@@ -377,5 +387,12 @@
   font-size: 11px;
   color: var(--gold);
   font-weight: 600;
+  margin-right: 6px;
+}
+.checkout-color-tag {
+  display: inline-block;
+  font-size: 11px;
+  color: var(--red, #e50914);
+  font-weight: 700;
   margin-right: 6px;
 }

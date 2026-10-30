@@ -129,7 +129,10 @@ class CheckoutView {
                   <img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy" onerror="this.onerror=null;this.src=window.HRzPlaceholderImage" />
                   <div class="info">
                     <strong>${escapeHTML(item.name)}</strong>
-                    ${item.selectedSize ? `<span class="checkout-size-tag" style="display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; background:rgba(255,255,255,0.08); color:var(--text); margin:2px 0;">Size: <strong>${escapeHTML(item.selectedSize)}</strong></span><br/>` : ''}
+                    <div style="display:flex; flex-wrap:wrap; gap:4px; margin:2px 0;">
+                      ${item.color ? `<span class="checkout-color-tag" style="display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; background:rgba(225,59,49,0.15); color:var(--red, #e50914); border:1px solid rgba(225,59,49,0.3);">Color: <strong>${escapeHTML(item.color)}</strong></span>` : ''}
+                      ${item.selectedSize ? `<span class="checkout-size-tag" style="display:inline-block; font-size:11px; padding:2px 8px; border-radius:4px; background:rgba(255,255,255,0.08); color:var(--text); border:1px solid #333;">Size: <strong>${escapeHTML(item.selectedSize)}</strong></span>` : ''}
+                    </div>
                     <small>Qty: ${item.quantity}</small>
                   </div>
                   <span class="price">${utils.formatCurrency(item.price * item.quantity)}</span>
@@ -191,7 +194,7 @@ class CheckoutView {
         waText += `*Bike Fitment:* ${bikeStr}\n\n`;
         waText += `*Order Details:*\n`;
         cart.forEach((item, index) => {
-          waText += `${index + 1}. ${item.name}${item.selectedSize ? ` [Size: ${item.selectedSize}]` : ''} (Qty: ${item.quantity}) - ${utils.formatCurrency(item.price * item.quantity)}\n`;
+          waText += `${index + 1}. ${item.name}${item.color ? ` [Color: ${item.color}]` : ''}${item.selectedSize ? ` [Size: ${item.selectedSize}]` : ''} (Qty: ${item.quantity}) - ${utils.formatCurrency(item.price * item.quantity)}\n`;
           if (item.sku) waText += `   SKU: ${item.sku}\n`;
         });
         waText += `\n*Grand Total:* ${utils.formatCurrency(grandTotal)}`;

@@ -378,6 +378,12 @@ class CatalogView {
       this.lastSearchNoExactFitment = this.searchFallback;
       this.lastSearchIsBikeQuery = !!(searchResult && searchResult.isBikeQuery);
       products = searchResult;
+
+      // Log search query in storage analytics
+      if (window.HRz.Storage && typeof window.HRz.Storage.recordSearch === "function") {
+        const topMatchedProd = (products && products.length > 0) ? products[0].name : "";
+        window.HRz.Storage.recordSearch(this.searchQuery, products ? products.length : 0, topMatchedProd);
+      }
     } else {
       this.searchFallback = false;
       this.lastSearchQuery = "";
@@ -1062,6 +1068,16 @@ class CatalogView {
         const prod = window.HRz.DB.getProductById(id);
         if (prod) {
           const toAdd = { ...prod };
+          if (Array.isArray(toAdd.variants) && toAdd.variants.length > 0) {
+            const defVar = toAdd.variants[0];
+            if (defVar) {
+              toAdd.color = defVar.color || defVar.name || toAdd.color;
+              if (defVar.image) toAdd.image = defVar.image;
+              if (defVar.sku) toAdd.sku = defVar.sku;
+              if (defVar.price) toAdd.price = defVar.price;
+              if (defVar.id) toAdd.id = defVar.id;
+            }
+          }
           if (Array.isArray(toAdd.availableSizes) && toAdd.availableSizes.length > 0) {
             toAdd.selectedSize = toAdd.availableSizes[0];
           }

@@ -144,48 +144,14 @@
   position: relative;
   width: 100%;
 }
-.bike-slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(18, 20, 26, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 8px 24px rgba(0, 0, 0, 0.5);
-  transition: all 0.25s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.bike-slider-nav:hover {
-  background: rgba(225, 59, 49, 0.9);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-50%) scale(1.08);
-}
-.bike-slider-nav:active {
-  transform: translateY(-50%) scale(0.92);
-}
-.bike-slider-nav.prev {
-  left: 20px;
-}
-.bike-slider-nav.next {
-  right: 20px;
-}
 .bike-slider-container {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  padding: 50px 0;
+  padding: 40px 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   overscroll-behavior-x: auto;
   touch-action: pan-x pan-y;
@@ -193,52 +159,43 @@
   cursor: grab;
   user-select: none;
 }
+.bike-slider-container:active {
+  cursor: grabbing;
+}
 .bike-slider-container::-webkit-scrollbar {
   display: none;
 }
 .bike-slider {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   align-items: center;
   padding: 0 calc(50% - 100px);
-  perspective: 1200px;
-  transform-style: preserve-3d;
 }
 .bike-item {
   scroll-snap-align: center;
   scroll-snap-stop: normal;
   flex: 0 0 200px;
   width: 200px;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-              opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-              background 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: scale(0.84) rotateY(9deg);
-  filter: brightness(0.72);
-  opacity: 0.65;
   cursor: pointer;
   background: #111215; /* Dark background so mix-blend-mode: screen works */
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  padding: 25px 15px 20px;
+  padding: 24px 16px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform-origin: center center;
   will-change: transform, opacity;
-  -webkit-transform: translateZ(0) scale(0.84) rotateY(9deg);
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.bike-item:hover {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 .bike-item.active {
-  transform: scale(1.08) rotateY(0deg);
-  filter: brightness(1);
-  opacity: 1;
   background: #000000; /* Solid black background for active bike card */
-  border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
-  z-index: 2;
+  border-color: var(--red);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(225, 59, 49, 0.5);
   cursor: pointer;
-  -webkit-transform: translateZ(0) scale(1.08) rotateY(0deg);
 }
 .bike-img-wrap {
   width: 100%;
@@ -249,28 +206,24 @@
   margin-bottom: 15px;
 }
 .bike-img-wrap img {
-  max-width: 120%;
-  max-height: 120%;
+  max-width: 110%;
+  max-height: 110%;
   object-fit: contain;
   mix-blend-mode: screen; /* Restored screen blend mode to hide the black background of the images */
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
   clip-path: inset(0.5px);
   -webkit-clip-path: inset(0.5px);
-  transform: scale(0.92) translateY(0) translate3d(0, 0, 0);
   pointer-events: none;
   -webkit-user-drag: none;
   user-select: none;
 }
 .bike-item.active .bike-img-wrap img {
-  transform: scale(1.05) translateY(-4px) translate3d(0, 0, 0);
-  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.38));
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.4));
 }
 .bike-info {
   text-align: center;
-  opacity: 0.55;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.75;
+  transition: opacity 0.25s ease;
 }
 .bike-item.active .bike-info {
   opacity: 1;

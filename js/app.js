@@ -219,33 +219,53 @@ class App {
   // Prioritises primary core products first before slicing to top 8.
   static getHomeFilteredProducts(filter, activeBike, db) {
     if (!filter || filter === "all") {
-      return db.getRecommendedProducts(activeBike, null, 8);
+      const rec = db.getRecommendedProducts(activeBike, null, 8);
+      if (rec && rec.length > 0) return rec;
+      return db.getRecommendedProducts(null, null, 8);
     }
-    const base = (db.getProductsForBike ? db.getProductsForBike(activeBike) : []) || [];
-    const C = window.HRz.Catalog;
-    // "Fog Lights" is a subcategory, not a department: match Fog & Aux Lights
-    // only. The old path resolved "Lights" to the whole Lighting department,
-    // which also swallowed the Electronics category (intercoms, GPS mounts).
+    const base = (activeBike && db.getProductsForBike ? db.getProductsForBike(activeBike) : []) || [];
+    const allProducts = db.getProducts ? db.getProducts().filter(p => p.isVisible !== false) : [];
+    const source = (base && base.length > 0) ? base : allProducts;
     let matched = [];
     if (filter === "Lights") {
-      matched = base.filter(p => {
-        try {
-          const sub = (C && typeof C.getProductSubcategory === "function") ? C.getProductSubcategory(p) : (p.subcategory || "");
-          return sub === "Fog & Aux Lights";
-        } catch (e) { return false; }
+      matched = source.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        const sub = String(p.subcategory || "").toLowerCase();
+        return cat.includes("light") || sub.includes("light");
+      });
+    } else if (filter === "Helmets") {
+      matched = source.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        return cat.includes("helmet");
+      });
+    } else if (filter === "Protection") {
+      matched = source.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        return cat.includes("protection") || cat.includes("guard");
+      });
+    } else if (filter === "Riding Gears") {
+      matched = source.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        return cat.includes("riding") || cat.includes("gear");
+      });
+    } else if (filter === "Luggage") {
+      matched = source.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        return cat.includes("luggage") || cat.includes("touring");
       });
     } else {
-      let dept = null;
-      try { dept = (C && typeof C.getDepartment === "function") ? C.getDepartment(filter) : null; } catch (e) { dept = null; }
-      if (dept && typeof dept.matches === "function") {
-        matched = base.filter(p => { try { return dept.matches(p); } catch (e) { return false; } });
-      } else if (typeof dept === "string" && C && typeof C.isProductInDepartment === "function") {
-        matched = base.filter(p => C.isProductInDepartment(p, dept));
-      } else if (C && typeof C.isProductInDepartment === "function") {
-        matched = base.filter(p => C.isProductInDepartment(p, filter));
-      } else {
-        matched = base.filter(p => (p.category || "") === filter);
-      }
+      matched = source.filter(p => (p.category || "") === filter);
+    }
+    if (matched.length === 0 && source !== allProducts) {
+      matched = allProducts.filter(p => {
+        const cat = String(p.category || "").toLowerCase();
+        if (filter === "Lights") return cat.includes("light");
+        if (filter === "Helmets") return cat.includes("helmet");
+        if (filter === "Protection") return cat.includes("protection") || cat.includes("guard");
+        if (filter === "Riding Gears") return cat.includes("riding") || cat.includes("gear");
+        if (filter === "Luggage") return cat.includes("luggage") || cat.includes("touring");
+        return cat.includes(filter.toLowerCase());
+      });
     }
     const sorted = App.homeSortProducts(matched, "featured");
     return sorted.slice(0, 8);
@@ -484,7 +504,13 @@ class App {
     const activeBike = window.HRz.Storage.getActiveBike();
     const heroBanner = window.HRz.Storage.getHeroBanner();
     const db = window.HRz.DB;
-    const featuredProducts = db.getRecommendedProducts(null, null, 8);
+    let featuredProducts = db.getRecommendedProducts(activeBike, null, 8);
+    if (!featuredProducts || featuredProducts.length === 0) {
+      featuredProducts = db.getRecommendedProducts(null, null, 8);
+    }
+    if (!featuredProducts || featuredProducts.length === 0) {
+      featuredProducts = (db.getProducts ? db.getProducts() : []).filter(p => p.isVisible !== false).slice(0, 8);
+    }
     const utils = window.HRz.Utils;
     const catalog = window.HRz.Catalog;
     const wishlist = window.HRz.Storage.getWishlist();
@@ -521,21 +547,18 @@ class App {
           <div><p class="eyebrow red">Select your machine</p><h2>CHOOSE YOUR <em>BRAND</em></h2></div>
         </div>
         <div class="bike-slider-wrapper">
-          <button class="bike-slider-nav prev" id="bikeSliderPrev" aria-label="Previous Brand">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </button>
           <div class="bike-slider-container">
             <div class="bike-slider">
               ${(() => {
                 const brands = Object.keys(window.HRz.Menu.menuData.shopByBike);
-                return [1, 2, 3].map(set => brands.map((brand, idx) => {
+                return [0, 1, 2, 3, 4].map(setIdx => brands.map((brand, idx) => {
                   const brandModels = window.HRz.Menu.menuData.shopByBike[brand];
                   const firstModel = brandModels && brandModels.length > 0 ? brandModels[0] : null;
                   const imgUrl = (window.HRzImageMap && (window.HRzImageMap[brand] || (firstModel && window.HRzImageMap[firstModel]))) 
                     || `images/verified bikes/bike_images/${brand}.png`;
-                  const uid = `brand-img-${set}-${idx}`;
+                  const uid = `brand-img-${setIdx}-${idx}`;
                   return `
-                  <div class="bike-item" data-brand="${escapeHTML(brand)}" data-set="${set}" data-index="${idx}" role="button" tabindex="0" aria-label="${escapeHTML(brand)}">
+                  <div class="bike-item" data-brand="${escapeHTML(brand)}" data-set="${setIdx}" data-index="${idx}" role="button" tabindex="0" aria-label="${escapeHTML(brand)}">
                     <div class="bike-img-wrap"><img id="${uid}" src="${imgUrl}" alt="${escapeHTML(brand)}" style="object-fit: contain; padding: 10px;" onerror="this.onerror=null; this.src=window.HRzPlaceholderImage;" loading="lazy" /></div>
                     <div class="bike-info"><h3>${escapeHTML(brand)}</h3></div>
                   </div>
@@ -543,9 +566,6 @@ class App {
               })()}
             </div>
           </div>
-          <button class="bike-slider-nav next" id="bikeSliderNext" aria-label="Next Brand">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </button>
         </div>
       </section>
 
@@ -716,7 +736,10 @@ class App {
     let currentHomeFilter = "all";
     let currentHomeSort = "featured";
     const renderHomeGrid = () => {
-      const filtered = App.getHomeFilteredProducts(currentHomeFilter, activeBike, db);
+      let filtered = App.getHomeFilteredProducts(currentHomeFilter, activeBike, db);
+      if (!filtered || filtered.length === 0) {
+        filtered = App.getHomeFilteredProducts(currentHomeFilter, null, db);
+      }
       const sorted = App.homeSortProducts(filtered, currentHomeSort);
       const grid = container.querySelector("#home-product-grid");
       const count = container.querySelector("#product-count");
@@ -771,226 +794,200 @@ class App {
     }
 
     // ═══════════════════════════════════════════════════════════════
-    //  3D Bike Selector — Glitch-Free Native CSS Snap + Infinite Loop
+    //  Bike Selector — Infinite Circular 3D Carousel (Continuous Wrap)
     // ═══════════════════════════════════════════════════════════════
     const sliderContainer = container.querySelector(".bike-slider-container");
     const bikeItems       = container.querySelectorAll(".bike-item");
 
     if (sliderContainer && bikeItems.length > 0) {
-      const brands = Object.keys(window.HRz.Menu.menuData.shopByBike);
-      const NUM_BIKES = brands.length; // Dynamic: 13 brands in catalog
-      let filterTimer = null;
-      let settleTimer = null;
+      const NUM_BRANDS = Object.keys(window.HRz.Menu.menuData.shopByBike).length; // 13
+      const TOTAL_SETS = 5;
+      const MIDDLE_SET_INDEX = 2; // Set 2 is center canonical set (cards 26..38)
+      const MIDDLE_SET_START = NUM_BRANDS * MIDDLE_SET_INDEX; // 26
+      const MIDDLE_SET_END   = MIDDLE_SET_START + NUM_BRANDS - 1; // 38
       let lastActive = null;
-      let rafScrollId = null;
-      let autoScrollAnimId = null;
+      let rafDepthId = null;
+      let normalizeTimer = null;
+      let isNormalizing = false;
 
-      // ─── Helpers ──────────────────────────────────────────────────
-      const getScrollCenter = () => sliderContainer.scrollLeft + sliderContainer.clientWidth / 2;
-      const getMid = (el) => el.offsetLeft + el.clientWidth / 2;
+      // ─── Continuous 3D Depth Scaling on Scroll / Swipe ────────────
+      const updateCardTransforms = () => {
+        const center = sliderContainer.scrollLeft + sliderContainer.clientWidth / 2;
+        let closest = null, minDist = Infinity;
+        const step = 224; // 200px width + 24px gap
+        const viewThreshold = sliderContainer.clientWidth * 0.9;
 
-      const getClosestItem = () => {
-        const center = getScrollCenter();
-        let best = null, bestDist = Infinity;
         for (let i = 0; i < bikeItems.length; i++) {
-          const el = bikeItems[i];
-          const dist = Math.abs(getMid(el) - center);
-          if (dist < bestDist) {
-            bestDist = dist;
-            best = el;
+          const item = bikeItems[i];
+          const mid = item.offsetLeft + item.offsetWidth / 2;
+          const dist = Math.abs(mid - center);
+
+          if (dist < minDist) {
+            minDist = dist;
+            closest = item;
+          }
+
+          // Off-screen optimization: don't compute expensive math
+          if (dist > viewThreshold) {
+            item.style.transform = "scale(0.85) translateZ(0)";
+            item.style.opacity = "0.4";
+            item.style.zIndex = "1";
+            continue;
+          }
+
+          // Smooth cosine curve: 0 at center, 1 at full step away
+          const progress = Math.min(dist / step, 1);
+          const factor = 0.5 * (1 - Math.cos(Math.PI * progress));
+
+          // Center zooms to 1.10x in front, sides scale down to 0.85x
+          const scale = 1.10 - factor * (1.10 - 0.85);
+          // Center is 100% opacity, sides fade to 45%
+          const opacity = 1.0 - factor * (1.0 - 0.45);
+          // Layering: center card in front (z-index 10), sides behind (z-index 1)
+          const zIndex = Math.round(10 - factor * 8);
+
+          item.style.transform = `scale(${scale.toFixed(3)}) translateZ(0)`;
+          item.style.opacity = opacity.toFixed(3);
+          item.style.zIndex = zIndex;
+        }
+
+        if (closest && closest !== lastActive) {
+          lastActive = closest;
+          bikeItems.forEach(i => i.classList.remove("active"));
+          closest.classList.add("active");
+        }
+      };
+
+      const requestDepthUpdate = () => {
+        if (!rafDepthId) {
+          rafDepthId = requestAnimationFrame(() => {
+            rafDepthId = null;
+            updateCardTransforms();
+          });
+        }
+      };
+
+      // ─── Silent Normalization: Keeps Scrolling Infinitely in Middle Set ───
+      const normalizeToMiddle = () => {
+        if (isDragging || isNormalizing) return;
+        const center = sliderContainer.scrollLeft + sliderContainer.clientWidth / 2;
+        let closestIdx = -1, minDist = Infinity;
+        for (let i = 0; i < bikeItems.length; i++) {
+          const mid = bikeItems[i].offsetLeft + bikeItems[i].offsetWidth / 2;
+          const dist = Math.abs(mid - center);
+          if (dist < minDist) {
+            minDist = dist;
+            closestIdx = i;
           }
         }
-        return best;
+        if (closestIdx === -1) return;
+
+        // If active card has drifted outside middle set [26 .. 38]
+        if (closestIdx < MIDDLE_SET_START || closestIdx > MIDDLE_SET_END) {
+          const canonicalIdx = (closestIdx % NUM_BRANDS) + MIDDLE_SET_START;
+          const offsetDiff = bikeItems[closestIdx].offsetLeft - bikeItems[canonicalIdx].offsetLeft;
+
+          isNormalizing = true;
+          sliderContainer.style.scrollBehavior = "auto";
+          sliderContainer.style.scrollSnapType = "none";
+          sliderContainer.scrollLeft -= offsetDiff;
+
+          requestAnimationFrame(() => {
+            sliderContainer.style.scrollBehavior = "";
+            sliderContainer.style.scrollSnapType = "";
+            updateCardTransforms();
+            isNormalizing = false;
+          });
+        }
       };
 
-      const inferBikeCategory = (brand, model) => {
-        const modelKey = String(model || "").toLowerCase();
-        if (modelKey.includes("classic")) return "Classic";
-        if (modelKey.includes("himalayan") || modelKey.includes("tiger") || modelKey.includes("gs")) return "Adventure";
-        if (modelKey.includes("duke") || modelKey.includes("mt-15")) return "Naked";
-        if (modelKey.includes("ninja") || modelKey.includes("r15") || modelKey.includes("panigale")) return "Supersport";
-        return "Roadster";
+      const scheduleNormalize = () => {
+        if (isDragging) return;
+        clearTimeout(normalizeTimer);
+        normalizeTimer = setTimeout(normalizeToMiddle, 150);
       };
 
-      const activateBike = (el, updateProducts = true) => {
-        if (!el || el === lastActive) return;
-        lastActive = el;
-        bikeItems.forEach(i => i.classList.remove("active"));
-        el.classList.add("active");
+      sliderContainer.addEventListener("scroll", () => {
+        requestDepthUpdate();
+        scheduleNormalize();
+      }, { passive: true });
 
-        if (!updateProducts) return;
+      if ("onscrollend" in window) {
+        sliderContainer.addEventListener("scrollend", normalizeToMiddle, { passive: true });
+      }
+      window.addEventListener("resize", requestDepthUpdate, { passive: true });
 
-        const brand = el.dataset.brand || el.querySelector("h3")?.innerText?.trim();
-        if (!brand) return;
-        const brandModels = window.HRz.Menu.menuData.shopByBike[brand] || [];
-        const model = brandModels[0] || brand;
-        const bikeObj = { brand, model, category: inferBikeCategory(brand, model) };
+      // ─── Initial Center in Middle Set ─────────────────────────────
+      const savedBike = window.HRz.Storage.getActiveBike ? window.HRz.Storage.getActiveBike() : null;
+      let initialItem = null;
+      if (savedBike && savedBike.brand) {
+        initialItem = Array.from(bikeItems).slice(MIDDLE_SET_START, MIDDLE_SET_START + NUM_BRANDS).find(i => i.dataset.brand === savedBike.brand);
+      }
+      if (!initialItem) {
+        initialItem = bikeItems[MIDDLE_SET_START]; // Royal Enfield in canonical middle set
+      }
+      if (initialItem) {
+        lastActive = initialItem;
+        initialItem.classList.add("active");
+        const targetPos = initialItem.offsetLeft + initialItem.clientWidth / 2 - sliderContainer.clientWidth / 2;
+        sliderContainer.scrollLeft = targetPos;
+      }
+      requestAnimationFrame(updateCardTransforms);
 
-        clearTimeout(filterTimer);
-        filterTimer = setTimeout(() => {
-          const f = container.querySelector(".filters .active")?.dataset.filter || "all";
-          const items = f === "all"
-            ? db.getRecommendedProducts(bikeObj, null, 8)
-            : db.getProductsForBike(bikeObj).filter(p => p.category === f);
-          const grid  = container.querySelector("#home-product-grid");
-          const count = container.querySelector("#product-count");
-          if (grid)  grid.innerHTML = items.map(p => catalog.renderProductCard(p, bikeObj, wishlist)).join("");
-          if (count) count.textContent = `${items.length} products`;
-          catalog.bindCardEvents(container);
-        }, 300);
-      };
-
-      // ─── Interaction & Intro Control ──────────────────────────────
-      let isUserInteracting = false;
+      // ─── Desktop Drag-to-Scroll (Fluid Infinite 1:1) ───────────────
       let isDragging = false;
-      let startX = 0, scrollLeftStart = 0, hasMoved = false;
-      let glideAnimId = null;
+      let startX = 0;
+      let startScrollLeft = 0;
+      let hasDragged = false;
 
-      const cancelIntroAnimation = () => {
-        if (autoScrollAnimId) {
-          cancelAnimationFrame(autoScrollAnimId);
-          autoScrollAnimId = null;
-        }
-        if (glideAnimId) {
-          cancelAnimationFrame(glideAnimId);
-          glideAnimId = null;
-        }
-        if (sliderContainer.dataset.isAutoScrolling === "true") {
-          sliderContainer.dataset.isAutoScrolling = "false";
-          sliderContainer.style.scrollSnapType = "";
-          sliderContainer.style.pointerEvents = "";
-        }
-      };
-
-      // ─── Touch Swiping Support ────────────────────────────────────
-      let touchStartX = 0;
-      let touchStartY = 0;
-      let touchScrollStart = 0;
-
-      sliderContainer.addEventListener("touchstart", (e) => {
-        cancelIntroAnimation();
-        clearTimeout(settleTimer);
-        isUserInteracting = true;
-        hasMoved = false;
-        if (e.touches.length > 0) {
-          touchStartX = e.touches[0].clientX;
-          touchStartY = e.touches[0].clientY;
-          touchScrollStart = sliderContainer.scrollLeft;
-        }
-      }, { passive: true });
-
-      sliderContainer.addEventListener("touchmove", (e) => {
-        cancelIntroAnimation();
-        if (e.touches.length > 0) {
-          const dx = e.touches[0].clientX - touchStartX;
-          const dy = e.touches[0].clientY - touchStartY;
-          // When gesture is horizontal, track finger 1:1 and disable snap during drag
-          if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) {
-            hasMoved = true;
-            sliderContainer.style.scrollSnapType = "none";
-            sliderContainer.scrollLeft = touchScrollStart - dx;
-          }
-        }
-      }, { passive: true });
-
-      const onTouchEnd = () => {
-        isUserInteracting = false;
-        sliderContainer.style.scrollSnapType = "";
-        scheduleSettleCheck();
-      };
-      sliderContainer.addEventListener("touchend", onTouchEnd, { passive: true });
-      sliderContainer.addEventListener("touchcancel", onTouchEnd, { passive: true });
-
-      // ─── Wheel & Trackpad Support ─────────────────────────────────
-      sliderContainer.addEventListener("wheel", () => {
-        cancelIntroAnimation();
-        scheduleSettleCheck();
-      }, { passive: true });
-
-      // ─── Desktop Drag Support ─────────────────────────────────────
       sliderContainer.addEventListener("mousedown", (e) => {
         if (e.button !== 0) return;
-        cancelIntroAnimation();
-        clearTimeout(settleTimer);
+        clearTimeout(normalizeTimer);
         isDragging = true;
-        isUserInteracting = true;
-        hasMoved = false;
+        hasDragged = false;
         startX = e.clientX;
-        scrollLeftStart = sliderContainer.scrollLeft;
+        startScrollLeft = sliderContainer.scrollLeft;
+        sliderContainer.style.scrollBehavior = "auto";
         sliderContainer.style.scrollSnapType = "none";
         sliderContainer.style.cursor = "grabbing";
       });
 
       window.addEventListener("mousemove", (e) => {
         if (!isDragging) return;
-        const walk = (e.clientX - startX) * 1.0;
-        if (Math.abs(walk) > 8) hasMoved = true;
-        sliderContainer.scrollLeft = scrollLeftStart - walk;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 6) hasDragged = true;
+        sliderContainer.scrollLeft = startScrollLeft - dx;
+
+        // Infinite wrap while dragging so you never hit a wall
+        const singleSetWidth = bikeItems[NUM_BRANDS].offsetLeft - bikeItems[0].offsetLeft;
+        if (sliderContainer.scrollLeft >= singleSetWidth * 3.5) {
+          sliderContainer.scrollLeft -= singleSetWidth;
+          startScrollLeft -= singleSetWidth;
+        } else if (sliderContainer.scrollLeft <= singleSetWidth * 1.5) {
+          sliderContainer.scrollLeft += singleSetWidth;
+          startScrollLeft += singleSetWidth;
+        }
+
+        requestDepthUpdate();
       });
 
       const onMouseUp = () => {
         if (!isDragging) return;
         isDragging = false;
-        isUserInteracting = false;
         sliderContainer.style.cursor = "grab";
+        sliderContainer.style.scrollBehavior = "";
         sliderContainer.style.scrollSnapType = "";
-        scheduleSettleCheck();
+        requestDepthUpdate();
+        scheduleNormalize();
       };
       window.addEventListener("mouseup", onMouseUp);
 
-      // ─── Silky Smooth Programmatic Gliding (Click / Buttons) ──────
-      const smoothGlideTo = (targetPos, duration = 750) => {
-        cancelIntroAnimation();
-        sliderContainer.dataset.isAutoScrolling = "true";
-        sliderContainer.style.scrollSnapType = "none";
-
-        const startPos = sliderContainer.scrollLeft;
-        const distance = targetPos - startPos;
-        if (Math.abs(distance) < 2) {
-          sliderContainer.dataset.isAutoScrolling = "false";
-          sliderContainer.style.scrollSnapType = "";
-          return;
-        }
-
-        const startTime = performance.now();
-        const glide = (now) => {
-          if (isUserInteracting || isDragging || sliderContainer.dataset.isAutoScrolling !== "true") {
-            sliderContainer.style.scrollSnapType = "";
-            return;
-          }
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          // Buttery smooth quartic ease-out
-          const ease = 1 - Math.pow(1 - progress, 4);
-          sliderContainer.scrollLeft = startPos + distance * ease;
-
-          const current = getClosestItem();
-          if (current && current !== lastActive) {
-            lastActive = current;
-            bikeItems.forEach(b => b.classList.remove("active"));
-            current.classList.add("active");
-          }
-
-          if (progress < 1) {
-            glideAnimId = requestAnimationFrame(glide);
-          } else {
-            glideAnimId = null;
-            sliderContainer.dataset.isAutoScrolling = "false";
-            sliderContainer.style.scrollSnapType = "";
-            const settled = getClosestItem();
-            if (settled) activateBike(settled);
-            scheduleSettleCheck();
-          }
-        };
-        glideAnimId = requestAnimationFrame(glide);
-      };
-
-      // ─── Click / Tap Handling ─────────────────────────────────────
+      // ─── Card Click (Center or Navigate) ──────────────────────────
       sliderContainer.addEventListener("click", (e) => {
-        if (hasMoved) {
+        if (hasDragged) {
           e.preventDefault();
           e.stopPropagation();
-          return; // Was a swipe/drag, do not navigate
+          return;
         }
         const clicked = e.target.closest(".bike-item");
         if (!clicked) return;
@@ -1000,161 +997,11 @@ class App {
         if (clicked.classList.contains("active")) {
           window.location.hash = "#models?brand=" + encodeURIComponent(brandName);
         } else {
-          const targetPos = getMid(clicked) - sliderContainer.clientWidth / 2;
-          smoothGlideTo(targetPos, 700);
+          const targetPos = clicked.offsetLeft + clicked.clientWidth / 2 - sliderContainer.clientWidth / 2;
+          sliderContainer.scrollTo({ left: targetPos, behavior: "smooth" });
         }
       });
       sliderContainer.addEventListener("dragstart", (e) => e.preventDefault());
-
-      // ─── Active Card Sync on Scroll (RAF-throttled) ────────────────
-      sliderContainer.addEventListener("scroll", () => {
-        if (sliderContainer.dataset.isAutoScrolling === "true") return;
-
-        if (!rafScrollId) {
-          rafScrollId = requestAnimationFrame(() => {
-            rafScrollId = null;
-            const closest = getClosestItem();
-            if (closest && closest !== lastActive) {
-              activateBike(closest);
-            }
-          });
-        }
-
-        scheduleSettleCheck();
-      }, { passive: true });
-
-      // ─── Glitch-Free Infinite Normalization ────────────────────────
-      const checkAndNormalizeLoop = () => {
-        // Never jump or normalize while user is actively touching or dragging!
-        if (isUserInteracting || isDragging || sliderContainer.dataset.isAutoScrolling === "true") {
-          return;
-        }
-
-        const currentClosest = getClosestItem();
-        if (!currentClosest) return;
-        const idx = Array.from(bikeItems).indexOf(currentClosest);
-        if (idx === -1) return;
-
-        // Middle set is [NUM_BIKES ... 2 * NUM_BIKES - 1] (indices 13 to 25)
-        if (idx < NUM_BIKES || idx >= NUM_BIKES * 2) {
-          const middleIdx = (idx % NUM_BIKES) + NUM_BIKES;
-          const targetEl = bikeItems[middleIdx];
-          if (!targetEl) return;
-
-          const targetPos = getMid(targetEl) - sliderContainer.clientWidth / 2;
-
-          // Seamless instant reposition
-          sliderContainer.style.scrollSnapType = "none";
-          sliderContainer.scrollLeft = targetPos;
-
-          lastActive = targetEl;
-          bikeItems.forEach(i => i.classList.remove("active"));
-          targetEl.classList.add("active");
-
-          requestAnimationFrame(() => {
-            sliderContainer.style.scrollSnapType = "";
-          });
-        }
-      };
-
-      const scheduleSettleCheck = () => {
-        clearTimeout(settleTimer);
-        // If native scrollend is supported, let it handle the settle check reliably
-        // Otherwise fallback to 400ms idle timer to avoid interrupting momentum scroll
-        if (!("onscrollend" in window)) {
-          settleTimer = setTimeout(checkAndNormalizeLoop, 400);
-        }
-      };
-
-      if ("onscrollend" in window) {
-        sliderContainer.addEventListener("scrollend", checkAndNormalizeLoop, { passive: true });
-      }
-
-      // ─── Initial Center & Intro Showcase Animation ────────────────
-      const middleStartEl = bikeItems[NUM_BIKES]; // Royal Enfield (start of middle set)
-      const middleEndEl = bikeItems[NUM_BIKES + 3]; // Triumph (3 brands ahead in middle set)
-
-      if (middleStartEl) {
-        // Position immediately at the canonical middle set
-        sliderContainer.scrollLeft = getMid(middleStartEl) - sliderContainer.clientWidth / 2;
-        activateBike(middleStartEl, false);
-      }
-
-      if (middleStartEl && middleEndEl) {
-        const observer = new IntersectionObserver((entries) => {
-          if (entries[0].isIntersecting) {
-            observer.disconnect();
-            if (isUserInteracting || hasMoved) return;
-
-            sliderContainer.dataset.isAutoScrolling = "true";
-            sliderContainer.style.scrollSnapType = "none";
-
-            // Slower, silky smooth cinematic showcase glide across brand cards
-            const duration = 3800;
-            const startTime = performance.now();
-            const startPos = getMid(middleStartEl) - sliderContainer.clientWidth / 2;
-            const endPos = getMid(middleEndEl) - sliderContainer.clientWidth / 2;
-
-            const animateScroll = (time) => {
-              if (sliderContainer.dataset.isAutoScrolling !== "true") return; // User touched or swiped!
-              const elapsed = time - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-              // Ultra-smooth sinusoidal ease-in-out: starts gently, glides like silk, settles gracefully
-              const ease = 0.5 * (1 - Math.cos(Math.PI * progress));
-              sliderContainer.scrollLeft = startPos + (endPos - startPos) * ease;
-
-              const current = getClosestItem();
-              if (current && current !== lastActive) {
-                lastActive = current;
-                bikeItems.forEach(b => b.classList.remove("active"));
-                current.classList.add("active");
-              }
-
-              if (progress < 1) {
-                autoScrollAnimId = requestAnimationFrame(animateScroll);
-              } else {
-                sliderContainer.dataset.isAutoScrolling = "false";
-                sliderContainer.style.scrollSnapType = "";
-                activateBike(middleEndEl);
-              }
-            };
-
-            autoScrollAnimId = requestAnimationFrame(animateScroll);
-          }
-        }, { threshold: 0.3 });
-
-        observer.observe(sliderContainer);
-      }
-
-      // ─── Prev / Next Button Navigation (Accurate Smooth Glide) ────
-      const prevBtn = container.querySelector("#bikeSliderPrev");
-      const nextBtn = container.querySelector("#bikeSliderNext");
-      if (prevBtn) {
-        prevBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          cancelIntroAnimation();
-          const current = getClosestItem();
-          const idx = Array.from(bikeItems).indexOf(current);
-          const targetItem = bikeItems[idx - 1] || bikeItems[0];
-          if (targetItem) {
-            const targetPos = getMid(targetItem) - sliderContainer.clientWidth / 2;
-            smoothGlideTo(targetPos, 700);
-          }
-        });
-      }
-      if (nextBtn) {
-        nextBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          cancelIntroAnimation();
-          const current = getClosestItem();
-          const idx = Array.from(bikeItems).indexOf(current);
-          const targetItem = bikeItems[idx + 1] || bikeItems[bikeItems.length - 1];
-          if (targetItem) {
-            const targetPos = getMid(targetItem) - sliderContainer.clientWidth / 2;
-            smoothGlideTo(targetPos, 700);
-          }
-        });
-      }
     }
     // ═══════════════════════════════════════════════════════════════
   }

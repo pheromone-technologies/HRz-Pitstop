@@ -182,8 +182,9 @@ class CartDrawer {
       this.openCart();
     }
 
-    const sizeText = product.selectedSize ? ` (Size: ${product.selectedSize})` : "";
-    window.HRz.Utils.showToast(`Added ${product.name}${sizeText} to bag`, "success");
+    const colorText = product.color ? ` (Color: ${product.color})` : "";
+    const sizeText = product.selectedSize ? ` [Size: ${product.selectedSize}]` : "";
+    window.HRz.Utils.showToast(`Added ${product.name}${colorText}${sizeText} to bag`, "success");
   }
 
   static updateQuantity(productId, delta) {
@@ -260,7 +261,10 @@ class CartDrawer {
           <div class="cart-item-info">
             <small class="cart-item-sku">${escapeHTML(item.sku || "Accessory")}</small>
             <h4 class="cart-item-title">${escapeHTML(item.name)}</h4>
-            ${item.selectedSize ? `<span class="cart-item-size-pill">Size: ${escapeHTML(item.selectedSize)}</span>` : ""}
+            <div class="cart-item-variants-row" style="display:flex; flex-wrap:wrap; gap:4px; margin:2px 0 4px 0;">
+              ${item.color ? `<span class="cart-item-color-pill">Color: <strong>${escapeHTML(item.color)}</strong></span>` : ""}
+              ${item.selectedSize ? `<span class="cart-item-size-pill">Size: ${escapeHTML(item.selectedSize)}</span>` : ""}
+            </div>
             <b class="cart-item-price">${utils.formatCurrency(item.price)}</b>
             <div class="cart-qty-controls">
               <button class="qty-btn minus-qty" data-id="${item.id}">−</button>

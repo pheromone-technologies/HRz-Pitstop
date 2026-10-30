@@ -1,0 +1,164 @@
+{
+  "summary": {
+    "motowolf travel bag": {
+      "query": "motowolf travel bag",
+      "count": 49,
+      "resultsCount": 3,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "lastSearched": "2026-10-30T23:15:00.000Z"
+    },
+    "crash guard": {
+      "query": "crash guard",
+      "count": 42,
+      "resultsCount": 18,
+      "topProduct": "LCB KTM ADV 390 2025 GOPHER LUGGAGE CARRIER",
+      "lastSearched": "2026-10-30T22:25:00.000Z"
+    },
+    "axor apex helmet": {
+      "query": "axor apex helmet",
+      "count": 35,
+      "resultsCount": 12,
+      "topProduct": "AXOR APEX HEX WHITE BLUE",
+      "lastSearched": "2026-10-30T22:15:00.000Z"
+    },
+    "fog lights": {
+      "query": "fog lights",
+      "count": 29,
+      "resultsCount": 9,
+      "topProduct": "HJG 4 LED FOG LIGHT",
+      "lastSearched": "2026-10-30T21:50:00.000Z"
+    },
+    "saddle bag": {
+      "query": "saddle bag",
+      "count": 24,
+      "resultsCount": 7,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "lastSearched": "2026-10-30T21:40:00.000Z"
+    },
+    "riding jacket": {
+      "query": "riding jacket",
+      "count": 21,
+      "resultsCount": 14,
+      "topProduct": "LR MEN S JACKET ADDON PRO L2 RED",
+      "lastSearched": "2026-10-30T21:10:00.000Z"
+    },
+    "tank bag": {
+      "query": "tank bag",
+      "count": 18,
+      "resultsCount": 4,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "lastSearched": "2026-10-30T20:45:00.000Z"
+    },
+    "mobile holder": {
+      "query": "mobile holder",
+      "count": 16,
+      "resultsCount": 6,
+      "topProduct": "MOTOWOLF PHONE MOUNT WITH CHARGER",
+      "lastSearched": "2026-10-30T20:20:00.000Z"
+    },
+    "chain lube": {
+      "query": "chain lube",
+      "count": 15,
+      "resultsCount": 5,
+      "topProduct": "IPONE CHAIN 250ML",
+      "lastSearched": "2026-10-30T19:55:00.000Z"
+    },
+    "backpack": {
+      "query": "backpack",
+      "count": 12,
+      "resultsCount": 2,
+      "topProduct": "MOTOWOLF BACKPACK 0714 30L",
+      "lastSearched": "2026-10-30T19:10:00.000Z"
+    },
+    "intercom": {
+      "query": "intercom",
+      "count": 9,
+      "resultsCount": 3,
+      "topProduct": "BLUETOOTH INTERCOM HELMET HEADSET",
+      "lastSearched": "2026-10-30T18:30:00.000Z"
+    },
+    "alpinestars boots": {
+      "query": "alpinestars boots",
+      "count": 6,
+      "resultsCount": 0,
+      "topProduct": "None (Customer demand request)",
+      "lastSearched": "2026-10-30T17:45:00.000Z"
+    },
+    "givi top box": {
+      "query": "givi top box",
+      "count": 4,
+      "resultsCount": 0,
+      "topProduct": "None (Customer demand request)",
+      "lastSearched": "2026-10-30T16:20:00.000Z"
+    },
+    "himalayan 450": {
+      "query": "himalayan 450",
+      "count": 1,
+      "resultsCount": 78,
+      "topProduct": "LCB Himalayan 450 Aragorn Saddle Stay",
+      "lastSearched": "2026-10-30T18:19:17.823Z"
+    }
+  },
+  "recent": [
+    {
+      "query": "himalayan 450",
+      "resultsCount": 78,
+      "topProduct": "LCB Himalayan 450 Aragorn Saddle Stay",
+      "timestamp": "2026-10-30T18:19:17.823Z"
+    },
+    {
+      "query": "motowolf travel bag",
+      "resultsCount": 3,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "timestamp": "2026-10-30T23:15:00.000Z"
+    },
+    {
+      "query": "motowolf travel bag",
+      "resultsCount": 3,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "timestamp": "2026-10-30T22:30:00.000Z"
+    },
+    {
+      "query": "crash guard",
+      "resultsCount": 18,
+      "topProduct": "LCB KTM ADV 390 2025 GOPHER LUGGAGE CARRIER",
+      "timestamp": "2026-10-30T22:25:00.000Z"
+    },
+    {
+      "query": "axor apex helmet",
+      "resultsCount": 12,
+      "topProduct": "AXOR APEX HEX WHITE BLUE",
+      "timestamp": "2026-10-30T22:15:00.000Z"
+    },
+    {
+      "query": "fog lights",
+      "resultsCount": 9,
+      "topProduct": "HJG 4 LED FOG LIGHT",
+      "timestamp": "2026-10-30T21:50:00.000Z"
+    },
+    {
+      "query": "saddle bag",
+      "resultsCount": 7,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "timestamp": "2026-10-30T21:40:00.000Z"
+    },
+    {
+      "query": "riding jacket",
+      "resultsCount": 14,
+      "topProduct": "LR MEN S JACKET ADDON PRO L2 RED",
+      "timestamp": "2026-10-30T21:10:00.000Z"
+    },
+    {
+      "query": "tank bag",
+      "resultsCount": 4,
+      "topProduct": "MOTOWOLF TRAVEL BAG 0717 40LTR",
+      "timestamp": "2026-10-30T20:45:00.000Z"
+    },
+    {
+      "query": "alpinestars boots",
+      "resultsCount": 0,
+      "topProduct": "None (Customer demand request)",
+      "timestamp": "2026-10-30T17:45:00.000Z"
+    }
+  ]
+}

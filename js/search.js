@@ -42,6 +42,12 @@ class SearchEngine {
       SearchEngine.noFitmentData = !!(allMatches && allMatches.noFitmentData);
       SearchEngine.lastSearchQuery = q;
       const matches = allMatches.slice(0, 5);
+      const topMatchName = matches.length > 0 ? matches[0].name : "";
+
+      // Log search query in background analytics
+      if (window.HRz.Storage && typeof window.HRz.Storage.recordSearch === "function") {
+        window.HRz.Storage.recordSearch(q, allMatches.length, topMatchName);
+      }
 
       if (matches.length === 0) {
         popover.innerHTML = `<p style="padding:14px;color:#666;">No gear found. Try crash guard or helmet.</p>`;
@@ -60,6 +66,10 @@ class SearchEngine {
       popover.querySelectorAll(".autocomplete-item").forEach(item => {
         item.onclick = () => {
           const id = item.dataset.id;
+          const clickedProd = allProducts.find(p => p.id === id);
+          if (clickedProd && window.HRz.Storage) {
+            window.HRz.Storage.recordSearch(q, allMatches.length, clickedProd.name);
+          }
           popover.innerHTML = "";
           input.value = "";
           // Close search panel properly
@@ -81,6 +91,11 @@ class SearchEngine {
       if (e.key === "Enter") {
         const q = input.value.trim();
         if (q) {
+          if (window.HRz.Storage && typeof window.HRz.Storage.recordSearch === "function") {
+            const allProducts = window.HRz.DB ? window.HRz.DB.products : [];
+            const matches = window.HRz.Utils ? window.HRz.Utils.smartSearch(q, allProducts, null) : [];
+            window.HRz.Storage.recordSearch(q, matches.length, matches[0]?.name || "");
+          }
           popover.innerHTML = "";
           if (window.HRz.App) {
             window.HRz.App.closeAllPanels(false, true);
